@@ -1,5 +1,7 @@
 package products.credits;
 
+import java.util.Objects;
+
 abstract class Credit {
 	private double borrowingRate;
 	private int loanTermInMonth;
@@ -37,6 +39,32 @@ abstract class Credit {
 
 	public void setLoanAmount(double loanAmount) {
 		this.loanAmount = loanAmount;
+	}
+	
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (this.getClass() != obj.getClass())
+			return false;
+		Credit other = (Credit) obj;
+		return Double.doubleToLongBits(this.borrowingRate) == Double.doubleToLongBits(other.borrowingRate)
+				&& Double.doubleToLongBits(this.loanAmount) == Double.doubleToLongBits(other.loanAmount)
+				&& this.loanTermInMonth == other.loanTermInMonth;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(borrowingRate, loanAmount, loanTermInMonth);
+	}
+
+	@Override
+	public String toString() {
+		return "Credit [borrowingRate=" + borrowingRate + ", loanTermInMonth=" + loanTermInMonth + ", loanAmount="
+				+ loanAmount + "]";
 	}
 
 	abstract void giveCredit();

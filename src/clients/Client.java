@@ -1,5 +1,7 @@
 package clients;
 
+import java.util.Objects;
+
 abstract class Client {
 	private long id;
 	private String IdentificationNumber;
@@ -47,6 +49,29 @@ abstract class Client {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Client other = (Client) obj;
+		return this.id == other.id && Objects.equals(this.IdentificationNumber, other.IdentificationNumber);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, IdentificationNumber);
+	}
+
+	@Override
+	public String toString() {
+		return "General information about the client: id=" + id + ", IdentificationNumber=" + IdentificationNumber
+				+ ", phoneNumber=" + phoneNumber + ", address=" + address + ".";
 	}
 
 }

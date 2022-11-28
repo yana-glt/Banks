@@ -1,5 +1,7 @@
 package clients;
 
+import java.util.Objects;
+
 import products.accounts.IndividualClientsAccount;
 
 public class IndividualClient extends Client {
@@ -19,27 +21,24 @@ public class IndividualClient extends Client {
 	}
 
 	public IndividualClient(long id, String identificationNumber, String phoneNumber, String address, String name,
-			String surname, String dateOfBirth, String placeOfBirth, String citizenship,
-			IndividualClientsAccount account) {
+			String surname, String dateOfBirth, String placeOfBirth, String citizenship) {
 		super(id, identificationNumber, phoneNumber, address);
 		this.name = name;
 		this.surname = surname;
 		this.dateOfBirth = dateOfBirth;
 		this.placeOfBirth = placeOfBirth;
 		this.citizenship = citizenship;
-		this.account = account;
 	}
 
 	public IndividualClient(long id, String identificationNumber, String phoneNumber, String address, String name,
 			String surname, String dateOfBirth, String placeOfBirth, String citizenship,
-			IndividualClientsAccount account, double averageSalary) {
+			double averageSalary) {
 		super(id, identificationNumber, phoneNumber, address);
 		this.name = name;
 		this.surname = surname;
 		this.dateOfBirth = dateOfBirth;
 		this.placeOfBirth = placeOfBirth;
 		this.citizenship = citizenship;
-		this.account = account;
 		this.averageSalary = averageSalary;
 	}
 
@@ -97,6 +96,36 @@ public class IndividualClient extends Client {
 
 	public void setAccount(IndividualClientsAccount account) {
 		this.account = account;
+	}	
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		IndividualClient other = (IndividualClient) obj;
+		return Objects.equals(this.name, other.name)
+				&& Objects.equals(this.surname, other.surname) 
+				&& Objects.equals(this.dateOfBirth, other.dateOfBirth) 
+				&& Objects.equals(this.placeOfBirth, other.placeOfBirth) ;
 	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + Objects.hash(name, surname, dateOfBirth, placeOfBirth);
+		return result;
+	}
+
+	@Override
+	public String toString() {
+		return super.toString() + " Individual client information: name=" + name + ", surname=" + surname + ", dateOfBirth=" + dateOfBirth
+				+ ", placeOfBirth=" + placeOfBirth + ", citizenship=" + citizenship + ", account=" + account.getAccountNumber() + ".";
+	}
+
 
 }

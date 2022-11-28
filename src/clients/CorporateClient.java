@@ -1,5 +1,7 @@
 package clients;
 
+import java.util.Objects;
+
 import products.accounts.CorporateClientsAccount;
 
 public class CorporateClient extends Client {
@@ -21,32 +23,20 @@ public class CorporateClient extends Client {
 	}
 
 	public CorporateClient(long id, String identificationNumber, String phoneNumber, String address, String name,
-			String directorsName, String directorsSurname, String directorsPhoneNumber, String accountantsName,
-			String accountantsSurname, String accountantsPhoneNumber, CorporateClientsAccount account) {
+			String directorsName, String directorsSurname) {
 		super(id, identificationNumber, phoneNumber, address);
 		this.name = name;
 		this.directorsName = directorsName;
 		this.directorsSurname = directorsSurname;
-		this.directorsPhoneNumber = directorsPhoneNumber;
-		this.accountantsName = accountantsName;
-		this.accountantsSurname = accountantsSurname;
-		this.accountantsPhoneNumber = accountantsPhoneNumber;
-		this.account = account;
 	}
 
 	public CorporateClient(long id, String identificationNumber, String phoneNumber, String address, String name,
-			String directorsName, String directorsSurname, String directorsPhoneNumber, String accountantsName,
-			String accountantsSurname, String accountantsPhoneNumber, CorporateClientsAccount account,
+			String directorsName, String directorsSurname,
 			double solvencyAssessment) {
 		super(id, identificationNumber, phoneNumber, address);
 		this.name = name;
 		this.directorsName = directorsName;
 		this.directorsSurname = directorsSurname;
-		this.directorsPhoneNumber = directorsPhoneNumber;
-		this.accountantsName = accountantsName;
-		this.accountantsSurname = accountantsSurname;
-		this.accountantsPhoneNumber = accountantsPhoneNumber;
-		this.account = account;
 		this.solvencyAssessment = solvencyAssessment;
 	}
 
@@ -120,6 +110,35 @@ public class CorporateClient extends Client {
 
 	public void setSolvencyAssessment(double solvencyAssessment) {
 		this.solvencyAssessment = solvencyAssessment;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (this.getClass() != obj.getClass())
+			return false;
+		CorporateClient other = (CorporateClient) obj;
+		return Objects.equals(this.name, other.name) && Objects.equals(this.directorsName, other.directorsName)
+				&& Objects.equals(this.directorsSurname, other.directorsSurname);
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + Objects.hash(name, directorsName, directorsSurname);
+		return result;
+	}
+
+	@Override
+	public String toString() {
+		return super.toString() + " Corporate client information: name=" + name + ", directorsName=" + directorsName
+				+ ", directorsSurname=" + directorsSurname + ", directorsPhoneNumber=" + directorsPhoneNumber
+				+ ", accountantsName=" + accountantsName + ", accountantsSurname=" + accountantsSurname
+				+ ", accountantsPhoneNumber=" + accountantsPhoneNumber + ", account=" + account.getAccountNumber() + ".";
 	}
 
 }

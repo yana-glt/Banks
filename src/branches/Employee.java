@@ -1,5 +1,7 @@
 package branches;
 
+import java.util.Objects;
+
 import products.accounts.IndividualClientsAccount;
 
 public class Employee {
@@ -111,6 +113,30 @@ public class Employee {
 
 	public void setAccount(IndividualClientsAccount account) {
 		this.account = account;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (this.getClass() != obj.getClass())
+			return false;
+		Employee other = (Employee) obj;
+		return this.id == other.id && Objects.equals(this.name, other.name)
+				&& Objects.equals(this.surname, other.surname) && Objects.equals(this.dateOfBirth, other.dateOfBirth);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, name, surname, dateOfBirth);
+	}
+
+	@Override
+	public String toString() {
+		return "Employee information:id=" + id + ", name=" + name + ", surname=" + surname + ", dateOfBirth="
+				+ dateOfBirth + ", position=" + position + ", department=" + department + ", branch=" + branch + ".";
 	}
 
 }
