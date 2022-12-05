@@ -2,11 +2,12 @@ package products.credits;
 
 import java.util.Objects;
 
+import clients.Client;
 import clients.CorporateClient;
 import products.accounts.CorporateClientsAccount;
-import products.accounts.IndividualClientsAccount;
+import products.Currency;
 
-public class CorporateClientsCredit extends Credit {
+public class CorporateClientsCredit extends Credit implements ICreditOptions {
 	private CorporateClientsAccount account;
 	private CorporateClient client;
 
@@ -15,8 +16,13 @@ public class CorporateClientsCredit extends Credit {
 	}
 
 	public CorporateClientsCredit(double borrowingRate, int loanTermInMonth, double loanAmount,
+			Currency creditCurrency) {
+		super(borrowingRate, loanTermInMonth, loanAmount, creditCurrency);
+	}
+
+	public CorporateClientsCredit(double borrowingRate, int loanTermInMonth, double loanAmount, Currency creditCurrency,
 			CorporateClientsAccount account, CorporateClient client) {
-		super(borrowingRate, loanTermInMonth, loanAmount);
+		super(borrowingRate, loanTermInMonth, loanAmount, creditCurrency);
 		this.account = account;
 		this.client = client;
 	}
@@ -28,7 +34,7 @@ public class CorporateClientsCredit extends Credit {
 	public void setAccount(CorporateClientsAccount account) {
 		this.account = account;
 	}
-	
+
 	public CorporateClient getClient() {
 		return client;
 	}
@@ -36,17 +42,19 @@ public class CorporateClientsCredit extends Credit {
 	public void setClient(CorporateClient client) {
 		this.client = client;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
 		if (!super.equals(obj))
 			return false;
 		if (this.getClass() != obj.getClass())
 			return false;
+		if (this.hashCode() != obj.hashCode())
+			return false;
 		CorporateClientsCredit other = (CorporateClientsCredit) obj;
-		return Objects.equals(this.account, other.account) && Objects.equals(this.client, other.client);
+		return this.account != null ? this.account.equals(other.account)
+				: other.account == null && this.client != null ? this.client.equals(other.client)
+						: other.client == null;
 	}
 
 	@Override
@@ -59,22 +67,15 @@ public class CorporateClientsCredit extends Credit {
 
 	@Override
 	public String toString() {
-		return super.toString() + " CorporateClientsCredit [account=" + account.getAccountNumber() + ", client=" + client.getName() + "]";
+		return String.format("%s Information about the recipient: account=%s, client=%s", super.toString(),
+				account.getAccountNumber(), client.getName());
 	}
-	
 
 	@Override
-	void giveCredit() {
-		CorporateClientsCredit credit = new CorporateClientsCredit();
-	}
-	
-	public void giveCredit(CorporateClient client, CorporateClientsCredit credit) {
-		if(client.getSolvencyAssessment() >= 75) {
-			CorporateClientsCredit newCredit = new CorporateClientsCredit(credit.getBorrowingRate(), credit.getLoanTermInMonth(), credit.getLoanAmount(), 
-					new CorporateClientsAccount(), client);
-			System.out.println("The financial condition of the client "+ client.getName() + " allows him to receive a credit.");
-		}else {
-			System.out.println("The financial condition of the client "+ client.getName() + " does not allow him to receive a credit.");
+	public void giveCredit(Client client) {
+		if (((CorporateClient) client).assessSolvency()) {
+			this.setClient((CorporateClient) client);
+			this.setAccount(new CorporateClientsAccount());
 		}
 	}
 

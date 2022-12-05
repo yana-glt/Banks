@@ -1,33 +1,38 @@
 package branches;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class Department {
-	private int departmentID;
+	private static int numberOfDepartments = 0;
+	private int departmentId;
 	private String name;
 	private Employee headOfDepartment;
-	private List<Employee> listOfEmployees;
+	private ArrayList<Employee> listOfEmployees = new ArrayList<>();
 	private Branch branch;
 
 	public Department() {
 
 	}
 
-	public Department(int departmentID, String name, Employee headOfDepartment, List<Employee> listOfEmployees,
-			Branch branch) {
-		this.departmentID = departmentID;
+	public Department(String name) {
 		this.name = name;
-		this.headOfDepartment = headOfDepartment;
-		this.listOfEmployees = listOfEmployees;
-		this.branch = branch;
+		this.departmentId = ++numberOfDepartments;
 	}
 
-	public int getDepartmentID() {
-		return departmentID;
+	public static int getNumberOfDepartments() {
+		return numberOfDepartments;
 	}
 
-	public void setDepartmentID(int departmentID) {
-		this.departmentID = departmentID;
+	public static void setNumberOfDepartments(int numberOfDepartments) {
+		Department.numberOfDepartments = numberOfDepartments;
+	}
+
+	public int getDepartmentId() {
+		return departmentId;
+	}
+
+	public void setDepartmentId(int departmentId) {
+		this.departmentId = departmentId;
 	}
 
 	public String getName() {
@@ -46,11 +51,11 @@ public class Department {
 		this.headOfDepartment = headOfDepartment;
 	}
 
-	public List<Employee> getListOfEmployees() {
+	public ArrayList<Employee> getListOfEmployees() {
 		return listOfEmployees;
 	}
 
-	public void setListOfEmployees(List<Employee> listOfEmployees) {
+	public void setListOfEmployees(ArrayList<Employee> listOfEmployees) {
 		this.listOfEmployees = listOfEmployees;
 	}
 
@@ -60,6 +65,11 @@ public class Department {
 
 	public void setBranch(Branch branch) {
 		this.branch = branch;
+	}
+
+	@Override
+	public String toString() {
+		return String.format("Department [id=%d, name=%s]", departmentId, name);
 	}
 
 }

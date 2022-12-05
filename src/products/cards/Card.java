@@ -1,6 +1,6 @@
 package products.cards;
 
-abstract class Card {
+public abstract class Card {
 
 	private String number;
 	private String nameAndSurname;

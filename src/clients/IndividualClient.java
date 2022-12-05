@@ -1,15 +1,16 @@
 package clients;
 
 import java.util.Objects;
+import java.util.Scanner;
 
 import products.accounts.IndividualClientsAccount;
+import products.credits.IndividualClientsCredit;
 
-public class IndividualClient extends Client {
+public class IndividualClient extends Client implements IAssessSolvency {
 
 	private String name;
 	private String surname;
 	private String dateOfBirth;
-	private String placeOfBirth;
 	private String citizenship;
 	private IndividualClientsAccount account;
 
@@ -20,24 +21,21 @@ public class IndividualClient extends Client {
 
 	}
 
-	public IndividualClient(long id, String identificationNumber, String phoneNumber, String address, String name,
-			String surname, String dateOfBirth, String placeOfBirth, String citizenship) {
-		super(id, identificationNumber, phoneNumber, address);
+	public IndividualClient(String identificationNumber, String phoneNumber, String emailAddress, String name,
+			String surname, String dateOfBirth, String citizenship) {
+		super(identificationNumber, phoneNumber, emailAddress);
 		this.name = name;
 		this.surname = surname;
 		this.dateOfBirth = dateOfBirth;
-		this.placeOfBirth = placeOfBirth;
 		this.citizenship = citizenship;
 	}
 
-	public IndividualClient(long id, String identificationNumber, String phoneNumber, String address, String name,
-			String surname, String dateOfBirth, String placeOfBirth, String citizenship,
-			double averageSalary) {
-		super(id, identificationNumber, phoneNumber, address);
+	public IndividualClient(String identificationNumber, String phoneNumber, String emailAddress, String name,
+			String surname, String dateOfBirth, String citizenship, double averageSalary) {
+		super(identificationNumber, phoneNumber, emailAddress);
 		this.name = name;
 		this.surname = surname;
 		this.dateOfBirth = dateOfBirth;
-		this.placeOfBirth = placeOfBirth;
 		this.citizenship = citizenship;
 		this.averageSalary = averageSalary;
 	}
@@ -66,14 +64,6 @@ public class IndividualClient extends Client {
 		this.dateOfBirth = dateOfBirth;
 	}
 
-	public String getPlaceOfBirth() {
-		return placeOfBirth;
-	}
-
-	public void setPlaceOfBirth(String placeOfBirth) {
-		this.placeOfBirth = placeOfBirth;
-	}
-
 	public String getCitizenship() {
 		return citizenship;
 	}
@@ -96,36 +86,73 @@ public class IndividualClient extends Client {
 
 	public void setAccount(IndividualClientsAccount account) {
 		this.account = account;
-	}	
+	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
 		if (!super.equals(obj))
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
+		if (this.hashCode() != obj.hashCode())
+			return false;
 		IndividualClient other = (IndividualClient) obj;
-		return Objects.equals(this.name, other.name)
-				&& Objects.equals(this.surname, other.surname) 
-				&& Objects.equals(this.dateOfBirth, other.dateOfBirth) 
-				&& Objects.equals(this.placeOfBirth, other.placeOfBirth) ;
+		return (this.name == other.name || (this.name != null ? this.name.equals(other.name) : other.name == null))
+				&& (this.surname == other.surname
+						|| (this.surname != null ? this.surname.equals(other.surname) : other.surname == null))
+				&& (this.dateOfBirth == other.dateOfBirth
+						|| (this.dateOfBirth != null ? this.dateOfBirth.equals(other.dateOfBirth)
+								: other.dateOfBirth == null));
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + Objects.hash(name, surname, dateOfBirth, placeOfBirth);
+		result = prime * result + Objects.hash(name, surname, dateOfBirth);
 		return result;
 	}
 
 	@Override
 	public String toString() {
-		return super.toString() + " Individual client information: name=" + name + ", surname=" + surname + ", dateOfBirth=" + dateOfBirth
-				+ ", placeOfBirth=" + placeOfBirth + ", citizenship=" + citizenship + ", account=" + account.getAccountNumber() + ".";
+		return String.format("%s, name=%s, surname=%s, dateOfBirth=%s, citizenship=%s, account=%s", super.toString(),
+				name, surname, dateOfBirth, citizenship, account.getAccountNumber());
 	}
 
-
+	@Override
+	public boolean assessSolvency() {
+		double rate;
+		int term;
+		double amount;
+		try (Scanner scanner = new Scanner(System.in)) {
+			System.out.println("Enter interest rate");
+			if (scanner.hasNextDouble()) {
+				rate = scanner.nextDouble();
+			} else {
+				rate = 0;
+			}
+			System.out.println("Enter credit term (in months)");
+			if (scanner.hasNextInt()) {
+				term = scanner.nextInt();
+			} else {
+				term = 0;
+			}
+			System.out.println("Enter credit amount");
+			if (scanner.hasNextDouble()) {
+				amount = scanner.nextDouble();
+			} else {
+				amount = 0;
+			}
+		}
+		double monthlyPayment = IndividualClientsCredit.determineMonthlyPayment(rate, term, amount);
+		if (monthlyPayment <= 0.5 * this.averageSalary) {
+			System.out.println(String.format("Client %s %s has sufficient income to receive this credit.",
+					this.getName(), this.getSurname()));
+			return true;
+		} else {
+			System.out.println(String.format("Client  %s %s does not have sufficient income to receive this credit.",
+					this.getName(), this.getSurname()));
+			return false;
+		}
+	}
 }

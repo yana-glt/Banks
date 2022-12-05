@@ -2,10 +2,12 @@ package products.credits;
 
 import java.util.Objects;
 
+import clients.Client;
 import clients.IndividualClient;
+import products.Currency;
 import products.accounts.IndividualClientsAccount;
 
-public class IndividualClientsCredit extends Credit {
+public class IndividualClientsCredit extends Credit implements ICreditOptions {
 	private IndividualClientsAccount account;
 	private IndividualClient client;
 
@@ -14,8 +16,13 @@ public class IndividualClientsCredit extends Credit {
 	}
 
 	public IndividualClientsCredit(double borrowingRate, int loanTermInMonth, double loanAmount,
-			IndividualClientsAccount account, IndividualClient client) {
-		super(borrowingRate, loanTermInMonth, loanAmount);
+			Currency creditCurrency) {
+		super(borrowingRate, loanTermInMonth, loanAmount, creditCurrency);
+	}
+
+	public IndividualClientsCredit(double borrowingRate, int loanTermInMonth, double loanAmount,
+			Currency creditCurrency, IndividualClientsAccount account, IndividualClient client) {
+		super(borrowingRate, loanTermInMonth, loanAmount, creditCurrency);
 		this.account = account;
 		this.client = client;
 	}
@@ -32,18 +39,24 @@ public class IndividualClientsCredit extends Credit {
 		return client;
 	}
 
+	public void setClient(IndividualClient client) {
+		this.client = client;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
 		if (!super.equals(obj))
 			return false;
 		if (this.getClass() != obj.getClass())
 			return false;
+		if (this.hashCode() != obj.hashCode())
+			return false;
 		IndividualClientsCredit other = (IndividualClientsCredit) obj;
-		return Objects.equals(this.account, other.account) && Objects.equals(this.client, other.client);
+		return this.account != null ? this.account.equals(other.account)
+				: other.account == null && this.client != null ? this.client.equals(other.client)
+						: other.client == null;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -54,36 +67,25 @@ public class IndividualClientsCredit extends Credit {
 
 	@Override
 	public String toString() {
-		return "IndividualClientsCredit [account=" + account.getAccountNumber() + ", client=" + client.getName() + " "+ client.getSurname() + "]";
+		return String.format("%s Information about the recipient: account=%s, client=%s %s", account.getAccountNumber(),
+				client.getName(), client.getSurname());
 	}
 
-	public void setClient(IndividualClient client) {
-		this.client = client;
-	}
-
-	private double determineMonthlyPayment(double borrowingRate, int loanTermInMonth, double loanAmount) {
+	public static final double determineMonthlyPayment(double borrowingRate, int loanTermInMonth, double loanAmount) {
 		double monthlyBorrowingRate = borrowingRate / 12 / 100;
 		double monthlyPayment = loanAmount
 				* (Math.pow((1 + monthlyBorrowingRate), loanTermInMonth) * monthlyBorrowingRate)
 				/ ((Math.pow((1 + monthlyBorrowingRate), loanTermInMonth)) - 1);
+		System.out.println(String.format("The monthly fee for the credit will be %f", monthlyPayment));
 		return monthlyPayment;
 	}
 
 	@Override
-	void giveCredit() {
-		IndividualClientsCredit credit = new IndividualClientsCredit();
-	}
-	
-	public void giveCredit(IndividualClient client, IndividualClientsCredit credit) {
-		double monthlyPayment = determineMonthlyPayment(credit.getBorrowingRate(), credit.getLoanTermInMonth(), credit.getLoanAmount());
-		if(monthlyPayment <= (client.getAverageSalary()*0.5)){
-			IndividualClientsCredit newCredit = new IndividualClientsCredit(credit.getBorrowingRate(), credit.getLoanTermInMonth(), credit.getLoanAmount(), 
-					new IndividualClientsAccount() ,client);
-			System.out.println("Client "+ client.getName() + " " + client.getSurname() + " has sufficient income to receive this credit.");
-		}else {
-			System.out.println("Client "+ client.getName() + " " + client.getSurname() + " does not have sufficient income to receive this credit. ");
+	public void giveCredit(Client client) {
+		if (((IndividualClient) client).assessSolvency()) {
+			this.setClient((IndividualClient) client);
+			this.setAccount(new IndividualClientsAccount());
 		}
 	}
-
 
 }

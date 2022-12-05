@@ -2,19 +2,23 @@ package products.credits;
 
 import java.util.Objects;
 
-abstract class Credit {
+import products.Currency;
+
+public abstract class Credit {
 	private double borrowingRate;
 	private int loanTermInMonth;
 	private double loanAmount;
+	private Currency creditCurrency;
 
 	public Credit() {
 
 	}
 
-	public Credit(double borrowingRate, int loanTermInMonth, double loanAmount) {
+	public Credit(double borrowingRate, int loanTermInMonth, double loanAmount, Currency creditCurrency) {
 		this.borrowingRate = borrowingRate;
 		this.loanTermInMonth = loanTermInMonth;
 		this.loanAmount = loanAmount;
+		this.creditCurrency = creditCurrency;
 	}
 
 	public double getBorrowingRate() {
@@ -40,33 +44,40 @@ abstract class Credit {
 	public void setLoanAmount(double loanAmount) {
 		this.loanAmount = loanAmount;
 	}
-	
+
+	public Currency getCreditCurrency() {
+		return creditCurrency;
+	}
+
+	public void setCreditCurrency(Currency creditCurrency) {
+		this.creditCurrency = creditCurrency;
+	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
 		if (obj == null)
 			return false;
 		if (this.getClass() != obj.getClass())
 			return false;
+		if (this.hashCode() != obj.hashCode())
+			return false;
 		Credit other = (Credit) obj;
-		return Double.doubleToLongBits(this.borrowingRate) == Double.doubleToLongBits(other.borrowingRate)
-				&& Double.doubleToLongBits(this.loanAmount) == Double.doubleToLongBits(other.loanAmount)
-				&& this.loanTermInMonth == other.loanTermInMonth;
+		return this.borrowingRate == other.borrowingRate && this.loanAmount == other.loanAmount
+				&& this.loanTermInMonth == other.loanTermInMonth
+				&& (this.creditCurrency == other.creditCurrency
+						|| (this.creditCurrency != null ? this.creditCurrency.equals(other.creditCurrency)
+								: other.creditCurrency == null));
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(borrowingRate, loanAmount, loanTermInMonth);
+		return Objects.hash(borrowingRate, loanAmount, loanTermInMonth, creditCurrency);
 	}
 
 	@Override
 	public String toString() {
-		return "Credit [borrowingRate=" + borrowingRate + ", loanTermInMonth=" + loanTermInMonth + ", loanAmount="
-				+ loanAmount + "]";
+		return String.format("Credit [borrowingRate=%f, loanTermInMonth=%d, loanAmount=%f, creditCurrency=%s]",
+				borrowingRate, loanTermInMonth, loanAmount, creditCurrency);
 	}
-
-	abstract void giveCredit();
 
 }

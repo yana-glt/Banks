@@ -3,13 +3,14 @@ package products.accounts;
 import java.util.Objects;
 
 import branches.Branch;
+import products.Currency;
 
-abstract class Account {
+public abstract class Account {
 	private String accountNumber;
 	private String regimeOfAccount;
 	private boolean status;
 	private float accountBalance;
-	private String accountCurrency;
+	private Currency accountCurrency;
 	private Branch branch;
 
 	public Account() {
@@ -17,7 +18,7 @@ abstract class Account {
 	}
 
 	public Account(String accountNumber, String regimeOfAccount, boolean status, float accountBalance,
-			String accountCurrency, Branch branch) {
+			Currency accountCurrency, Branch branch) {
 		this.accountNumber = accountNumber;
 		this.regimeOfAccount = regimeOfAccount;
 		this.status = true;
@@ -50,11 +51,11 @@ abstract class Account {
 		this.accountBalance = accountBalance;
 	}
 
-	public String getAccountCurrency() {
+	public Currency getAccountCurrency() {
 		return accountCurrency;
 	}
 
-	public void setAccountCurrency(String accountCurrency) {
+	public void setAccountCurrency(Currency accountCurrency) {
 		this.accountCurrency = accountCurrency;
 	}
 
@@ -74,18 +75,29 @@ abstract class Account {
 		this.status = status;
 	}
 
+	public boolean getStatus() {
+		return status;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
 		if (obj == null)
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
+		if (this.hashCode() != obj.hashCode())
+			return false;
 		Account other = (Account) obj;
-		return Objects.equals(this.accountNumber, other.accountNumber)
-				&& Objects.equals(this.accountCurrency, other.accountCurrency)
-				&& Objects.equals(this.regimeOfAccount, other.regimeOfAccount) && this.status == other.status;
+		return this.status == other.status
+				&& (this.accountNumber == other.accountNumber
+						|| (this.accountNumber != null ? this.accountNumber.equals(other.accountNumber)
+								: other.accountNumber == null))
+				&& (this.accountCurrency == other.accountCurrency
+						|| (this.accountCurrency != null ? this.accountCurrency.equals(other.accountCurrency)
+								: other.accountCurrency == null))
+				&& (this.regimeOfAccount == other.regimeOfAccount
+						|| (this.regimeOfAccount != null ? this.regimeOfAccount.equals(other.regimeOfAccount)
+								: other.regimeOfAccount == null));
 	}
 
 	@Override
@@ -95,10 +107,25 @@ abstract class Account {
 
 	@Override
 	public String toString() {
-		return "Account [accountNumber=" + accountNumber + ", regimeOfAccount=" + regimeOfAccount + ", status=" + status
-				+ ", accountBalance=" + accountBalance + ", accountCurrency=" + accountCurrency + "]";
+		return String.format(
+				"Account [accountNumber=%s, regimeOfAccount=%s, status=%b, accountBalance=%f, accountCurrency=%s]",
+				accountNumber, regimeOfAccount, status, accountBalance, accountCurrency);
 	}
 
-	abstract void closeAccount(Account account);
+	public void closeAccount() {
+		this.setStatus(false);
+	}
+
+	public void refillBalance(float sum) {
+		float newBalance = this.getAccountBalance() + sum;
+		this.setAccountBalance(newBalance);
+		System.out.println("The balance of your account is " + this.getAccountBalance());
+	}
+
+	public void deductBalance(float sum) {
+		float newBalance = this.getAccountBalance() - sum;
+		this.setAccountBalance(newBalance);
+		System.out.println("The balance of your account is " + this.getAccountBalance());
+	}
 
 }

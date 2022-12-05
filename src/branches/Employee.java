@@ -1,11 +1,9 @@
 package branches;
 
-import java.util.Objects;
-
 import products.accounts.IndividualClientsAccount;
 
 public class Employee {
-
+	private static int numberOfEmployees = 0;
 	private int id;
 	private String name;
 	private String surname;
@@ -21,9 +19,8 @@ public class Employee {
 
 	}
 
-	public Employee(int id, String name, String surname, String dateOfBirth, float salary, String phoneNumber,
-			String position, Department department, Branch branch, IndividualClientsAccount account) {
-		this.id = id;
+	public Employee(String name, String surname, String dateOfBirth, float salary, String phoneNumber, String position,
+			Department department, Branch branch) {
 		this.name = name;
 		this.surname = surname;
 		this.dateOfBirth = dateOfBirth;
@@ -32,7 +29,15 @@ public class Employee {
 		this.position = position;
 		this.department = department;
 		this.branch = branch;
-		this.account = account;
+		this.id = ++numberOfEmployees;
+	}
+
+	public static int getNumberOfEmployees() {
+		return numberOfEmployees;
+	}
+
+	public static void setNumberOfEmployees(int numberOfEmployees) {
+		Employee.numberOfEmployees = numberOfEmployees;
 	}
 
 	public int getId() {
@@ -117,26 +122,37 @@ public class Employee {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
 		if (obj == null)
 			return false;
 		if (this.getClass() != obj.getClass())
 			return false;
+		if (this.hashCode() != obj.hashCode())
+			return false;
 		Employee other = (Employee) obj;
-		return this.id == other.id && Objects.equals(this.name, other.name)
-				&& Objects.equals(this.surname, other.surname) && Objects.equals(this.dateOfBirth, other.dateOfBirth);
+		return this.id == other.id
+				&& (this.name == other.name || (this.name != null ? this.name.equals(other.name) : other.name == null))
+				&& (this.surname == other.surname
+						|| (this.surname != null ? this.surname.equals(other.surname) : other.surname == null))
+				&& (this.dateOfBirth == other.dateOfBirth
+						|| (this.dateOfBirth != null ? this.dateOfBirth.equals(other.dateOfBirth)
+								: other.dateOfBirth == null));
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, name, surname, dateOfBirth);
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((surname == null) ? 0 : surname.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((dateOfBirth == null) ? 0 : dateOfBirth.hashCode());
+		return result;
 	}
 
 	@Override
 	public String toString() {
-		return "Employee information:id=" + id + ", name=" + name + ", surname=" + surname + ", dateOfBirth="
-				+ dateOfBirth + ", position=" + position + ", department=" + department + ", branch=" + branch + ".";
+		return String.format("Employee information:id=%d , name=%s, surname=%s , dateOfBirth=%s, position=%s, %s, %s",
+				id, name, surname, dateOfBirth, position, department.toString(), branch.toString());
 	}
 
 }

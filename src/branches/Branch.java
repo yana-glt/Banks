@@ -1,29 +1,37 @@
 package branches;
 
-import java.util.List;
+import java.util.ArrayList;
 
-public class Branch {
+import clients.Client;
+
+public class Branch implements INotifyClients {
+	private static int numberOfBranches = 0;
 	private int id;
 	private String name;
 	private String address;
 	private String phoneNumber;
 	private Employee headOfOffice;
-	private List<Department> listOfDepartments;
-	private List<Employee> listOfEmployees;
+	private ArrayList<Department> listOfDepartments = new ArrayList<>();
+	private ArrayList<Employee> listOfEmployees = new ArrayList<>();
+	private ArrayList<Client> listOfClients = new ArrayList<>();
 
 	public Branch() {
 
 	}
 
-	public Branch(int id, String name, String address, String phoneNumber, Employee headOfOffice,
-			List<Department> listOfDepartments, List<Employee> listOfEmployees) {
-		this.id = id;
+	public Branch(String name, String address, String phoneNumber) {
 		this.name = name;
 		this.address = address;
 		this.phoneNumber = phoneNumber;
-		this.headOfOffice = headOfOffice;
-		this.listOfDepartments = listOfDepartments;
-		this.listOfEmployees = listOfEmployees;
+		this.id = ++numberOfBranches;
+	}
+
+	public static int getNumberOfBranches() {
+		return numberOfBranches;
+	}
+
+	public static void setNumberOfBranches(int numberOfBranches) {
+		Branch.numberOfBranches = numberOfBranches;
 	}
 
 	public int getId() {
@@ -66,20 +74,33 @@ public class Branch {
 		this.headOfOffice = headOfOffice;
 	}
 
-	public List<Department> getListOfDepartments() {
+	public ArrayList<Department> getListOfDepartments() {
 		return listOfDepartments;
 	}
 
-	public void setListOfDepartments(List<Department> listOfDepartments) {
+	public void setListOfDepartments(ArrayList<Department> listOfDepartments) {
 		this.listOfDepartments = listOfDepartments;
 	}
 
-	public List<Employee> getListOfEmployees() {
+	public ArrayList<Employee> getListOfEmployees() {
 		return listOfEmployees;
 	}
 
-	public void setListOfEmployees(List<Employee> listOfEmployees) {
+	public void setListOfEmployees(ArrayList<Employee> listOfEmployees) {
 		this.listOfEmployees = listOfEmployees;
+	}
+
+	public ArrayList<Client> getListOfClients() {
+		return listOfClients;
+	}
+
+	public void setListOfClients(ArrayList<Client> listOfClients) {
+		this.listOfClients = listOfClients;
+	}
+
+	@Override
+	public String toString() {
+		return String.format("Branch [id=%d , name=%s]", id, name);
 	}
 
 }

@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import branches.Branch;
 import clients.IndividualClient;
+import products.Currency;
 
 public class IndividualClientsAccount extends Account {
 
@@ -14,7 +15,7 @@ public class IndividualClientsAccount extends Account {
 	}
 
 	public IndividualClientsAccount(String accountNumber, String regimeOfAccount, boolean status, float accountBalance,
-			String accountCurrency, Branch branch, IndividualClient client) {
+			Currency accountCurrency, Branch branch, IndividualClient client) {
 		super(accountNumber, regimeOfAccount, status, accountBalance, accountCurrency, branch);
 		this.client = client;
 	}
@@ -29,14 +30,14 @@ public class IndividualClientsAccount extends Account {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
 		if (!super.equals(obj))
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
+		if (this.hashCode() != obj.hashCode())
+			return false;
 		IndividualClientsAccount other = (IndividualClientsAccount) obj;
-		return Objects.equals(this.client, other.client);
+		return this.client != null ? this.client.equals(other.client) : other.client == null;
 	}
 
 	@Override
@@ -49,12 +50,8 @@ public class IndividualClientsAccount extends Account {
 
 	@Override
 	public String toString() {
-		return super.toString() + "IndividualClientsAccount [client=" + client + "]";
-	}
-
-	@Override
-	public void closeAccount(Account account) {
-		account.setStatus(false);
+		return String.format("%s Information about account holder: name=%s, surname=%s", super.toString(),
+				client.getName(), client.getSurname());
 	}
 
 }

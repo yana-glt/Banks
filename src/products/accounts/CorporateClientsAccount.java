@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import branches.Branch;
 import clients.CorporateClient;
+import products.Currency;
 
 public class CorporateClientsAccount extends Account {
 	private CorporateClient client;
@@ -13,7 +14,7 @@ public class CorporateClientsAccount extends Account {
 	}
 
 	public CorporateClientsAccount(String accountNumber, String regimeOfAccount, boolean status, float accountBalance,
-			String accountCurrency, Branch branch, CorporateClient client) {
+			Currency accountCurrency, Branch branch, CorporateClient client) {
 		super(accountNumber, regimeOfAccount, status, accountBalance, accountCurrency, branch);
 		this.client = client;
 	}
@@ -28,14 +29,14 @@ public class CorporateClientsAccount extends Account {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
 		if (!super.equals(obj))
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
+		if (this.hashCode() != obj.hashCode())
+			return false;
 		CorporateClientsAccount other = (CorporateClientsAccount) obj;
-		return Objects.equals(this.client, other.client);
+		return this.client != null ? this.client.equals(other.client) : other.client == null;
 	}
 
 	@Override
@@ -45,16 +46,10 @@ public class CorporateClientsAccount extends Account {
 		result = prime * result + Objects.hash(client);
 		return result;
 	}
-	
 
 	@Override
 	public String toString() {
-		return "CorporateClientsAccount [client=" + client + "]";
-	}
-
-	@Override
-	public void closeAccount(Account account) {
-		account.setStatus(false);
+		return String.format("Information about account holder: name=%s", client.getName());
 	}
 
 }

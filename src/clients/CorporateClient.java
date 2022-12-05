@@ -4,15 +4,12 @@ import java.util.Objects;
 
 import products.accounts.CorporateClientsAccount;
 
-public class CorporateClient extends Client {
+public class CorporateClient extends Client implements IAssessSolvency {
 
 	private String name;
 	private String directorsName;
 	private String directorsSurname;
 	private String directorsPhoneNumber;
-	private String accountantsName;
-	private String accountantsSurname;
-	private String accountantsPhoneNumber;
 	private CorporateClientsAccount account;
 
 	// Variables that are used to determine the solvency of the client when lending
@@ -22,18 +19,17 @@ public class CorporateClient extends Client {
 
 	}
 
-	public CorporateClient(long id, String identificationNumber, String phoneNumber, String address, String name,
+	public CorporateClient(String identificationNumber, String phoneNumber, String emailAddress, String name,
 			String directorsName, String directorsSurname) {
-		super(id, identificationNumber, phoneNumber, address);
+		super(identificationNumber, phoneNumber, emailAddress);
 		this.name = name;
 		this.directorsName = directorsName;
 		this.directorsSurname = directorsSurname;
 	}
 
-	public CorporateClient(long id, String identificationNumber, String phoneNumber, String address, String name,
-			String directorsName, String directorsSurname,
-			double solvencyAssessment) {
-		super(id, identificationNumber, phoneNumber, address);
+	public CorporateClient(String identificationNumber, String phoneNumber, String emailAddress, String name,
+			String directorsName, String directorsSurname, double solvencyAssessment) {
+		super(identificationNumber, phoneNumber, emailAddress);
 		this.name = name;
 		this.directorsName = directorsName;
 		this.directorsSurname = directorsSurname;
@@ -72,30 +68,6 @@ public class CorporateClient extends Client {
 		this.directorsPhoneNumber = directorsPhoneNumber;
 	}
 
-	public String getAccountantsName() {
-		return accountantsName;
-	}
-
-	public void setAccountantsName(String accountantsName) {
-		this.accountantsName = accountantsName;
-	}
-
-	public String getAccountantsSurname() {
-		return accountantsSurname;
-	}
-
-	public void setAccountantsSurname(String accountantsSurname) {
-		this.accountantsSurname = accountantsSurname;
-	}
-
-	public String getAccountantsPhoneNumber() {
-		return accountantsPhoneNumber;
-	}
-
-	public void setAccountantsPhoneNumber(String accountantsPhoneNumber) {
-		this.accountantsPhoneNumber = accountantsPhoneNumber;
-	}
-
 	public CorporateClientsAccount getAccount() {
 		return account;
 	}
@@ -114,15 +86,20 @@ public class CorporateClient extends Client {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
 		if (!super.equals(obj))
 			return false;
 		if (this.getClass() != obj.getClass())
 			return false;
+		if (this.hashCode() != obj.hashCode())
+			return false;
 		CorporateClient other = (CorporateClient) obj;
-		return Objects.equals(this.name, other.name) && Objects.equals(this.directorsName, other.directorsName)
-				&& Objects.equals(this.directorsSurname, other.directorsSurname);
+		return (this.name == other.name || (this.name != null ? this.name.equals(other.name) : other.name == null))
+				&& (this.directorsName == other.directorsName
+						|| (this.directorsName != null ? this.directorsName.equals(other.directorsName)
+								: other.directorsName == null))
+				&& (this.directorsSurname == other.directorsSurname
+						|| (this.directorsSurname != null ? this.directorsSurname.equals(other.directorsSurname)
+								: other.directorsSurname == null));
 	}
 
 	@Override
@@ -135,10 +112,23 @@ public class CorporateClient extends Client {
 
 	@Override
 	public String toString() {
-		return super.toString() + " Corporate client information: name=" + name + ", directorsName=" + directorsName
-				+ ", directorsSurname=" + directorsSurname + ", directorsPhoneNumber=" + directorsPhoneNumber
-				+ ", accountantsName=" + accountantsName + ", accountantsSurname=" + accountantsSurname
-				+ ", accountantsPhoneNumber=" + accountantsPhoneNumber + ", account=" + account.getAccountNumber() + ".";
+		return String.format("%s, name=%s, account=%s", super.toString(), name, account.getAccountNumber());
+	}
+
+	@Override
+	public boolean assessSolvency() {
+		if (solvencyAssessment >= 75) {
+			System.out.println(String.format("The financial condition of the client %s allows to receive a credit.",
+					this.getName()));
+			return true;
+		} else if (solvencyAssessment >= 50) {
+			System.out
+					.println(String.format("Client %s can get a credit, but collateral is required.", this.getName()));
+			return true;
+		} else {
+			System.out.println(String.format("Credit cannot be granted to %s", this.getName()));
+			return false;
+		}
 	}
 
 }

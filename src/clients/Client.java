@@ -2,21 +2,30 @@ package clients;
 
 import java.util.Objects;
 
-abstract class Client {
+public abstract class Client {
+	private static long numberOfClients = 0L;
 	private long id;
-	private String IdentificationNumber;
+	private String identificationNumber;
 	private String phoneNumber;
-	private String address;
+	private String emailAddress;
 
 	public Client() {
 
 	}
 
-	public Client(long id, String identificationNumber, String phoneNumber, String address) {
-		this.id = id;
-		this.IdentificationNumber = identificationNumber;
+	public Client(String identificationNumber, String phoneNumber, String emailAddress) {
+		this.identificationNumber = identificationNumber;
 		this.phoneNumber = phoneNumber;
-		this.address = address;
+		this.emailAddress = emailAddress;
+		this.id = ++numberOfClients;
+	}
+
+	public static long getNumberOfClients() {
+		return numberOfClients;
+	}
+
+	public static void setNumberOfClients(long numberOfClients) {
+		Client.numberOfClients = numberOfClients;
 	}
 
 	public long getId() {
@@ -28,11 +37,11 @@ abstract class Client {
 	}
 
 	public String getIdentificationNumber() {
-		return IdentificationNumber;
+		return identificationNumber;
 	}
 
 	public void setIdentificationNumber(String identificationNumber) {
-		IdentificationNumber = identificationNumber;
+		this.identificationNumber = identificationNumber;
 	}
 
 	public String getPhoneNumber() {
@@ -43,35 +52,37 @@ abstract class Client {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public String getAddress() {
-		return address;
+	public String getEmailAddress() {
+		return emailAddress;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
 		if (obj == null)
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
+		if (this.hashCode() != obj.hashCode())
+			return false;
 		Client other = (Client) obj;
-		return this.id == other.id && Objects.equals(this.IdentificationNumber, other.IdentificationNumber);
+		return this.id == other.id && (this.identificationNumber == other.identificationNumber
+				|| (this.identificationNumber != null ? this.identificationNumber.equals(other.identificationNumber)
+						: other.identificationNumber == null));
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, IdentificationNumber);
+		return Objects.hash(id, identificationNumber);
 	}
 
 	@Override
 	public String toString() {
-		return "General information about the client: id=" + id + ", IdentificationNumber=" + IdentificationNumber
-				+ ", phoneNumber=" + phoneNumber + ", address=" + address + ".";
+		return String.format("Information about the client: id=%d, IdentificationNumber=%s, phoneNumber=%s, email=%s",
+				id, identificationNumber, phoneNumber, emailAddress);
 	}
 
 }
