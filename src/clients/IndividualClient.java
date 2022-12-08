@@ -3,6 +3,7 @@ package clients;
 import java.util.Objects;
 import java.util.Scanner;
 
+import exception_handlers.WrongValueTypeException;
 import products.accounts.IndividualClientsAccount;
 import products.credits.IndividualClientsCredit;
 
@@ -120,28 +121,31 @@ public class IndividualClient extends Client implements IAssessSolvency {
 	}
 
 	@Override
-	public boolean assessSolvency() {
-		double rate;
-		int term;
-		double amount;
+	public boolean assessSolvency() throws WrongValueTypeException {
+		double rate = 0;
+		int term = 0;
+		double amount = 0;
 		try (Scanner scanner = new Scanner(System.in)) {
-			System.out.println("Enter interest rate");
-			if (scanner.hasNextDouble()) {
-				rate = scanner.nextDouble();
+			System.out.println("Enter interest rate with two decimal places");
+			if (!scanner.hasNextDouble()) {
+				throw new WrongValueTypeException("The user must enter a numeric value accurate to hundredths",
+						"The user entered a value of the wrong type");
 			} else {
-				rate = 0;
+				rate = scanner.nextDouble();
 			}
 			System.out.println("Enter credit term (in months)");
-			if (scanner.hasNextInt()) {
-				term = scanner.nextInt();
+			if (!scanner.hasNextInt()) {
+				throw new WrongValueTypeException("The user must enter an integer",
+						"The user entered a value of the wrong type");
 			} else {
-				term = 0;
+				term = scanner.nextInt();
 			}
 			System.out.println("Enter credit amount");
-			if (scanner.hasNextDouble()) {
-				amount = scanner.nextDouble();
+			if (!scanner.hasNextDouble()) {
+				throw new WrongValueTypeException("The user must enter a numeric value accurate to hundredths",
+						"The user entered a value of the wrong type");
 			} else {
-				amount = 0;
+				amount = scanner.nextDouble();
 			}
 		}
 		double monthlyPayment = IndividualClientsCredit.determineMonthlyPayment(rate, term, amount);

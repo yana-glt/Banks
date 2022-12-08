@@ -1,8 +1,13 @@
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import branches.Branch;
 import branches.Department;
 import branches.Employee;
 import clients.CorporateClient;
 import clients.IndividualClient;
+import exception_handlers.IncorrectValueException;
+import exception_handlers.WrongValueTypeException;
 import products.accounts.CorporateClientsAccount;
 import products.Currency;
 import products.accounts.IndividualClientsAccount;
@@ -10,6 +15,7 @@ import products.credits.CorporateClientsCredit;
 import products.credits.IndividualClientsCredit;
 
 public class Main {
+	private final static Logger logger = LogManager.getLogger(Main.class);
 
 	public static void main(String[] args) {
 
@@ -74,7 +80,7 @@ public class Main {
 		warsawBranch.getListOfClients().add(secondClient);
 		warsawBranch.getListOfClients().add(thirdClient);
 //		System.out.println(warsawBranch.getListOfClients());
-//		warsawBranch.notifyAllClients(warsawBranch.getListOfClients(), "Hello");
+//		warsawBranch.notifyAllClients(warsawBranch.getListOfClients(), "message");
 
 //		System.out.println(firstClient.equals(secondClient));
 //		System.out.println(firstClient.hashCode());
@@ -102,7 +108,7 @@ public class Main {
 		fifthClient.setAccount(account5);
 		krakowBranch.getListOfClients().add(fourthClient);
 		krakowBranch.getListOfClients().add(fifthClient);
-//		krakowBranch.notifyAllClients(krakowBranch.getListOfClients(), "Bye");
+//		krakowBranch.notifyAllClients(krakowBranch.getListOfClients(), "message");
 
 //		System.out.println(secondClient.getId());
 //		System.out.println(fourthClient.getId());
@@ -116,8 +122,9 @@ public class Main {
 
 //		System.out.println(account5.getAccountBalance());
 //		account5.refillBalance(5000.52f);
-//		account5.deductBalance(1000.25f);
+//		account5.deductBalance(5100.25f);
 //		account5.closeAccount();
+//		System.out.println(account5.getStatus());
 //		System.out.println(account5.getStatus());
 
 		IndividualClientsCredit credit1 = new IndividualClientsCredit(10.00, 36, 80000, Currency.EUR);
@@ -138,10 +145,19 @@ public class Main {
 //		System.out.println(credit3.toString());
 //		System.out.println(credit4.toString());
 
-//		 firstClient.assessSolvency();
-//		 secondClient.assessSolvency();
-//		 fourthClient.assessSolvency();
-//		 fifthClient.assessSolvency();
+//		 try {
+//			firstClient.assessSolvency();
+//			 secondClient.assessSolvency();
+//			 fourthClient.assessSolvency();
+//			 fifthClient.assessSolvency();
+
+//		} catch (WrongValueTypeException e) {
+//			logger.warn(e);
+		// e.printStackTrace();
+//		} catch (IncorrectValueException e) {
+//			logger.warn(e);
+//			//e.printStackTrace();
+//		}
 
 	}
 

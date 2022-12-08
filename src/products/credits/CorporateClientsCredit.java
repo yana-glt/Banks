@@ -2,14 +2,19 @@ package products.credits;
 
 import java.util.Objects;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import clients.Client;
 import clients.CorporateClient;
+import exception_handlers.IncorrectValueException;
 import products.accounts.CorporateClientsAccount;
 import products.Currency;
 
 public class CorporateClientsCredit extends Credit implements ICreditOptions {
 	private CorporateClientsAccount account;
 	private CorporateClient client;
+	private final static Logger logger = LogManager.getLogger(CorporateClientsCredit.class);
 
 	public CorporateClientsCredit() {
 
@@ -73,9 +78,14 @@ public class CorporateClientsCredit extends Credit implements ICreditOptions {
 
 	@Override
 	public void giveCredit(Client client) {
-		if (((CorporateClient) client).assessSolvency()) {
-			this.setClient((CorporateClient) client);
-			this.setAccount(new CorporateClientsAccount());
+		try {
+			if (((CorporateClient) client).assessSolvency()) {
+				this.setClient((CorporateClient) client);
+				this.setAccount(new CorporateClientsAccount());
+			}
+		} catch (IncorrectValueException e) {
+			logger.error(e);
+			e.printStackTrace();
 		}
 	}
 

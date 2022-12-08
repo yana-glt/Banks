@@ -2,7 +2,13 @@ package products.accounts;
 
 import java.util.Objects;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import branches.Branch;
+import exception_handlers.AccountAlreadyBlockedException;
+import exception_handlers.AccountBlockedException;
+import exception_handlers.DeductionExceedsBalanceException;
 import products.Currency;
 
 public abstract class Account {
@@ -12,6 +18,7 @@ public abstract class Account {
 	private float accountBalance;
 	private Currency accountCurrency;
 	private Branch branch;
+	private final static Logger logger = LogManager.getLogger(Account.class);
 
 	public Account() {
 
@@ -21,7 +28,7 @@ public abstract class Account {
 			Currency accountCurrency, Branch branch) {
 		this.accountNumber = accountNumber;
 		this.regimeOfAccount = regimeOfAccount;
-		this.status = true;
+		this.status = status;
 		this.accountBalance = accountBalance;
 		this.accountCurrency = accountCurrency;
 		this.branch = branch;
@@ -113,19 +120,58 @@ public abstract class Account {
 	}
 
 	public void closeAccount() {
-		this.setStatus(false);
+		try {
+			if (!this.getStatus()) {
+				throw new AccountAlreadyBlockedException("The account has already been blocked before",
+						"Account has already been blocked");
+			} else {
+				this.setStatus(false);
+			}
+		} catch (AccountAlreadyBlockedException e) {
+			logger.warn(e);
+			// e.printStackTrace();
+		}
+
 	}
 
 	public void refillBalance(float sum) {
-		float newBalance = this.getAccountBalance() + sum;
-		this.setAccountBalance(newBalance);
-		System.out.println("The balance of your account is " + this.getAccountBalance());
+		try {
+			if (!this.getStatus()) {
+				throw new AccountBlockedException("The user cannot access an account that is blocked",
+						"This account is blocked");
+			} else {
+				float newBalance = this.getAccountBalance() + sum;
+				this.setAccountBalance(newBalance);
+				System.out.println("The balance of your account is " + this.getAccountBalance());
+			}
+		} catch (AccountBlockedException e) {
+			logger.warn(e);
+			// e.printStackTrace();
+		}
 	}
 
 	public void deductBalance(float sum) {
-		float newBalance = this.getAccountBalance() - sum;
-		this.setAccountBalance(newBalance);
-		System.out.println("The balance of your account is " + this.getAccountBalance());
+		try {
+			try {
+				if (!this.getStatus()) {
+					throw new AccountBlockedException("The user cannot access an account that is blocked",
+							"This account is blocked");
+				}
+			} catch (AccountBlockedException e) {
+				logger.warn(e);
+				// e.printStackTrace();
+			}
+			float newBalance = this.getAccountBalance() - sum;
+			if (newBalance < 0) {
+				throw new DeductionExceedsBalanceException("The deduction amount cannot exceed the account balance",
+						"The user is trying to deduct from the account an amount exceeding the account balance");
+			}
+			this.setAccountBalance(newBalance);
+			System.out.println("The balance of your account is " + this.getAccountBalance());
+		} catch (DeductionExceedsBalanceException e) {
+			logger.warn(e);
+			// e.printStackTrace();
+		}
 	}
 
 }

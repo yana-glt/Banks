@@ -1,14 +1,41 @@
 package branches;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import clients.Client;
 
 public interface INotifyClients {
 
-	default void notifyAllClients(ArrayList<Client> clients, String message) {
+	public final static Logger logger = LogManager.getLogger(INotifyClients.class);
+
+	default void notifyAllClients(ArrayList<Client> clients, String nameOfMessageFile) {
 		for (Client cl : clients) {
 			String emailAddress = cl.getEmailAddress();
-			System.out.println(String.format("New message for client with email:%s %n%s", emailAddress, message));
+			try (BufferedReader reader = new BufferedReader(new FileReader("" + nameOfMessageFile + ".txt"));
+					BufferedWriter writer = new BufferedWriter(
+							new FileWriter("message sent to " + emailAddress + ".txt"));) {
+				String line;
+				while ((line = reader.readLine()) != null) {
+					writer.write(line);
+					writer.write('\n');
+				}
+			} catch (FileNotFoundException e) {
+				logger.warn(e);
+				// e.printStackTrace();
+			} catch (IOException e) {
+				logger.warn(e);
+				// e.printStackTrace();
+			}
+			System.out.println(String.format("New message for client with email:%s", emailAddress));
 		}
 	}
 }

@@ -2,6 +2,7 @@ package clients;
 
 import java.util.Objects;
 
+import exception_handlers.IncorrectValueException;
 import products.accounts.CorporateClientsAccount;
 
 public class CorporateClient extends Client implements IAssessSolvency {
@@ -116,8 +117,12 @@ public class CorporateClient extends Client implements IAssessSolvency {
 	}
 
 	@Override
-	public boolean assessSolvency() {
-		if (solvencyAssessment >= 75) {
+	public boolean assessSolvency() throws IncorrectValueException {
+		if (solvencyAssessment <= 0 || solvencyAssessment > 100) {
+			throw new IncorrectValueException(
+					"The value of the client solvency assessment must be in the range from 1 to 100",
+					"Incorrect value of the assessment of the client's solvency");
+		} else if (solvencyAssessment >= 75) {
 			System.out.println(String.format("The financial condition of the client %s allows to receive a credit.",
 					this.getName()));
 			return true;

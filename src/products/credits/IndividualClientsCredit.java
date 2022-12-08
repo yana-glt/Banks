@@ -2,14 +2,19 @@ package products.credits;
 
 import java.util.Objects;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import clients.Client;
 import clients.IndividualClient;
+import exception_handlers.WrongValueTypeException;
 import products.Currency;
 import products.accounts.IndividualClientsAccount;
 
 public class IndividualClientsCredit extends Credit implements ICreditOptions {
 	private IndividualClientsAccount account;
 	private IndividualClient client;
+	private final static Logger logger = LogManager.getLogger(IndividualClientsCredit.class);
 
 	public IndividualClientsCredit() {
 
@@ -82,9 +87,14 @@ public class IndividualClientsCredit extends Credit implements ICreditOptions {
 
 	@Override
 	public void giveCredit(Client client) {
-		if (((IndividualClient) client).assessSolvency()) {
-			this.setClient((IndividualClient) client);
-			this.setAccount(new IndividualClientsAccount());
+		try {
+			if (((IndividualClient) client).assessSolvency()) {
+				this.setClient((IndividualClient) client);
+				this.setAccount(new IndividualClientsAccount());
+			}
+		} catch (WrongValueTypeException e) {
+			logger.warn(e);
+			// e.printStackTrace();
 		}
 	}
 
