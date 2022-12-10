@@ -102,5 +102,4 @@ public class Branch implements INotifyClients {
 	public String toString() {
 		return String.format("Branch [id=%d , name=%s]", id, name);
 	}
-
 }
