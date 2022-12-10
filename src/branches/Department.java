@@ -71,5 +71,4 @@ public class Department {
 	public String toString() {
 		return String.format("Department [id=%d, name=%s]", departmentId, name);
 	}
-
 }
