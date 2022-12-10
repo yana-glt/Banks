@@ -30,10 +30,8 @@ public interface INotifyClients {
 				}
 			} catch (FileNotFoundException e) {
 				logger.warn(e);
-				// e.printStackTrace();
 			} catch (IOException e) {
 				logger.warn(e);
-				// e.printStackTrace();
 			}
 			System.out.println(String.format("New message for client with email:%s", emailAddress));
 		}
