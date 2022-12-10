@@ -36,10 +36,6 @@ public class Employee {
 		return numberOfEmployees;
 	}
 
-	public static void setNumberOfEmployees(int numberOfEmployees) {
-		Employee.numberOfEmployees = numberOfEmployees;
-	}
-
 	public int getId() {
 		return id;
 	}
