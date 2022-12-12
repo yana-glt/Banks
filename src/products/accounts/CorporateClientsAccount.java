@@ -51,5 +51,4 @@ public class CorporateClientsAccount extends Account {
 	public String toString() {
 		return String.format("Information about account holder: name=%s", client.getName());
 	}
-
 }

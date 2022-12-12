@@ -85,8 +85,6 @@ public class CorporateClientsCredit extends Credit implements ICreditOptions {
 			}
 		} catch (IncorrectValueException e) {
 			logger.error(e);
-			e.printStackTrace();
 		}
 	}
-
 }

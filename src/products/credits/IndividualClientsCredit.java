@@ -94,8 +94,6 @@ public class IndividualClientsCredit extends Credit implements ICreditOptions {
 			}
 		} catch (WrongValueTypeException e) {
 			logger.warn(e);
-			// e.printStackTrace();
 		}
 	}
-
 }

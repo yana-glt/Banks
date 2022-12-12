@@ -82,5 +82,4 @@ public abstract class Card {
 	}
 
 	abstract void block(Card card);
-
 }

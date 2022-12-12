@@ -53,5 +53,4 @@ public class IndividualClientsAccount extends Account {
 		return String.format("%s Information about account holder: name=%s, surname=%s", super.toString(),
 				client.getName(), client.getSurname());
 	}
-
 }

@@ -14,8 +14,6 @@ public class IndividualClient extends Client implements IAssessSolvency {
 	private String dateOfBirth;
 	private String citizenship;
 	private IndividualClientsAccount account;
-
-	// Variables that are used to determine the solvency of the client when lending
 	private double averageSalary;
 
 	public IndividualClient() {

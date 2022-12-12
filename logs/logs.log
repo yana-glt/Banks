@@ -12,3 +12,4 @@
 10:05:01.071 [main] WARN  products.accounts.Account - exception_handlers.DeductionExceedsBalanceException: The user is trying to deduct from the account an amount exceeding the account balance
 10:20:01.977 [main] WARN  Main - exception_handlers.WrongValueTypeException: The user entered a value of the wrong type
 10:21:08.730 [main] WARN  Main - exception_handlers.IncorrectValueException: Incorrect value of the assessment of the client's solvency
+18:05:48.573 [main] WARN  Main - exception_handlers.WrongValueTypeException: The user entered a value of the wrong type

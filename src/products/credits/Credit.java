@@ -79,5 +79,4 @@ public abstract class Credit {
 		return String.format("Credit [borrowingRate=%f, loanTermInMonth=%d, loanAmount=%f, creditCurrency=%s]",
 				borrowingRate, loanTermInMonth, loanAmount, creditCurrency);
 	}
-
 }

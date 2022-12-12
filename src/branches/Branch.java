@@ -30,10 +30,6 @@ public class Branch implements INotifyClients {
 		return numberOfBranches;
 	}
 
-	public static void setNumberOfBranches(int numberOfBranches) {
-		Branch.numberOfBranches = numberOfBranches;
-	}
-
 	public int getId() {
 		return id;
 	}

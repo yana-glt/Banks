@@ -12,8 +12,6 @@ public class CorporateClient extends Client implements IAssessSolvency {
 	private String directorsSurname;
 	private String directorsPhoneNumber;
 	private CorporateClientsAccount account;
-
-	// Variables that are used to determine the solvency of the client when lending
 	private double solvencyAssessment;
 
 	public CorporateClient() {
@@ -135,5 +133,4 @@ public class CorporateClient extends Client implements IAssessSolvency {
 			return false;
 		}
 	}
-
 }

@@ -150,5 +150,4 @@ public class Employee {
 		return String.format("Employee information:id=%d , name=%s, surname=%s , dateOfBirth=%s, position=%s, %s, %s",
 				id, name, surname, dateOfBirth, position, department.toString(), branch.toString());
 	}
-
 }

@@ -24,10 +24,6 @@ public abstract class Client {
 		return numberOfClients;
 	}
 
-	public static void setNumberOfClients(long numberOfClients) {
-		Client.numberOfClients = numberOfClients;
-	}
-
 	public long getId() {
 		return id;
 	}
@@ -84,5 +80,4 @@ public abstract class Client {
 		return String.format("Information about the client: id=%d, IdentificationNumber=%s, phoneNumber=%s, email=%s",
 				id, identificationNumber, phoneNumber, emailAddress);
 	}
-
 }

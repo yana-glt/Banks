@@ -122,14 +122,12 @@ public abstract class Account {
 	public void closeAccount() {
 		try {
 			if (!this.getStatus()) {
-				throw new AccountAlreadyBlockedException("The account has already been blocked before",
-						"Account has already been blocked");
+				throw new AccountAlreadyBlockedException("The account has already been blocked before");
 			} else {
 				this.setStatus(false);
 			}
 		} catch (AccountAlreadyBlockedException e) {
 			logger.warn(e);
-			// e.printStackTrace();
 		}
 
 	}
@@ -137,8 +135,7 @@ public abstract class Account {
 	public void refillBalance(float sum) {
 		try {
 			if (!this.getStatus()) {
-				throw new AccountBlockedException("The user cannot access an account that is blocked",
-						"This account is blocked");
+				throw new AccountBlockedException("The user cannot access an account that is blocked");
 			} else {
 				float newBalance = this.getAccountBalance() + sum;
 				this.setAccountBalance(newBalance);
@@ -146,7 +143,6 @@ public abstract class Account {
 			}
 		} catch (AccountBlockedException e) {
 			logger.warn(e);
-			// e.printStackTrace();
 		}
 	}
 
@@ -154,24 +150,20 @@ public abstract class Account {
 		try {
 			try {
 				if (!this.getStatus()) {
-					throw new AccountBlockedException("The user cannot access an account that is blocked",
-							"This account is blocked");
+					throw new AccountBlockedException("The user cannot access an account that is blocked");
 				}
 			} catch (AccountBlockedException e) {
 				logger.warn(e);
-				// e.printStackTrace();
 			}
 			float newBalance = this.getAccountBalance() - sum;
 			if (newBalance < 0) {
-				throw new DeductionExceedsBalanceException("The deduction amount cannot exceed the account balance",
+				throw new DeductionExceedsBalanceException(
 						"The user is trying to deduct from the account an amount exceeding the account balance");
 			}
 			this.setAccountBalance(newBalance);
 			System.out.println("The balance of your account is " + this.getAccountBalance());
 		} catch (DeductionExceedsBalanceException e) {
 			logger.warn(e);
-			// e.printStackTrace();
 		}
 	}
-
 }

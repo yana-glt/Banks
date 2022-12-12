@@ -23,10 +23,6 @@ public class Department {
 		return numberOfDepartments;
 	}
 
-	public static void setNumberOfDepartments(int numberOfDepartments) {
-		Department.numberOfDepartments = numberOfDepartments;
-	}
-
 	public int getDepartmentId() {
 		return departmentId;
 	}
