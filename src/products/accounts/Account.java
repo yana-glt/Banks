@@ -1,5 +1,6 @@
 package products.accounts;
 
+import java.util.List;
 import java.util.Objects;
 
 import org.apache.logging.log4j.LogManager;
@@ -36,10 +37,6 @@ public abstract class Account {
 
 	public String getAccountNumber() {
 		return accountNumber;
-	}
-
-	public void setAccountNumber(String accountNumber) {
-		this.accountNumber = accountNumber;
 	}
 
 	public String getRegimeOfAccount() {
@@ -165,5 +162,14 @@ public abstract class Account {
 		} catch (DeductionExceedsBalanceException e) {
 			logger.warn(e);
 		}
+	}
+
+	public static long getSumOfBalances(List<? extends Account> accounts) {
+		long sum = 0;
+		for (Account account : accounts) {
+			sum += account.getAccountBalance();
+		}
+		System.out.println(sum);
+		return sum;
 	}
 }

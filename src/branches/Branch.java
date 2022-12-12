@@ -98,4 +98,8 @@ public class Branch implements INotifyClients {
 	public String toString() {
 		return String.format("Branch [id=%d , name=%s]", id, name);
 	}
+
+	public static <T> T getLastElementOfList(ArrayList<T> list) {
+		return list.get((list.size() - 1));
+	}
 }

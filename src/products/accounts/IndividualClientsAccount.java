@@ -5,9 +5,9 @@ import java.util.Objects;
 import branches.Branch;
 import clients.IndividualClient;
 import products.Currency;
+import products.IProductOptions;
 
-public class IndividualClientsAccount extends Account {
-
+public class IndividualClientsAccount extends Account implements IProductOptions<IndividualClientsAccount>{
 	private IndividualClient client;
 
 	public IndividualClientsAccount() {

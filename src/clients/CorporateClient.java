@@ -1,9 +1,12 @@
 package clients;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import exception_handlers.IncorrectValueException;
 import products.accounts.CorporateClientsAccount;
+import products.credits.CorporateClientsCredit;
 
 public class CorporateClient extends Client implements IAssessSolvency {
 
@@ -12,6 +15,7 @@ public class CorporateClient extends Client implements IAssessSolvency {
 	private String directorsSurname;
 	private String directorsPhoneNumber;
 	private CorporateClientsAccount account;
+	private List<CorporateClientsCredit> listOfCredits = new ArrayList<>();
 	private double solvencyAssessment;
 
 	public CorporateClient() {
@@ -83,6 +87,14 @@ public class CorporateClient extends Client implements IAssessSolvency {
 		this.solvencyAssessment = solvencyAssessment;
 	}
 
+	public List<CorporateClientsCredit> getListOfCredits() {
+		return listOfCredits;
+	}
+
+	public void setListOfCredits(List<CorporateClientsCredit> listOfCredits) {
+		this.listOfCredits = listOfCredits;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (!super.equals(obj))
@@ -118,8 +130,7 @@ public class CorporateClient extends Client implements IAssessSolvency {
 	public boolean assessSolvency() throws IncorrectValueException {
 		if (solvencyAssessment <= 0 || solvencyAssessment > 100) {
 			throw new IncorrectValueException(
-					"The value of the client solvency assessment must be in the range from 1 to 100",
-					"Incorrect value of the assessment of the client's solvency");
+					"The value of the client solvency assessment must be in the range from 1 to 100");
 		} else if (solvencyAssessment >= 75) {
 			System.out.println(String.format("The financial condition of the client %s allows to receive a credit.",
 					this.getName()));

@@ -1,12 +1,14 @@
 package products.cards;
 
+import java.time.LocalDate;
+
 public abstract class Card {
 
 	private String number;
 	private String nameAndSurname;
-	private String expirationDate;
+	private LocalDate issueDate;
+	private LocalDate expirationDate;
 	private int cvvCode;
-	private String issueDate;
 	private int pin;
 	private boolean status;
 
@@ -14,15 +16,13 @@ public abstract class Card {
 
 	}
 
-	public Card(String number, String nameAndSurname, String expirationDate, int cvvCode, String issueDate, int pin,
-			boolean status) {
+	public Card(String number, String nameAndSurname, LocalDate issueDate, int cvvCode, int pin, boolean status) {
 		this.number = number;
 		this.nameAndSurname = nameAndSurname;
-		this.expirationDate = expirationDate;
-		this.cvvCode = cvvCode;
 		this.issueDate = issueDate;
+		this.cvvCode = cvvCode;
 		this.pin = pin;
-		this.status = true;
+		this.status = status;
 	}
 
 	public String getNumber() {
@@ -41,11 +41,11 @@ public abstract class Card {
 		this.nameAndSurname = nameAndSurname;
 	}
 
-	public String getExpirationDate() {
+	public LocalDate getExpirationDate() {
 		return expirationDate;
 	}
 
-	public void setExpirationDate(String expirationDate) {
+	public void setExpirationDate(LocalDate expirationDate) {
 		this.expirationDate = expirationDate;
 	}
 
@@ -57,11 +57,11 @@ public abstract class Card {
 		this.cvvCode = cvvCode;
 	}
 
-	public String getIssueDate() {
+	public LocalDate getIssueDate() {
 		return issueDate;
 	}
 
-	public void setIssueDate(String issueDate) {
+	public void setIssueDate(LocalDate issueDate) {
 		this.issueDate = issueDate;
 	}
 
@@ -81,5 +81,26 @@ public abstract class Card {
 		this.status = status;
 	}
 
-	abstract void block(Card card);
+	@Override
+	public String toString() {
+		return String.format(
+				"Card [number==%s, nameAndSurname=%s, expirationDate=%s, cvvCode=%d, issueDate=%s, status=%b]", number,
+				nameAndSurname, expirationDate, cvvCode, issueDate, status);
+	}
+
+	public void determineCardExpirationDate() {
+		LocalDate expirationDate = this.issueDate.plusYears(3L);
+		this.setExpirationDate(expirationDate);
+	}
+
+	public void blockOnRequest() {
+		this.setStatus(false);
+	}
+
+	public void blockAfterExpiration() {
+		LocalDate currentDate = LocalDate.now();
+		if (this.expirationDate.isEqual(currentDate)) {
+			this.blockOnRequest();
+		}
+	}
 }

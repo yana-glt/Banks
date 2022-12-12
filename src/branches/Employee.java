@@ -1,13 +1,15 @@
 package branches;
 
+import java.time.LocalDate;
+
 import products.accounts.IndividualClientsAccount;
 
-public class Employee {
+public class Employee{
 	private static int numberOfEmployees = 0;
 	private int id;
 	private String name;
 	private String surname;
-	private String dateOfBirth;
+	private LocalDate dateOfBirth;
 	private float salary;
 	private String phoneNumber;
 	private String position;
@@ -19,7 +21,7 @@ public class Employee {
 
 	}
 
-	public Employee(String name, String surname, String dateOfBirth, float salary, String phoneNumber, String position,
+	public Employee(String name, String surname, LocalDate dateOfBirth, float salary, String phoneNumber, String position,
 			Department department, Branch branch) {
 		this.name = name;
 		this.surname = surname;
@@ -60,11 +62,11 @@ public class Employee {
 		this.surname = surname;
 	}
 
-	public String getDateOfBirth() {
+	public LocalDate getDateOfBirth() {
 		return dateOfBirth;
 	}
 
-	public void setDateOfBirth(String dateOfBirth) {
+	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 

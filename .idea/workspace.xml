@@ -1,7 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a6679679-9d86-4943-a8fe-5c2763800f13" name="Changes" comment="" />
+    <list default="true" id="be76494d-5283-4899-af9b-dcafdb66ef4e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/branches/Branch.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/branches/Branch.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/branches/Employee.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/branches/Employee.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/branches/INotifyClients.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/branches/INotifyClients.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/clients/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/clients/Client.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/clients/CorporateClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/clients/CorporateClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/clients/IndividualClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/clients/IndividualClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/exception_handlers/AccountAlreadyBlockedException.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/exception_handlers/AccountAlreadyBlockedException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/exception_handlers/AccountBlockedException.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/exception_handlers/AccountBlockedException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/exception_handlers/DeductionExceedsBalanceException.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/exception_handlers/DeductionExceedsBalanceException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/exception_handlers/IncorrectValueException.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/exception_handlers/IncorrectValueException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/exception_handlers/WrongValueTypeException.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/exception_handlers/WrongValueTypeException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/products/Currency.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/products/Currency.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/products/accounts/Account.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/products/accounts/Account.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/products/accounts/CorporateClientsAccount.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/products/accounts/CorporateClientsAccount.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/products/accounts/IndividualClientsAccount.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/products/accounts/IndividualClientsAccount.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/products/cards/Card.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/products/cards/Card.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/products/cards/CorporateClientsCard.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/products/cards/CorporateClientsCard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/products/cards/IndividualClientsCard.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/products/cards/IndividualClientsCard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/products/credits/CorporateClientsCredit.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/products/credits/CorporateClientsCredit.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/products/credits/IndividualClientsCredit.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/products/credits/IndividualClientsCredit.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/branches/Branch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/branches/Branch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/branches/Department.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/branches/Department.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/branches/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/branches/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/branches/INotifyClients.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/branches/INotifyClients.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clients/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clients/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clients/CorporateClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clients/CorporateClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clients/IndividualClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clients/IndividualClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exception_handlers/AccountAlreadyBlockedException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exception_handlers/AccountAlreadyBlockedException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exception_handlers/AccountBlockedException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exception_handlers/AccountBlockedException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exception_handlers/DeductionExceedsBalanceException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exception_handlers/DeductionExceedsBalanceException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exception_handlers/IncorrectValueException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exception_handlers/IncorrectValueException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exception_handlers/WrongValueTypeException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exception_handlers/WrongValueTypeException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/products/Currency.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/products/Currency.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/products/accounts/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/products/accounts/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/products/accounts/CorporateClientsAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/products/accounts/CorporateClientsAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/products/accounts/IndividualClientsAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/products/accounts/IndividualClientsAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/products/cards/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/products/cards/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/products/cards/CorporateClientsCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/products/cards/CorporateClientsCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/products/cards/IndividualClientsCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/products/cards/IndividualClientsCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/products/credits/CorporateClientsCredit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/products/credits/CorporateClientsCredit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/products/credits/Credit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/products/credits/Credit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/products/credits/IndividualClientsCredit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/products/credits/IndividualClientsCredit.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,26 +58,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="2IYXDqPZkCdlFTWKa4iown6kt23" />
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
-  }
-}]]></component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="a6679679-9d86-4943-a8fe-5c2763800f13" name="Changes" comment="" />
-      <created>1670359376695</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1670359376695</updated>
-    </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

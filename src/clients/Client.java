@@ -3,8 +3,8 @@ package clients;
 import java.util.Objects;
 
 public abstract class Client {
-	private static long numberOfClients = 0L;
-	private long id;
+	private static int numberOfClients = 0;
+	private int id;
 	private String identificationNumber;
 	private String phoneNumber;
 	private String emailAddress;
@@ -24,11 +24,11 @@ public abstract class Client {
 		return numberOfClients;
 	}
 
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

@@ -5,8 +5,9 @@ import java.util.Objects;
 import branches.Branch;
 import clients.CorporateClient;
 import products.Currency;
+import products.IProductOptions;
 
-public class CorporateClientsAccount extends Account {
+public class CorporateClientsAccount extends Account implements IProductOptions<CorporateClientsAccount> {
 	private CorporateClient client;
 
 	public CorporateClientsAccount() {
@@ -49,6 +50,6 @@ public class CorporateClientsAccount extends Account {
 
 	@Override
 	public String toString() {
-		return String.format("Information about account holder: name=%s", client.getName());
+		return String.format("%s Information about account holder: name=%s",super.toString(), client.getName());
 	}
 }

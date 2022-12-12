@@ -10,8 +10,9 @@ import clients.CorporateClient;
 import exception_handlers.IncorrectValueException;
 import products.accounts.CorporateClientsAccount;
 import products.Currency;
+import products.IProductOptions;
 
-public class CorporateClientsCredit extends Credit implements ICreditOptions {
+public class CorporateClientsCredit extends Credit implements ICreditOptions, IProductOptions <CorporateClientsCredit> {
 	private CorporateClientsAccount account;
 	private CorporateClient client;
 	private final static Logger logger = LogManager.getLogger(CorporateClientsCredit.class);

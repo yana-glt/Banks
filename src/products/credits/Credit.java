@@ -4,7 +4,7 @@ import java.util.Objects;
 
 import products.Currency;
 
-public abstract class Credit {
+public abstract class Credit{
 	private double borrowingRate;
 	private int loanTermInMonth;
 	private double loanAmount;
