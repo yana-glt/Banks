@@ -95,16 +95,14 @@ public abstract class Account {
 		if (this.hashCode() != obj.hashCode())
 			return false;
 		Account other = (Account) obj;
-		return this.status == other.status
-				&& (this.accountNumber == other.accountNumber
-						|| (this.accountNumber != null ? this.accountNumber.equals(other.accountNumber)
-								: other.accountNumber == null))
-				&& (this.accountCurrency == other.accountCurrency
-						|| (this.accountCurrency != null ? this.accountCurrency.equals(other.accountCurrency)
-								: other.accountCurrency == null))
-				&& (this.regimeOfAccount == other.regimeOfAccount
-						|| (this.regimeOfAccount != null ? this.regimeOfAccount.equals(other.regimeOfAccount)
-								: other.regimeOfAccount == null));
+		boolean statusEquality = (this.status == other.status);
+		boolean accountNumberEquality = (this.accountNumber == null && other.accountNumber == null)
+				|| (this.accountNumber != null && this.accountNumber == other.accountNumber);
+		boolean accountCurrencyEquality = (this.accountCurrency == null && other.accountCurrency == null)
+				|| (this.accountCurrency != null && this.accountCurrency == other.accountCurrency);
+		boolean regimeOfAccountEquality = (this.regimeOfAccount == null && other.regimeOfAccount == null)
+				|| (this.regimeOfAccount != null && this.regimeOfAccount == other.regimeOfAccount);
+		return statusEquality && accountNumberEquality && accountCurrencyEquality && regimeOfAccountEquality;
 	}
 
 	@Override

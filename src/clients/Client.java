@@ -65,9 +65,10 @@ public abstract class Client {
 		if (this.hashCode() != obj.hashCode())
 			return false;
 		Client other = (Client) obj;
-		return this.id == other.id && (this.identificationNumber == other.identificationNumber
-				|| (this.identificationNumber != null ? this.identificationNumber.equals(other.identificationNumber)
-						: other.identificationNumber == null));
+		boolean idEquality = (this.id == other.id);
+		boolean identificationNumberEquality = (this.identificationNumber == null && other.identificationNumber == null)
+				|| (this.identificationNumber != null && this.identificationNumber == other.identificationNumber);
+		return idEquality && identificationNumberEquality;
 	}
 
 	@Override

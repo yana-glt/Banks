@@ -62,11 +62,11 @@ public abstract class Credit {
 		if (this.hashCode() != obj.hashCode())
 			return false;
 		Credit other = (Credit) obj;
-		return this.borrowingRate == other.borrowingRate && this.loanAmount == other.loanAmount
-				&& this.loanTermInMonth == other.loanTermInMonth
-				&& (this.creditCurrency == other.creditCurrency
-						|| (this.creditCurrency != null ? this.creditCurrency.equals(other.creditCurrency)
-								: other.creditCurrency == null));
+		boolean borrowingRateEquality = (this.borrowingRate == other.borrowingRate);
+		boolean loanAmountEquality = (this.loanAmount == other.loanAmount);
+		boolean loanTermInMonthEquality = (this.loanTermInMonth == other.loanTermInMonth);
+		boolean creditCurrencyEquality = (this.creditCurrency == null && other.creditCurrency == null);
+		return borrowingRateEquality && loanAmountEquality && loanTermInMonthEquality && creditCurrencyEquality;
 	}
 
 	@Override

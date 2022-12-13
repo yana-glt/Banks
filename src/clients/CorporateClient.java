@@ -92,13 +92,9 @@ public class CorporateClient extends Client implements IAssessSolvency {
 		if (this.hashCode() != obj.hashCode())
 			return false;
 		CorporateClient other = (CorporateClient) obj;
-		return (this.name == other.name || (this.name != null ? this.name.equals(other.name) : other.name == null))
-				&& (this.directorsName == other.directorsName
-						|| (this.directorsName != null ? this.directorsName.equals(other.directorsName)
-								: other.directorsName == null))
-				&& (this.directorsSurname == other.directorsSurname
-						|| (this.directorsSurname != null ? this.directorsSurname.equals(other.directorsSurname)
-								: other.directorsSurname == null));
+		boolean nameEquality = (this.name == null && other.name == null)
+				|| (this.name != null && this.name == other.name);
+		return nameEquality;
 	}
 
 	@Override
@@ -118,8 +114,7 @@ public class CorporateClient extends Client implements IAssessSolvency {
 	public boolean assessSolvency() throws IncorrectValueException {
 		if (solvencyAssessment <= 0 || solvencyAssessment > 100) {
 			throw new IncorrectValueException(
-					"The value of the client solvency assessment must be in the range from 1 to 100",
-					"Incorrect value of the assessment of the client's solvency");
+					"The value of the client solvency assessment must be in the range from 1 to 100");
 		} else if (solvencyAssessment >= 75) {
 			System.out.println(String.format("The financial condition of the client %s allows to receive a credit.",
 					this.getName()));

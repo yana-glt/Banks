@@ -57,9 +57,11 @@ public class IndividualClientsCredit extends Credit implements ICreditOptions {
 		if (this.hashCode() != obj.hashCode())
 			return false;
 		IndividualClientsCredit other = (IndividualClientsCredit) obj;
-		return this.account != null ? this.account.equals(other.account)
-				: other.account == null && this.client != null ? this.client.equals(other.client)
-						: other.client == null;
+		boolean accountEquality = (this.account == null && other.account == null)
+				|| (this.account != null && this.account == other.account);
+		boolean clientEquality = (this.client == null && other.client == null)
+				|| (this.client != null && this.client == other.client);
+		return accountEquality && clientEquality;
 	}
 
 	@Override

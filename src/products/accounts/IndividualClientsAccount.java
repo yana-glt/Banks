@@ -37,7 +37,9 @@ public class IndividualClientsAccount extends Account {
 		if (this.hashCode() != obj.hashCode())
 			return false;
 		IndividualClientsAccount other = (IndividualClientsAccount) obj;
-		return this.client != null ? this.client.equals(other.client) : other.client == null;
+		boolean clientEquality = (this.client == null && other.client == null)
+				|| (this.client != null && this.client == other.client);
+		return clientEquality;
 	}
 
 	@Override

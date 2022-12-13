@@ -125,13 +125,14 @@ public class Employee {
 		if (this.hashCode() != obj.hashCode())
 			return false;
 		Employee other = (Employee) obj;
-		return this.id == other.id
-				&& (this.name == other.name || (this.name != null ? this.name.equals(other.name) : other.name == null))
-				&& (this.surname == other.surname
-						|| (this.surname != null ? this.surname.equals(other.surname) : other.surname == null))
-				&& (this.dateOfBirth == other.dateOfBirth
-						|| (this.dateOfBirth != null ? this.dateOfBirth.equals(other.dateOfBirth)
-								: other.dateOfBirth == null));
+		boolean idEquality = (this.id == other.id);
+		boolean nameEquality = (this.name == null && other.name == null)
+				|| (this.name != null && this.name == other.name);
+		boolean surnameEquality = (this.surname == null && other.surname == null)
+				|| (this.surname != null && this.surname == other.surname);
+		boolean dateOfBirthEquality = (this.dateOfBirth == null && other.dateOfBirth == null)
+				|| (this.dateOfBirth != null && this.dateOfBirth == other.dateOfBirth);
+		return idEquality && nameEquality && surnameEquality && dateOfBirthEquality;
 	}
 
 	@Override
