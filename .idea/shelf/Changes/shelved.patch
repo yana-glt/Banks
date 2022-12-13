@@ -1,0 +1,1059 @@
+Index: src/branches/Branch.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package branches;\r\n\r\nimport java.util.ArrayList;\r\n\r\nimport clients.Client;\r\n\r\npublic class Branch implements INotifyClients {\r\n\tprivate static int numberOfBranches = 0;\r\n\tprivate int id;\r\n\tprivate String name;\r\n\tprivate String address;\r\n\tprivate String phoneNumber;\r\n\tprivate Employee headOfOffice;\r\n\tprivate ArrayList<Department> listOfDepartments = new ArrayList<>();\r\n\tprivate ArrayList<Employee> listOfEmployees = new ArrayList<>();\r\n\tprivate ArrayList<Client> listOfClients = new ArrayList<>();\r\n\r\n\tpublic Branch() {\r\n\r\n\t}\r\n\r\n\tpublic Branch(String name, String address, String phoneNumber) {\r\n\t\tthis.name = name;\r\n\t\tthis.address = address;\r\n\t\tthis.phoneNumber = phoneNumber;\r\n\t\tthis.id = ++numberOfBranches;\r\n\t}\r\n\r\n\tpublic static int getNumberOfBranches() {\r\n\t\treturn numberOfBranches;\r\n\t}\r\n\r\n\tpublic static void setNumberOfBranches(int numberOfBranches) {\r\n\t\tBranch.numberOfBranches = numberOfBranches;\r\n\t}\r\n\r\n\tpublic int getId() {\r\n\t\treturn id;\r\n\t}\r\n\r\n\tpublic void setId(int id) {\r\n\t\tthis.id = id;\r\n\t}\r\n\r\n\tpublic String getName() {\r\n\t\treturn name;\r\n\t}\r\n\r\n\tpublic void setName(String name) {\r\n\t\tthis.name = name;\r\n\t}\r\n\r\n\tpublic String getAddress() {\r\n\t\treturn address;\r\n\t}\r\n\r\n\tpublic void setAddress(String address) {\r\n\t\tthis.address = address;\r\n\t}\r\n\r\n\tpublic String getPhoneNumber() {\r\n\t\treturn phoneNumber;\r\n\t}\r\n\r\n\tpublic void setPhoneNumber(String phoneNumber) {\r\n\t\tthis.phoneNumber = phoneNumber;\r\n\t}\r\n\r\n\tpublic Employee getHeadOfOffice() {\r\n\t\treturn headOfOffice;\r\n\t}\r\n\r\n\tpublic void setHeadOfOffice(Employee headOfOffice) {\r\n\t\tthis.headOfOffice = headOfOffice;\r\n\t}\r\n\r\n\tpublic ArrayList<Department> getListOfDepartments() {\r\n\t\treturn listOfDepartments;\r\n\t}\r\n\r\n\tpublic void setListOfDepartments(ArrayList<Department> listOfDepartments) {\r\n\t\tthis.listOfDepartments = listOfDepartments;\r\n\t}\r\n\r\n\tpublic ArrayList<Employee> getListOfEmployees() {\r\n\t\treturn listOfEmployees;\r\n\t}\r\n\r\n\tpublic void setListOfEmployees(ArrayList<Employee> listOfEmployees) {\r\n\t\tthis.listOfEmployees = listOfEmployees;\r\n\t}\r\n\r\n\tpublic ArrayList<Client> getListOfClients() {\r\n\t\treturn listOfClients;\r\n\t}\r\n\r\n\tpublic void setListOfClients(ArrayList<Client> listOfClients) {\r\n\t\tthis.listOfClients = listOfClients;\r\n\t}\r\n\r\n\t@Override\r\n\tpublic String toString() {\r\n\t\treturn String.format(\"Branch [id=%d , name=%s]\", id, name);\r\n\t}\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/branches/Branch.java b/src/branches/Branch.java
+--- a/src/branches/Branch.java	(revision 26cd3e931d7df1f44ecd10e6d071b1bb87bc0215)
++++ b/src/branches/Branch.java	(date 1670791994637)
+@@ -25,15 +25,15 @@
+ 		this.phoneNumber = phoneNumber;
+ 		this.id = ++numberOfBranches;
+ 	}
+-
++	
++	public static <T> T getLastElement(ArrayList<T>list) {
++		return list.get((list.size()-1));
++	}
++	
+ 	public static int getNumberOfBranches() {
+ 		return numberOfBranches;
+ 	}
+ 
+-	public static void setNumberOfBranches(int numberOfBranches) {
+-		Branch.numberOfBranches = numberOfBranches;
+-	}
+-
+ 	public int getId() {
+ 		return id;
+ 	}
+@@ -97,10 +97,9 @@
+ 	public void setListOfClients(ArrayList<Client> listOfClients) {
+ 		this.listOfClients = listOfClients;
+ 	}
+-
++	
+ 	@Override
+ 	public String toString() {
+ 		return String.format("Branch [id=%d , name=%s]", id, name);
+ 	}
+-
+ }
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"a6679679-9d86-4943-a8fe-5c2763800f13\" name=\"Changes\" comment=\"\" />\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2IYXDqPZkCdlFTWKa4iown6kt23\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"a6679679-9d86-4943-a8fe-5c2763800f13\" name=\"Changes\" comment=\"\" />\r\n      <created>1670359376695</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1670359376695</updated>\r\n    </task>\r\n    <servers />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 26cd3e931d7df1f44ecd10e6d071b1bb87bc0215)
++++ b/.idea/workspace.xml	(date 1670792185373)
+@@ -1,7 +1,53 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" id="a6679679-9d86-4943-a8fe-5c2763800f13" name="Changes" comment="" />
++    <list default="true" id="a6679679-9d86-4943-a8fe-5c2763800f13" name="Changes" comment="">
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/bin/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Main.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/bin/branches/Branch.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/branches/Branch.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/bin/branches/Employee.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/branches/Employee.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/bin/branches/INotifyClients.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/branches/INotifyClients.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/bin/clients/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/clients/Client.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/bin/clients/CorporateClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/clients/CorporateClient.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/bin/clients/IndividualClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/clients/IndividualClient.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/bin/exception_handlers/AccountAlreadyBlockedException.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/exception_handlers/AccountAlreadyBlockedException.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/bin/exception_handlers/AccountBlockedException.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/exception_handlers/AccountBlockedException.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/bin/exception_handlers/DeductionExceedsBalanceException.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/exception_handlers/DeductionExceedsBalanceException.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/bin/exception_handlers/IncorrectValueException.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/exception_handlers/IncorrectValueException.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/bin/exception_handlers/WrongValueTypeException.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/exception_handlers/WrongValueTypeException.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/bin/products/Currency.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/products/Currency.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/bin/products/accounts/Account.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/products/accounts/Account.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/bin/products/accounts/CorporateClientsAccount.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/products/accounts/CorporateClientsAccount.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/bin/products/accounts/IndividualClientsAccount.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/products/accounts/IndividualClientsAccount.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/bin/products/cards/Card.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/products/cards/Card.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/bin/products/cards/CorporateClientsCard.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/products/cards/CorporateClientsCard.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/bin/products/cards/IndividualClientsCard.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/products/cards/IndividualClientsCard.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/bin/products/credits/CorporateClientsCredit.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/products/credits/CorporateClientsCredit.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/bin/products/credits/IndividualClientsCredit.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/products/credits/IndividualClientsCredit.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/branches/Branch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/branches/Branch.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/branches/Department.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/branches/Department.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/branches/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/branches/Employee.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/branches/INotifyClients.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/branches/INotifyClients.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/clients/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clients/Client.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/clients/CorporateClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clients/CorporateClient.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/clients/IndividualClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clients/IndividualClient.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/exception_handlers/AccountAlreadyBlockedException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exception_handlers/AccountAlreadyBlockedException.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/exception_handlers/AccountBlockedException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exception_handlers/AccountBlockedException.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/exception_handlers/DeductionExceedsBalanceException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exception_handlers/DeductionExceedsBalanceException.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/exception_handlers/IncorrectValueException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exception_handlers/IncorrectValueException.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/exception_handlers/WrongValueTypeException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exception_handlers/WrongValueTypeException.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/products/Currency.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/products/Currency.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/products/accounts/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/products/accounts/Account.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/products/accounts/CorporateClientsAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/products/accounts/CorporateClientsAccount.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/products/accounts/IndividualClientsAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/products/accounts/IndividualClientsAccount.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/products/cards/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/products/cards/Card.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/products/cards/CorporateClientsCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/products/cards/CorporateClientsCard.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/products/cards/IndividualClientsCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/products/cards/IndividualClientsCard.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/products/credits/CorporateClientsCredit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/products/credits/CorporateClientsCredit.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/products/credits/Credit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/products/credits/Credit.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/products/credits/IndividualClientsCredit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/products/credits/IndividualClientsCredit.java" afterDir="false" />
++    </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -9,18 +55,27 @@
+   </component>
+   <component name="Git.Settings">
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
++  </component>
++  <component name="MarkdownSettingsMigration">
++    <option name="stateVersion" value="1" />
+   </component>
+   <component name="ProjectId" id="2IYXDqPZkCdlFTWKa4iown6kt23" />
+   <component name="ProjectViewState">
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "RunOnceActivity.OpenProjectViewOnStart": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
++    &quot;last_opened_file_path&quot;: &quot;C:/Users/Alexa/eclipse-workspace/Banks&quot;,
++    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
++    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
++    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+   <component name="TaskManager">
+     <task active="true" id="Default" summary="Default task">
+@@ -29,7 +84,12 @@
+       <option name="number" value="Default" />
+       <option name="presentableId" value="Default" />
+       <updated>1670359376695</updated>
++      <workItem from="1670789388617" duration="493000" />
++      <workItem from="1670792017025" duration="167000" />
+     </task>
+     <servers />
+   </component>
++  <component name="TypeScriptGeneratedFilesManager">
++    <option name="version" value="3" />
++  </component>
+ </project>
+\ No newline at end of file
+Index: src/branches/Department.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package branches;\r\n\r\nimport java.util.ArrayList;\r\n\r\npublic class Department {\r\n\tprivate static int numberOfDepartments = 0;\r\n\tprivate int departmentId;\r\n\tprivate String name;\r\n\tprivate Employee headOfDepartment;\r\n\tprivate ArrayList<Employee> listOfEmployees = new ArrayList<>();\r\n\tprivate Branch branch;\r\n\r\n\tpublic Department() {\r\n\r\n\t}\r\n\r\n\tpublic Department(String name) {\r\n\t\tthis.name = name;\r\n\t\tthis.departmentId = ++numberOfDepartments;\r\n\t}\r\n\r\n\tpublic static int getNumberOfDepartments() {\r\n\t\treturn numberOfDepartments;\r\n\t}\r\n\r\n\tpublic static void setNumberOfDepartments(int numberOfDepartments) {\r\n\t\tDepartment.numberOfDepartments = numberOfDepartments;\r\n\t}\r\n\r\n\tpublic int getDepartmentId() {\r\n\t\treturn departmentId;\r\n\t}\r\n\r\n\tpublic void setDepartmentId(int departmentId) {\r\n\t\tthis.departmentId = departmentId;\r\n\t}\r\n\r\n\tpublic String getName() {\r\n\t\treturn name;\r\n\t}\r\n\r\n\tpublic void setName(String name) {\r\n\t\tthis.name = name;\r\n\t}\r\n\r\n\tpublic Employee getHeadOfDepartment() {\r\n\t\treturn headOfDepartment;\r\n\t}\r\n\r\n\tpublic void setHeadOfDepartment(Employee headOfDepartment) {\r\n\t\tthis.headOfDepartment = headOfDepartment;\r\n\t}\r\n\r\n\tpublic ArrayList<Employee> getListOfEmployees() {\r\n\t\treturn listOfEmployees;\r\n\t}\r\n\r\n\tpublic void setListOfEmployees(ArrayList<Employee> listOfEmployees) {\r\n\t\tthis.listOfEmployees = listOfEmployees;\r\n\t}\r\n\r\n\tpublic Branch getBranch() {\r\n\t\treturn branch;\r\n\t}\r\n\r\n\tpublic void setBranch(Branch branch) {\r\n\t\tthis.branch = branch;\r\n\t}\r\n\r\n\t@Override\r\n\tpublic String toString() {\r\n\t\treturn String.format(\"Department [id=%d, name=%s]\", departmentId, name);\r\n\t}\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/branches/Department.java b/src/branches/Department.java
+--- a/src/branches/Department.java	(revision 26cd3e931d7df1f44ecd10e6d071b1bb87bc0215)
++++ b/src/branches/Department.java	(date 1670755772092)
+@@ -71,5 +71,4 @@
+ 	public String toString() {
+ 		return String.format("Department [id=%d, name=%s]", departmentId, name);
+ 	}
+-
+ }
+Index: src/branches/Employee.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package branches;\r\n\r\nimport products.accounts.IndividualClientsAccount;\r\n\r\npublic class Employee {\r\n\tprivate static int numberOfEmployees = 0;\r\n\tprivate int id;\r\n\tprivate String name;\r\n\tprivate String surname;\r\n\tprivate String dateOfBirth;\r\n\tprivate float salary;\r\n\tprivate String phoneNumber;\r\n\tprivate String position;\r\n\tprivate Department department;\r\n\tprivate Branch branch;\r\n\tprivate IndividualClientsAccount account;\r\n\r\n\tpublic Employee() {\r\n\r\n\t}\r\n\r\n\tpublic Employee(String name, String surname, String dateOfBirth, float salary, String phoneNumber, String position,\r\n\t\t\tDepartment department, Branch branch) {\r\n\t\tthis.name = name;\r\n\t\tthis.surname = surname;\r\n\t\tthis.dateOfBirth = dateOfBirth;\r\n\t\tthis.salary = salary;\r\n\t\tthis.phoneNumber = phoneNumber;\r\n\t\tthis.position = position;\r\n\t\tthis.department = department;\r\n\t\tthis.branch = branch;\r\n\t\tthis.id = ++numberOfEmployees;\r\n\t}\r\n\r\n\tpublic static int getNumberOfEmployees() {\r\n\t\treturn numberOfEmployees;\r\n\t}\r\n\r\n\tpublic static void setNumberOfEmployees(int numberOfEmployees) {\r\n\t\tEmployee.numberOfEmployees = numberOfEmployees;\r\n\t}\r\n\r\n\tpublic int getId() {\r\n\t\treturn id;\r\n\t}\r\n\r\n\tpublic void setId(int id) {\r\n\t\tthis.id = id;\r\n\t}\r\n\r\n\tpublic String getName() {\r\n\t\treturn name;\r\n\t}\r\n\r\n\tpublic void setName(String name) {\r\n\t\tthis.name = name;\r\n\t}\r\n\r\n\tpublic String getSurname() {\r\n\t\treturn surname;\r\n\t}\r\n\r\n\tpublic void setSurname(String surname) {\r\n\t\tthis.surname = surname;\r\n\t}\r\n\r\n\tpublic String getDateOfBirth() {\r\n\t\treturn dateOfBirth;\r\n\t}\r\n\r\n\tpublic void setDateOfBirth(String dateOfBirth) {\r\n\t\tthis.dateOfBirth = dateOfBirth;\r\n\t}\r\n\r\n\tpublic float getSalary() {\r\n\t\treturn salary;\r\n\t}\r\n\r\n\tpublic void setSalary(float salary) {\r\n\t\tthis.salary = salary;\r\n\t}\r\n\r\n\tpublic String getPhoneNumber() {\r\n\t\treturn phoneNumber;\r\n\t}\r\n\r\n\tpublic void setPhoneNumber(String phoneNumber) {\r\n\t\tthis.phoneNumber = phoneNumber;\r\n\t}\r\n\r\n\tpublic String getPosition() {\r\n\t\treturn position;\r\n\t}\r\n\r\n\tpublic void setPosition(String position) {\r\n\t\tthis.position = position;\r\n\t}\r\n\r\n\tpublic Department getDepartment() {\r\n\t\treturn department;\r\n\t}\r\n\r\n\tpublic void setDepartment(Department department) {\r\n\t\tthis.department = department;\r\n\t}\r\n\r\n\tpublic Branch getBranch() {\r\n\t\treturn branch;\r\n\t}\r\n\r\n\tpublic void setBranch(Branch branch) {\r\n\t\tthis.branch = branch;\r\n\t}\r\n\r\n\tpublic IndividualClientsAccount getAccount() {\r\n\t\treturn account;\r\n\t}\r\n\r\n\tpublic void setAccount(IndividualClientsAccount account) {\r\n\t\tthis.account = account;\r\n\t}\r\n\r\n\t@Override\r\n\tpublic boolean equals(Object obj) {\r\n\t\tif (obj == null)\r\n\t\t\treturn false;\r\n\t\tif (this.getClass() != obj.getClass())\r\n\t\t\treturn false;\r\n\t\tif (this.hashCode() != obj.hashCode())\r\n\t\t\treturn false;\r\n\t\tEmployee other = (Employee) obj;\r\n\t\treturn this.id == other.id\r\n\t\t\t\t&& (this.name == other.name || (this.name != null ? this.name.equals(other.name) : other.name == null))\r\n\t\t\t\t&& (this.surname == other.surname\r\n\t\t\t\t\t\t|| (this.surname != null ? this.surname.equals(other.surname) : other.surname == null))\r\n\t\t\t\t&& (this.dateOfBirth == other.dateOfBirth\r\n\t\t\t\t\t\t|| (this.dateOfBirth != null ? this.dateOfBirth.equals(other.dateOfBirth)\r\n\t\t\t\t\t\t\t\t: other.dateOfBirth == null));\r\n\t}\r\n\r\n\t@Override\r\n\tpublic int hashCode() {\r\n\t\tfinal int prime = 31;\r\n\t\tint result = 1;\r\n\t\tresult = prime * result + ((name == null) ? 0 : name.hashCode());\r\n\t\tresult = prime * result + ((surname == null) ? 0 : surname.hashCode());\r\n\t\tresult = prime * result + id;\r\n\t\tresult = prime * result + ((dateOfBirth == null) ? 0 : dateOfBirth.hashCode());\r\n\t\treturn result;\r\n\t}\r\n\r\n\t@Override\r\n\tpublic String toString() {\r\n\t\treturn String.format(\"Employee information:id=%d , name=%s, surname=%s , dateOfBirth=%s, position=%s, %s, %s\",\r\n\t\t\t\tid, name, surname, dateOfBirth, position, department.toString(), branch.toString());\r\n\t}\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/branches/Employee.java b/src/branches/Employee.java
+--- a/src/branches/Employee.java	(revision 26cd3e931d7df1f44ecd10e6d071b1bb87bc0215)
++++ b/src/branches/Employee.java	(date 1670768731736)
+@@ -2,7 +2,7 @@
+ 
+ import products.accounts.IndividualClientsAccount;
+ 
+-public class Employee {
++public class Employee{
+ 	private static int numberOfEmployees = 0;
+ 	private int id;
+ 	private String name;
+@@ -36,10 +36,6 @@
+ 		return numberOfEmployees;
+ 	}
+ 
+-	public static void setNumberOfEmployees(int numberOfEmployees) {
+-		Employee.numberOfEmployees = numberOfEmployees;
+-	}
+-
+ 	public int getId() {
+ 		return id;
+ 	}
+@@ -154,5 +150,4 @@
+ 		return String.format("Employee information:id=%d , name=%s, surname=%s , dateOfBirth=%s, position=%s, %s, %s",
+ 				id, name, surname, dateOfBirth, position, department.toString(), branch.toString());
+ 	}
+-
+ }
+Index: src/branches/INotifyClients.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package branches;\r\n\r\nimport java.io.BufferedReader;\r\nimport java.io.BufferedWriter;\r\nimport java.io.FileNotFoundException;\r\nimport java.io.FileReader;\r\nimport java.io.FileWriter;\r\nimport java.io.IOException;\r\nimport java.util.ArrayList;\r\n\r\nimport org.apache.logging.log4j.LogManager;\r\nimport org.apache.logging.log4j.Logger;\r\n\r\nimport clients.Client;\r\n\r\npublic interface INotifyClients {\r\n\r\n\tpublic final static Logger logger = LogManager.getLogger(INotifyClients.class);\r\n\r\n\tdefault void notifyAllClients(ArrayList<Client> clients, String nameOfMessageFile) {\r\n\t\tfor (Client cl : clients) {\r\n\t\t\tString emailAddress = cl.getEmailAddress();\r\n\t\t\ttry (BufferedReader reader = new BufferedReader(new FileReader(\"\" + nameOfMessageFile + \".txt\"));\r\n\t\t\t\t\tBufferedWriter writer = new BufferedWriter(\r\n\t\t\t\t\t\t\tnew FileWriter(\"message sent to \" + emailAddress + \".txt\"));) {\r\n\t\t\t\tString line;\r\n\t\t\t\twhile ((line = reader.readLine()) != null) {\r\n\t\t\t\t\twriter.write(line);\r\n\t\t\t\t\twriter.write('\\n');\r\n\t\t\t\t}\r\n\t\t\t} catch (FileNotFoundException e) {\r\n\t\t\t\tlogger.warn(e);\r\n\t\t\t\t// e.printStackTrace();\r\n\t\t\t} catch (IOException e) {\r\n\t\t\t\tlogger.warn(e);\r\n\t\t\t\t// e.printStackTrace();\r\n\t\t\t}\r\n\t\t\tSystem.out.println(String.format(\"New message for client with email:%s\", emailAddress));\r\n\t\t}\r\n\t}\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/branches/INotifyClients.java b/src/branches/INotifyClients.java
+--- a/src/branches/INotifyClients.java	(revision 26cd3e931d7df1f44ecd10e6d071b1bb87bc0215)
++++ b/src/branches/INotifyClients.java	(date 1670768692107)
+@@ -30,10 +30,8 @@
+ 				}
+ 			} catch (FileNotFoundException e) {
+ 				logger.warn(e);
+-				// e.printStackTrace();
+ 			} catch (IOException e) {
+ 				logger.warn(e);
+-				// e.printStackTrace();
+ 			}
+ 			System.out.println(String.format("New message for client with email:%s", emailAddress));
+ 		}
+Index: src/clients/Client.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package clients;\r\n\r\nimport java.util.Objects;\r\n\r\npublic abstract class Client {\r\n\tprivate static long numberOfClients = 0L;\r\n\tprivate long id;\r\n\tprivate String identificationNumber;\r\n\tprivate String phoneNumber;\r\n\tprivate String emailAddress;\r\n\r\n\tpublic Client() {\r\n\r\n\t}\r\n\r\n\tpublic Client(String identificationNumber, String phoneNumber, String emailAddress) {\r\n\t\tthis.identificationNumber = identificationNumber;\r\n\t\tthis.phoneNumber = phoneNumber;\r\n\t\tthis.emailAddress = emailAddress;\r\n\t\tthis.id = ++numberOfClients;\r\n\t}\r\n\r\n\tpublic static long getNumberOfClients() {\r\n\t\treturn numberOfClients;\r\n\t}\r\n\r\n\tpublic static void setNumberOfClients(long numberOfClients) {\r\n\t\tClient.numberOfClients = numberOfClients;\r\n\t}\r\n\r\n\tpublic long getId() {\r\n\t\treturn id;\r\n\t}\r\n\r\n\tpublic void setId(long id) {\r\n\t\tthis.id = id;\r\n\t}\r\n\r\n\tpublic String getIdentificationNumber() {\r\n\t\treturn identificationNumber;\r\n\t}\r\n\r\n\tpublic void setIdentificationNumber(String identificationNumber) {\r\n\t\tthis.identificationNumber = identificationNumber;\r\n\t}\r\n\r\n\tpublic String getPhoneNumber() {\r\n\t\treturn phoneNumber;\r\n\t}\r\n\r\n\tpublic void setPhoneNumber(String phoneNumber) {\r\n\t\tthis.phoneNumber = phoneNumber;\r\n\t}\r\n\r\n\tpublic String getEmailAddress() {\r\n\t\treturn emailAddress;\r\n\t}\r\n\r\n\tpublic void setEmailAddress(String emailAddress) {\r\n\t\tthis.emailAddress = emailAddress;\r\n\t}\r\n\r\n\t@Override\r\n\tpublic boolean equals(Object obj) {\r\n\t\tif (obj == null)\r\n\t\t\treturn false;\r\n\t\tif (getClass() != obj.getClass())\r\n\t\t\treturn false;\r\n\t\tif (this.hashCode() != obj.hashCode())\r\n\t\t\treturn false;\r\n\t\tClient other = (Client) obj;\r\n\t\treturn this.id == other.id && (this.identificationNumber == other.identificationNumber\r\n\t\t\t\t|| (this.identificationNumber != null ? this.identificationNumber.equals(other.identificationNumber)\r\n\t\t\t\t\t\t: other.identificationNumber == null));\r\n\t}\r\n\r\n\t@Override\r\n\tpublic int hashCode() {\r\n\t\treturn Objects.hash(id, identificationNumber);\r\n\t}\r\n\r\n\t@Override\r\n\tpublic String toString() {\r\n\t\treturn String.format(\"Information about the client: id=%d, IdentificationNumber=%s, phoneNumber=%s, email=%s\",\r\n\t\t\t\tid, identificationNumber, phoneNumber, emailAddress);\r\n\t}\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/clients/Client.java b/src/clients/Client.java
+--- a/src/clients/Client.java	(revision 26cd3e931d7df1f44ecd10e6d071b1bb87bc0215)
++++ b/src/clients/Client.java	(date 1670769867437)
+@@ -3,8 +3,8 @@
+ import java.util.Objects;
+ 
+ public abstract class Client {
+-	private static long numberOfClients = 0L;
+-	private long id;
++	private static int numberOfClients = 0;
++	private int id;
+ 	private String identificationNumber;
+ 	private String phoneNumber;
+ 	private String emailAddress;
+@@ -24,15 +24,11 @@
+ 		return numberOfClients;
+ 	}
+ 
+-	public static void setNumberOfClients(long numberOfClients) {
+-		Client.numberOfClients = numberOfClients;
+-	}
+-
+-	public long getId() {
++	public int getId() {
+ 		return id;
+ 	}
+ 
+-	public void setId(long id) {
++	public void setId(int id) {
+ 		this.id = id;
+ 	}
+ 
+@@ -84,5 +80,4 @@
+ 		return String.format("Information about the client: id=%d, IdentificationNumber=%s, phoneNumber=%s, email=%s",
+ 				id, identificationNumber, phoneNumber, emailAddress);
+ 	}
+-
+ }
+Index: src/clients/CorporateClient.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package clients;\r\n\r\nimport java.util.Objects;\r\n\r\nimport exception_handlers.IncorrectValueException;\r\nimport products.accounts.CorporateClientsAccount;\r\n\r\npublic class CorporateClient extends Client implements IAssessSolvency {\r\n\r\n\tprivate String name;\r\n\tprivate String directorsName;\r\n\tprivate String directorsSurname;\r\n\tprivate String directorsPhoneNumber;\r\n\tprivate CorporateClientsAccount account;\r\n\r\n\t// Variables that are used to determine the solvency of the client when lending\r\n\tprivate double solvencyAssessment;\r\n\r\n\tpublic CorporateClient() {\r\n\r\n\t}\r\n\r\n\tpublic CorporateClient(String identificationNumber, String phoneNumber, String emailAddress, String name,\r\n\t\t\tString directorsName, String directorsSurname) {\r\n\t\tsuper(identificationNumber, phoneNumber, emailAddress);\r\n\t\tthis.name = name;\r\n\t\tthis.directorsName = directorsName;\r\n\t\tthis.directorsSurname = directorsSurname;\r\n\t}\r\n\r\n\tpublic CorporateClient(String identificationNumber, String phoneNumber, String emailAddress, String name,\r\n\t\t\tString directorsName, String directorsSurname, double solvencyAssessment) {\r\n\t\tsuper(identificationNumber, phoneNumber, emailAddress);\r\n\t\tthis.name = name;\r\n\t\tthis.directorsName = directorsName;\r\n\t\tthis.directorsSurname = directorsSurname;\r\n\t\tthis.solvencyAssessment = solvencyAssessment;\r\n\t}\r\n\r\n\tpublic String getName() {\r\n\t\treturn name;\r\n\t}\r\n\r\n\tpublic void setName(String name) {\r\n\t\tthis.name = name;\r\n\t}\r\n\r\n\tpublic String getDirectorsName() {\r\n\t\treturn directorsName;\r\n\t}\r\n\r\n\tpublic void setDirectorsName(String directorsName) {\r\n\t\tthis.directorsName = directorsName;\r\n\t}\r\n\r\n\tpublic String getDirectorsSurname() {\r\n\t\treturn directorsSurname;\r\n\t}\r\n\r\n\tpublic void setDirectorsSurname(String directorsSurname) {\r\n\t\tthis.directorsSurname = directorsSurname;\r\n\t}\r\n\r\n\tpublic String getDirectorsPhoneNumber() {\r\n\t\treturn directorsPhoneNumber;\r\n\t}\r\n\r\n\tpublic void setDirectorsPhoneNumber(String directorsPhoneNumber) {\r\n\t\tthis.directorsPhoneNumber = directorsPhoneNumber;\r\n\t}\r\n\r\n\tpublic CorporateClientsAccount getAccount() {\r\n\t\treturn account;\r\n\t}\r\n\r\n\tpublic void setAccount(CorporateClientsAccount account) {\r\n\t\tthis.account = account;\r\n\t}\r\n\r\n\tpublic double getSolvencyAssessment() {\r\n\t\treturn solvencyAssessment;\r\n\t}\r\n\r\n\tpublic void setSolvencyAssessment(double solvencyAssessment) {\r\n\t\tthis.solvencyAssessment = solvencyAssessment;\r\n\t}\r\n\r\n\t@Override\r\n\tpublic boolean equals(Object obj) {\r\n\t\tif (!super.equals(obj))\r\n\t\t\treturn false;\r\n\t\tif (this.getClass() != obj.getClass())\r\n\t\t\treturn false;\r\n\t\tif (this.hashCode() != obj.hashCode())\r\n\t\t\treturn false;\r\n\t\tCorporateClient other = (CorporateClient) obj;\r\n\t\treturn (this.name == other.name || (this.name != null ? this.name.equals(other.name) : other.name == null))\r\n\t\t\t\t&& (this.directorsName == other.directorsName\r\n\t\t\t\t\t\t|| (this.directorsName != null ? this.directorsName.equals(other.directorsName)\r\n\t\t\t\t\t\t\t\t: other.directorsName == null))\r\n\t\t\t\t&& (this.directorsSurname == other.directorsSurname\r\n\t\t\t\t\t\t|| (this.directorsSurname != null ? this.directorsSurname.equals(other.directorsSurname)\r\n\t\t\t\t\t\t\t\t: other.directorsSurname == null));\r\n\t}\r\n\r\n\t@Override\r\n\tpublic int hashCode() {\r\n\t\tfinal int prime = 31;\r\n\t\tint result = super.hashCode();\r\n\t\tresult = prime * result + Objects.hash(name, directorsName, directorsSurname);\r\n\t\treturn result;\r\n\t}\r\n\r\n\t@Override\r\n\tpublic String toString() {\r\n\t\treturn String.format(\"%s, name=%s, account=%s\", super.toString(), name, account.getAccountNumber());\r\n\t}\r\n\r\n\t@Override\r\n\tpublic boolean assessSolvency() throws IncorrectValueException {\r\n\t\tif (solvencyAssessment <= 0 || solvencyAssessment > 100) {\r\n\t\t\tthrow new IncorrectValueException(\r\n\t\t\t\t\t\"The value of the client solvency assessment must be in the range from 1 to 100\",\r\n\t\t\t\t\t\"Incorrect value of the assessment of the client's solvency\");\r\n\t\t} else if (solvencyAssessment >= 75) {\r\n\t\t\tSystem.out.println(String.format(\"The financial condition of the client %s allows to receive a credit.\",\r\n\t\t\t\t\tthis.getName()));\r\n\t\t\treturn true;\r\n\t\t} else if (solvencyAssessment >= 50) {\r\n\t\t\tSystem.out\r\n\t\t\t\t\t.println(String.format(\"Client %s can get a credit, but collateral is required.\", this.getName()));\r\n\t\t\treturn true;\r\n\t\t} else {\r\n\t\t\tSystem.out.println(String.format(\"Credit cannot be granted to %s\", this.getName()));\r\n\t\t\treturn false;\r\n\t\t}\r\n\t}\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/clients/CorporateClient.java b/src/clients/CorporateClient.java
+--- a/src/clients/CorporateClient.java	(revision 26cd3e931d7df1f44ecd10e6d071b1bb87bc0215)
++++ b/src/clients/CorporateClient.java	(date 1670760804230)
+@@ -1,9 +1,12 @@
+ package clients;
+ 
++import java.util.ArrayList;
++import java.util.List;
+ import java.util.Objects;
+ 
+ import exception_handlers.IncorrectValueException;
+ import products.accounts.CorporateClientsAccount;
++import products.credits.CorporateClientsCredit;
+ 
+ public class CorporateClient extends Client implements IAssessSolvency {
+ 
+@@ -12,8 +15,7 @@
+ 	private String directorsSurname;
+ 	private String directorsPhoneNumber;
+ 	private CorporateClientsAccount account;
+-
+-	// Variables that are used to determine the solvency of the client when lending
++	private List <CorporateClientsCredit> listOfCredits = new ArrayList<>();
+ 	private double solvencyAssessment;
+ 
+ 	public CorporateClient() {
+@@ -84,7 +86,15 @@
+ 	public void setSolvencyAssessment(double solvencyAssessment) {
+ 		this.solvencyAssessment = solvencyAssessment;
+ 	}
++	
++	public List<CorporateClientsCredit> getListOfCredits() {
++		return listOfCredits;
++	}
+ 
++	public void setListOfCredits(List<CorporateClientsCredit> listOfCredits) {
++		this.listOfCredits = listOfCredits;
++	}
++
+ 	@Override
+ 	public boolean equals(Object obj) {
+ 		if (!super.equals(obj))
+@@ -120,8 +130,7 @@
+ 	public boolean assessSolvency() throws IncorrectValueException {
+ 		if (solvencyAssessment <= 0 || solvencyAssessment > 100) {
+ 			throw new IncorrectValueException(
+-					"The value of the client solvency assessment must be in the range from 1 to 100",
+-					"Incorrect value of the assessment of the client's solvency");
++					"The value of the client solvency assessment must be in the range from 1 to 100");
+ 		} else if (solvencyAssessment >= 75) {
+ 			System.out.println(String.format("The financial condition of the client %s allows to receive a credit.",
+ 					this.getName()));
+@@ -135,5 +144,4 @@
+ 			return false;
+ 		}
+ 	}
+-
+ }
+Index: src/clients/IndividualClient.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package clients;\r\n\r\nimport java.util.Objects;\r\nimport java.util.Scanner;\r\n\r\nimport exception_handlers.WrongValueTypeException;\r\nimport products.accounts.IndividualClientsAccount;\r\nimport products.credits.IndividualClientsCredit;\r\n\r\npublic class IndividualClient extends Client implements IAssessSolvency {\r\n\r\n\tprivate String name;\r\n\tprivate String surname;\r\n\tprivate String dateOfBirth;\r\n\tprivate String citizenship;\r\n\tprivate IndividualClientsAccount account;\r\n\r\n\t// Variables that are used to determine the solvency of the client when lending\r\n\tprivate double averageSalary;\r\n\r\n\tpublic IndividualClient() {\r\n\r\n\t}\r\n\r\n\tpublic IndividualClient(String identificationNumber, String phoneNumber, String emailAddress, String name,\r\n\t\t\tString surname, String dateOfBirth, String citizenship) {\r\n\t\tsuper(identificationNumber, phoneNumber, emailAddress);\r\n\t\tthis.name = name;\r\n\t\tthis.surname = surname;\r\n\t\tthis.dateOfBirth = dateOfBirth;\r\n\t\tthis.citizenship = citizenship;\r\n\t}\r\n\r\n\tpublic IndividualClient(String identificationNumber, String phoneNumber, String emailAddress, String name,\r\n\t\t\tString surname, String dateOfBirth, String citizenship, double averageSalary) {\r\n\t\tsuper(identificationNumber, phoneNumber, emailAddress);\r\n\t\tthis.name = name;\r\n\t\tthis.surname = surname;\r\n\t\tthis.dateOfBirth = dateOfBirth;\r\n\t\tthis.citizenship = citizenship;\r\n\t\tthis.averageSalary = averageSalary;\r\n\t}\r\n\r\n\tpublic String getName() {\r\n\t\treturn name;\r\n\t}\r\n\r\n\tpublic void setName(String name) {\r\n\t\tthis.name = name;\r\n\t}\r\n\r\n\tpublic String getSurname() {\r\n\t\treturn surname;\r\n\t}\r\n\r\n\tpublic void setSurname(String surname) {\r\n\t\tthis.surname = surname;\r\n\t}\r\n\r\n\tpublic String getDateOfBirth() {\r\n\t\treturn dateOfBirth;\r\n\t}\r\n\r\n\tpublic void setDateOfBirth(String dateOfBirth) {\r\n\t\tthis.dateOfBirth = dateOfBirth;\r\n\t}\r\n\r\n\tpublic String getCitizenship() {\r\n\t\treturn citizenship;\r\n\t}\r\n\r\n\tpublic void setCitizenship(String citizenship) {\r\n\t\tthis.citizenship = citizenship;\r\n\t}\r\n\r\n\tpublic double getAverageSalary() {\r\n\t\treturn averageSalary;\r\n\t}\r\n\r\n\tpublic void setAverageSalary(double averageSalary) {\r\n\t\tthis.averageSalary = averageSalary;\r\n\t}\r\n\r\n\tpublic IndividualClientsAccount getAccount() {\r\n\t\treturn account;\r\n\t}\r\n\r\n\tpublic void setAccount(IndividualClientsAccount account) {\r\n\t\tthis.account = account;\r\n\t}\r\n\r\n\t@Override\r\n\tpublic boolean equals(Object obj) {\r\n\t\tif (!super.equals(obj))\r\n\t\t\treturn false;\r\n\t\tif (getClass() != obj.getClass())\r\n\t\t\treturn false;\r\n\t\tif (this.hashCode() != obj.hashCode())\r\n\t\t\treturn false;\r\n\t\tIndividualClient other = (IndividualClient) obj;\r\n\t\treturn (this.name == other.name || (this.name != null ? this.name.equals(other.name) : other.name == null))\r\n\t\t\t\t&& (this.surname == other.surname\r\n\t\t\t\t\t\t|| (this.surname != null ? this.surname.equals(other.surname) : other.surname == null))\r\n\t\t\t\t&& (this.dateOfBirth == other.dateOfBirth\r\n\t\t\t\t\t\t|| (this.dateOfBirth != null ? this.dateOfBirth.equals(other.dateOfBirth)\r\n\t\t\t\t\t\t\t\t: other.dateOfBirth == null));\r\n\t}\r\n\r\n\t@Override\r\n\tpublic int hashCode() {\r\n\t\tfinal int prime = 31;\r\n\t\tint result = super.hashCode();\r\n\t\tresult = prime * result + Objects.hash(name, surname, dateOfBirth);\r\n\t\treturn result;\r\n\t}\r\n\r\n\t@Override\r\n\tpublic String toString() {\r\n\t\treturn String.format(\"%s, name=%s, surname=%s, dateOfBirth=%s, citizenship=%s, account=%s\", super.toString(),\r\n\t\t\t\tname, surname, dateOfBirth, citizenship, account.getAccountNumber());\r\n\t}\r\n\r\n\t@Override\r\n\tpublic boolean assessSolvency() throws WrongValueTypeException {\r\n\t\tdouble rate = 0;\r\n\t\tint term = 0;\r\n\t\tdouble amount = 0;\r\n\t\ttry (Scanner scanner = new Scanner(System.in)) {\r\n\t\t\tSystem.out.println(\"Enter interest rate with two decimal places\");\r\n\t\t\tif (!scanner.hasNextDouble()) {\r\n\t\t\t\tthrow new WrongValueTypeException(\"The user must enter a numeric value accurate to hundredths\",\r\n\t\t\t\t\t\t\"The user entered a value of the wrong type\");\r\n\t\t\t} else {\r\n\t\t\t\trate = scanner.nextDouble();\r\n\t\t\t}\r\n\t\t\tSystem.out.println(\"Enter credit term (in months)\");\r\n\t\t\tif (!scanner.hasNextInt()) {\r\n\t\t\t\tthrow new WrongValueTypeException(\"The user must enter an integer\",\r\n\t\t\t\t\t\t\"The user entered a value of the wrong type\");\r\n\t\t\t} else {\r\n\t\t\t\tterm = scanner.nextInt();\r\n\t\t\t}\r\n\t\t\tSystem.out.println(\"Enter credit amount\");\r\n\t\t\tif (!scanner.hasNextDouble()) {\r\n\t\t\t\tthrow new WrongValueTypeException(\"The user must enter a numeric value accurate to hundredths\",\r\n\t\t\t\t\t\t\"The user entered a value of the wrong type\");\r\n\t\t\t} else {\r\n\t\t\t\tamount = scanner.nextDouble();\r\n\t\t\t}\r\n\t\t}\r\n\t\tdouble monthlyPayment = IndividualClientsCredit.determineMonthlyPayment(rate, term, amount);\r\n\t\tif (monthlyPayment <= 0.5 * this.averageSalary) {\r\n\t\t\tSystem.out.println(String.format(\"Client %s %s has sufficient income to receive this credit.\",\r\n\t\t\t\t\tthis.getName(), this.getSurname()));\r\n\t\t\treturn true;\r\n\t\t} else {\r\n\t\t\tSystem.out.println(String.format(\"Client  %s %s does not have sufficient income to receive this credit.\",\r\n\t\t\t\t\tthis.getName(), this.getSurname()));\r\n\t\t\treturn false;\r\n\t\t}\r\n\t}\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/clients/IndividualClient.java b/src/clients/IndividualClient.java
+--- a/src/clients/IndividualClient.java	(revision 26cd3e931d7df1f44ecd10e6d071b1bb87bc0215)
++++ b/src/clients/IndividualClient.java	(date 1670764103914)
+@@ -1,5 +1,7 @@
+ package clients;
+ 
++import java.util.ArrayList;
++import java.util.List;
+ import java.util.Objects;
+ import java.util.Scanner;
+ 
+@@ -14,8 +16,8 @@
+ 	private String dateOfBirth;
+ 	private String citizenship;
+ 	private IndividualClientsAccount account;
++	private List <IndividualClientsCredit> listOfCredits = new ArrayList<>();
+ 
+-	// Variables that are used to determine the solvency of the client when lending
+ 	private double averageSalary;
+ 
+ 	public IndividualClient() {
+@@ -88,7 +90,15 @@
+ 	public void setAccount(IndividualClientsAccount account) {
+ 		this.account = account;
+ 	}
++	
++	public List<IndividualClientsCredit> getListOfCredits() {
++		return listOfCredits;
++	}
+ 
++	public void setListOfCredits(List<IndividualClientsCredit> listOfCredits) {
++		this.listOfCredits = listOfCredits;
++	}
++
+ 	@Override
+ 	public boolean equals(Object obj) {
+ 		if (!super.equals(obj))
+@@ -128,22 +138,19 @@
+ 		try (Scanner scanner = new Scanner(System.in)) {
+ 			System.out.println("Enter interest rate with two decimal places");
+ 			if (!scanner.hasNextDouble()) {
+-				throw new WrongValueTypeException("The user must enter a numeric value accurate to hundredths",
+-						"The user entered a value of the wrong type");
++				throw new WrongValueTypeException("The user entered a value of the wrong type");
+ 			} else {
+ 				rate = scanner.nextDouble();
+ 			}
+ 			System.out.println("Enter credit term (in months)");
+ 			if (!scanner.hasNextInt()) {
+-				throw new WrongValueTypeException("The user must enter an integer",
+-						"The user entered a value of the wrong type");
++				throw new WrongValueTypeException("The user entered a value of the wrong type");
+ 			} else {
+ 				term = scanner.nextInt();
+ 			}
+ 			System.out.println("Enter credit amount");
+ 			if (!scanner.hasNextDouble()) {
+-				throw new WrongValueTypeException("The user must enter a numeric value accurate to hundredths",
+-						"The user entered a value of the wrong type");
++				throw new WrongValueTypeException("The user entered a value of the wrong type");
+ 			} else {
+ 				amount = scanner.nextDouble();
+ 			}
+Index: src/exception_handlers/AccountAlreadyBlockedException.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package exception_handlers;\r\n\r\npublic class AccountAlreadyBlockedException extends Exception {\r\n\tprivate static final long serialVersionUID = 1L;\r\n\tprivate String desc;\r\n\r\n\tpublic AccountAlreadyBlockedException(String desc, String mess) {\r\n\t\tsuper(mess);\r\n\t\tthis.desc = desc;\r\n\t}\r\n\r\n\tpublic String getDesc() {\r\n\t\treturn desc;\r\n\t}\r\n\r\n\tpublic void setDesc(String desc) {\r\n\t\tthis.desc = desc;\r\n\t}\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/exception_handlers/AccountAlreadyBlockedException.java b/src/exception_handlers/AccountAlreadyBlockedException.java
+--- a/src/exception_handlers/AccountAlreadyBlockedException.java	(revision 26cd3e931d7df1f44ecd10e6d071b1bb87bc0215)
++++ b/src/exception_handlers/AccountAlreadyBlockedException.java	(date 1670756011155)
+@@ -2,18 +2,8 @@
+ 
+ public class AccountAlreadyBlockedException extends Exception {
+ 	private static final long serialVersionUID = 1L;
+-	private String desc;
+ 
+-	public AccountAlreadyBlockedException(String desc, String mess) {
++	public AccountAlreadyBlockedException(String mess) {
+ 		super(mess);
+-		this.desc = desc;
+-	}
+-
+-	public String getDesc() {
+-		return desc;
+-	}
+-
+-	public void setDesc(String desc) {
+-		this.desc = desc;
+ 	}
+ }
+Index: src/exception_handlers/AccountBlockedException.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package exception_handlers;\r\n\r\npublic class AccountBlockedException extends Exception {\r\n\tprivate static final long serialVersionUID = 1L;\r\n\tprivate String desc;\r\n\r\n\tpublic AccountBlockedException(String desc, String mess) {\r\n\t\tsuper(mess);\r\n\t\tthis.desc = desc;\r\n\t}\r\n\r\n\tpublic String getDesc() {\r\n\t\treturn desc;\r\n\t}\r\n\r\n\tpublic void setDesc(String desc) {\r\n\t\tthis.desc = desc;\r\n\t}\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/exception_handlers/AccountBlockedException.java b/src/exception_handlers/AccountBlockedException.java
+--- a/src/exception_handlers/AccountBlockedException.java	(revision 26cd3e931d7df1f44ecd10e6d071b1bb87bc0215)
++++ b/src/exception_handlers/AccountBlockedException.java	(date 1670755992186)
+@@ -2,19 +2,8 @@
+ 
+ public class AccountBlockedException extends Exception {
+ 	private static final long serialVersionUID = 1L;
+-	private String desc;
+ 
+-	public AccountBlockedException(String desc, String mess) {
++	public AccountBlockedException(String mess) {
+ 		super(mess);
+-		this.desc = desc;
+-	}
+-
+-	public String getDesc() {
+-		return desc;
+ 	}
+-
+-	public void setDesc(String desc) {
+-		this.desc = desc;
+-	}
+-
+ }
+Index: src/exception_handlers/DeductionExceedsBalanceException.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package exception_handlers;\r\n\r\npublic class DeductionExceedsBalanceException extends Exception {\r\n\tprivate static final long serialVersionUID = 1L;\r\n\tprivate String desc;\r\n\r\n\tpublic DeductionExceedsBalanceException(String desc, String mess) {\r\n\t\tsuper(mess);\r\n\t\tthis.desc = desc;\r\n\t}\r\n\r\n\tpublic String getDesc() {\r\n\t\treturn desc;\r\n\t}\r\n\r\n\tpublic void setDesc(String desc) {\r\n\t\tthis.desc = desc;\r\n\t}\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/exception_handlers/DeductionExceedsBalanceException.java b/src/exception_handlers/DeductionExceedsBalanceException.java
+--- a/src/exception_handlers/DeductionExceedsBalanceException.java	(revision 26cd3e931d7df1f44ecd10e6d071b1bb87bc0215)
++++ b/src/exception_handlers/DeductionExceedsBalanceException.java	(date 1670756034220)
+@@ -2,19 +2,8 @@
+ 
+ public class DeductionExceedsBalanceException extends Exception {
+ 	private static final long serialVersionUID = 1L;
+-	private String desc;
+ 
+-	public DeductionExceedsBalanceException(String desc, String mess) {
++	public DeductionExceedsBalanceException(String mess) {
+ 		super(mess);
+-		this.desc = desc;
+-	}
+-
+-	public String getDesc() {
+-		return desc;
+ 	}
+-
+-	public void setDesc(String desc) {
+-		this.desc = desc;
+-	}
+-
+ }
+Index: src/exception_handlers/IncorrectValueException.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package exception_handlers;\r\n\r\npublic class IncorrectValueException extends Exception {\r\n\tprivate static final long serialVersionUID = 1L;\r\n\tprivate String desc;\r\n\r\n\tpublic IncorrectValueException(String desc, String mess) {\r\n\t\tsuper(mess);\r\n\t\tthis.desc = desc;\r\n\t}\r\n\r\n\tpublic String getDesc() {\r\n\t\treturn desc;\r\n\t}\r\n\r\n\tpublic void setDesc(String desc) {\r\n\t\tthis.desc = desc;\r\n\t}\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/exception_handlers/IncorrectValueException.java b/src/exception_handlers/IncorrectValueException.java
+--- a/src/exception_handlers/IncorrectValueException.java	(revision 26cd3e931d7df1f44ecd10e6d071b1bb87bc0215)
++++ b/src/exception_handlers/IncorrectValueException.java	(date 1670756205533)
+@@ -2,19 +2,8 @@
+ 
+ public class IncorrectValueException extends Exception {
+ 	private static final long serialVersionUID = 1L;
+-	private String desc;
+ 
+-	public IncorrectValueException(String desc, String mess) {
++	public IncorrectValueException(String mess) {
+ 		super(mess);
+-		this.desc = desc;
+-	}
+-
+-	public String getDesc() {
+-		return desc;
+ 	}
+-
+-	public void setDesc(String desc) {
+-		this.desc = desc;
+-	}
+-
+ }
+Index: src/exception_handlers/WrongValueTypeException.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package exception_handlers;\r\n\r\npublic class WrongValueTypeException extends Exception {\r\n\tprivate static final long serialVersionUID = 1L;\r\n\tprivate String desc;\r\n\r\n\tpublic WrongValueTypeException(String desc, String mess) {\r\n\t\tsuper(mess);\r\n\t\tthis.desc = desc;\r\n\t}\r\n\r\n\tpublic String getDesc() {\r\n\t\treturn desc;\r\n\t}\r\n\r\n\tpublic void setDesc(String desc) {\r\n\t\tthis.desc = desc;\r\n\t}\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/exception_handlers/WrongValueTypeException.java b/src/exception_handlers/WrongValueTypeException.java
+--- a/src/exception_handlers/WrongValueTypeException.java	(revision 26cd3e931d7df1f44ecd10e6d071b1bb87bc0215)
++++ b/src/exception_handlers/WrongValueTypeException.java	(date 1670756082638)
+@@ -2,19 +2,8 @@
+ 
+ public class WrongValueTypeException extends Exception {
+ 	private static final long serialVersionUID = 1L;
+-	private String desc;
+ 
+-	public WrongValueTypeException(String desc, String mess) {
++	public WrongValueTypeException(String mess) {
+ 		super(mess);
+-		this.desc = desc;
+-	}
+-
+-	public String getDesc() {
+-		return desc;
+ 	}
+-
+-	public void setDesc(String desc) {
+-		this.desc = desc;
+-	}
+-
+ }
+Index: src/products/Currency.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package products;\r\n\r\npublic enum Currency {\r\n\tEUR, USD, GBP, PLN, DKK, NOK, SEK, CZK, HUF, GEL, TRY, CHF, JPY, CNY\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/products/Currency.java b/src/products/Currency.java
+--- a/src/products/Currency.java	(revision 26cd3e931d7df1f44ecd10e6d071b1bb87bc0215)
++++ b/src/products/Currency.java	(date 1670716985323)
+@@ -1,5 +1,26 @@
+ package products;
+ 
+ public enum Currency {
+-	EUR, USD, GBP, PLN, DKK, NOK, SEK, CZK, HUF, GEL, TRY, CHF, JPY, CNY
++	EUR(978, "Euro"), 
++	USD(840, "US Dollar"), 
++	GBP(826, "Pound Sterling"), 
++	PLN(985, "Zloty"), 
++	DKK(208, "Danish Krone"), 
++	NOK(578, "Norwegian Krone"), 
++	SEK(752, "Swedish Krona"), 
++	CZK(203, "Czech Koruna"), 
++	HUF(348, "Forint"), 
++	GEL(981, "Lari"), 
++	TRY(949, "Turkish Lira"), 
++	CHF(756, "Swiss Franc"), 
++	JPY(392, "Yen"), 
++	CNY(156, "Yuan Renminbi");
++	
++	private final int id;
++	private final String name;
++
++	private Currency(int id, String name) {
++		this.id = id;
++		this.name = name;
++	}
+ }
+Index: src/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import org.apache.logging.log4j.LogManager;\r\nimport org.apache.logging.log4j.Logger;\r\n\r\nimport branches.Branch;\r\nimport branches.Department;\r\nimport branches.Employee;\r\nimport clients.CorporateClient;\r\nimport clients.IndividualClient;\r\nimport exception_handlers.IncorrectValueException;\r\nimport exception_handlers.WrongValueTypeException;\r\nimport products.accounts.CorporateClientsAccount;\r\nimport products.Currency;\r\nimport products.accounts.IndividualClientsAccount;\r\nimport products.credits.CorporateClientsCredit;\r\nimport products.credits.IndividualClientsCredit;\r\n\r\npublic class Main {\r\n\tprivate final static Logger logger = LogManager.getLogger(Main.class);\r\n\r\n\tpublic static void main(String[] args) {\r\n\r\n\t\tBranch krakowBranch = new Branch(\"Bank branch in Krakow\", \"Krakow\", \"+48963365100\");\r\n\t\tBranch warsawBranch = new Branch(\"Bank branch in Warsaw\", \"Warsaw\", \"+48702502630\");\r\n\r\n//\t\tSystem.out.println(krakowBranch.getId());\r\n//\t\tSystem.out.println(warsawBranch.getId());\r\n//\t\tSystem.out.println(Branch.getNumberOfBranches());\r\n//\t\tSystem.out.println(krakowBranch.toString());\r\n\r\n\t\tDepartment finance = new Department(\"Finance\");\r\n\t\tDepartment treasury = new Department(\"Treasury\");\r\n\t\tDepartment hr = new Department(\"Human resources\");\r\n\r\n//\t\tSystem.out.println(finance.getDepartmentId());\r\n//\t\tSystem.out.println(treasury.getDepartmentId());\r\n//\t\tSystem.out.println(hr.getDepartmentId());\r\n//\t\tSystem.out.println(Department.getNumberOfDepartments());\r\n//\t\tSystem.out.println(hr.toString());\r\n\r\n\t\tEmployee emp1 = new Employee(\"Susan\", \"Smith\", \"04/09/1990\", 1400, \"+48962456981\", \"Manager\", finance,\r\n\t\t\t\twarsawBranch);\r\n\t\tEmployee emp2 = new Employee(\"Carol\", \"Brown\", \"04/09/1990\", 1400, \"+48962456981\", \"Manager\", treasury,\r\n\t\t\t\twarsawBranch);\r\n\t\tEmployee emp3 = new Employee(\"Edward\", \"Evans\", \"04/09/1990\", 1400, \"+48962456981\", \"Manager\", hr,\r\n\t\t\t\tkrakowBranch);\r\n\t\twarsawBranch.getListOfEmployees().add(emp1);\r\n\t\twarsawBranch.getListOfEmployees().add(emp2);\r\n\t\tkrakowBranch.getListOfEmployees().add(emp3);\r\n\t\tfinance.getListOfEmployees().add(emp1);\r\n\t\ttreasury.getListOfEmployees().add(emp2);\r\n\t\thr.getListOfEmployees().add(emp3);\r\n\r\n//\t\tSystem.out.println(emp1.getId());\r\n//\t\tSystem.out.println(emp3.getId());\r\n//\t\tSystem.out.println(Employee.getNumberOfEmployees());\r\n//\t\tSystem.out.println(emp1.equals(emp2));\r\n//\t\tSystem.out.println(emp3.toString());\r\n//\t\tSystem.out.println(warsawBranch.getListOfEmployees());\r\n//\t\tSystem.out.println(treasury.getListOfEmployees());\r\n\r\n\t\tIndividualClient firstClient = new IndividualClient(\"KL54687848OIO\", \"+45951862459\", \"tomasandersen@gmail.com\",\r\n\t\t\t\t\"Tomas\", \"Andersen\", \"12/22/1996\", \"Polish\", 2000.00);\r\n\t\tIndividualClientsAccount account1 = new IndividualClientsAccount(\"PL00000000000000000000000001\", \"current\",\r\n\t\t\t\ttrue, 900.54f, Currency.USD, warsawBranch, firstClient);\r\n\t\tfirstClient.setAccount(account1);\r\n\r\n\t\tIndividualClient secondClient = new IndividualClient(\"1549874651354\", \"+45789258654\", \"annaandersen@gmail.com\",\r\n\t\t\t\t\"Anna\", \"Andersen\", \"07/14/1999\", \"Polish\", 2600.00);\r\n\t\tIndividualClientsAccount account2 = new IndividualClientsAccount(\"PL00000000000000000000000002\", \"current\",\r\n\t\t\t\ttrue, 8400.54f, Currency.EUR, warsawBranch, secondClient);\r\n\t\tsecondClient.setAccount(account2);\r\n\r\n\t\tIndividualClient thirdClient = new IndividualClient(\"0265921056489\", \"+48236102003\", \"gwenmartin@gmail.com\",\r\n\t\t\t\t\"Gwen\", \"Martin\", \"07/14/1999\", \"Polish\");\r\n\t\tIndividualClientsAccount account3 = new IndividualClientsAccount(\"PL00000000000000000000000003\", \"current\",\r\n\t\t\t\ttrue, 920.4f, Currency.EUR, warsawBranch, thirdClient);\r\n\t\tthirdClient.setAccount(account3);\r\n\r\n\t\twarsawBranch.getListOfClients().add(firstClient);\r\n\t\twarsawBranch.getListOfClients().add(secondClient);\r\n\t\twarsawBranch.getListOfClients().add(thirdClient);\r\n//\t\tSystem.out.println(warsawBranch.getListOfClients());\r\n//\t\twarsawBranch.notifyAllClients(warsawBranch.getListOfClients(), \"message\");\r\n\r\n//\t\tSystem.out.println(firstClient.equals(secondClient));\r\n//\t\tSystem.out.println(firstClient.hashCode());\r\n//\t\tSystem.out.println(secondClient.hashCode());\r\n//\t\tSystem.out.println(firstClient.toString());\r\n//\t\tSystem.out.println(secondClient.toString());\r\n//\t\tSystem.out.println(account1.equals(account2));\r\n//\t\tSystem.out.println(account1.hashCode());\r\n//\t\tSystem.out.println(account2.hashCode());\r\n//\t\tSystem.out.println(account3.hashCode());\r\n//\t\tSystem.out.println(account1.toString());\r\n//\t\tSystem.out.println(account2.toString());\r\n//\t\tSystem.out.println(account3.toString());\r\n\r\n\t\tCorporateClient fourthClient = new CorporateClient(\"987654321\", \"+45654987321\", \"klm@gmail.com\", \"KLM\", \"Anna\",\r\n\t\t\t\t\"Andersen\", 46.12);\r\n\t\tCorporateClientsAccount account4 = new CorporateClientsAccount(\"PL00000000000000000000000004\", \"current\", true,\r\n\t\t\t\t8400.54f, Currency.EUR, krakowBranch, fourthClient);\r\n\t\tfourthClient.setAccount(account4);\r\n\r\n\t\tCorporateClient fifthClient = new CorporateClient(\"123456789\", \"+45456951753\", \"asb@gmail.com\", \"ASB\", \"Tomas\",\r\n\t\t\t\t\"Andersen\", 78.89);\r\n\t\tCorporateClientsAccount account5 = new CorporateClientsAccount(\"PL00000000000000000000000005\", \"current\", true,\r\n\t\t\t\t900.54f, Currency.USD, krakowBranch, fifthClient);\r\n\t\tfifthClient.setAccount(account5);\r\n\t\tkrakowBranch.getListOfClients().add(fourthClient);\r\n\t\tkrakowBranch.getListOfClients().add(fifthClient);\r\n//\t\tkrakowBranch.notifyAllClients(krakowBranch.getListOfClients(), \"message\");\r\n\r\n//\t\tSystem.out.println(secondClient.getId());\r\n//\t\tSystem.out.println(fourthClient.getId());\r\n//\t\tSystem.out.println(CorporateClient.getNumberOfClients());\r\n\r\n//\t\tSystem.out.println(fifthClient.equals(fourthClient));\r\n//\t\tSystem.out.println(fifthClient.hashCode());\r\n//\t\tSystem.out.println(fourthClient.hashCode());\r\n//\t\tSystem.out.println(fifthClient.toString());\r\n//\t\tSystem.out.println(fourthClient.toString());\r\n\r\n//\t\tSystem.out.println(account5.getAccountBalance());\r\n//\t\taccount5.refillBalance(5000.52f);\r\n//\t\taccount5.deductBalance(5100.25f);\r\n//\t\taccount5.closeAccount();\r\n//\t\tSystem.out.println(account5.getStatus());\r\n//\t\tSystem.out.println(account5.getStatus());\r\n\r\n\t\tIndividualClientsCredit credit1 = new IndividualClientsCredit(10.00, 36, 80000, Currency.EUR);\r\n\t\t// credit1.giveCredit(firstClient);\r\n\r\n\t\tIndividualClientsCredit credit2 = new IndividualClientsCredit(11.50, 24, 60000, Currency.EUR);\r\n\t\t// credit2.giveCredit(secondClient);\r\n\r\n\t\tCorporateClientsCredit credit4 = new CorporateClientsCredit(10.00, 36, 80000.00, Currency.EUR);\r\n\t\t// credit4.giveCredit(fourthClient);\r\n\r\n\t\tCorporateClientsCredit credit5 = new CorporateClientsCredit(11.50, 24, 60000.00, Currency.EUR);\r\n\t\t// credit5.giveCredit(fifthClient);\r\n\r\n//\t\tSystem.out.println(credit3.equals(credit4));\r\n//\t\tSystem.out.println(credit3.hashCode());\r\n//\t\tSystem.out.println(credit4.hashCode());\r\n//\t\tSystem.out.println(credit3.toString());\r\n//\t\tSystem.out.println(credit4.toString());\r\n\r\n//\t\t try {\r\n//\t\t\tfirstClient.assessSolvency();\r\n//\t\t\t secondClient.assessSolvency();\r\n//\t\t\t fourthClient.assessSolvency();\r\n//\t\t\t fifthClient.assessSolvency();\r\n\r\n//\t\t} catch (WrongValueTypeException e) {\r\n//\t\t\tlogger.warn(e);\r\n\t\t// e.printStackTrace();\r\n//\t\t} catch (IncorrectValueException e) {\r\n//\t\t\tlogger.warn(e);\r\n//\t\t\t//e.printStackTrace();\r\n//\t\t}\r\n\r\n\t}\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Main.java b/src/Main.java
+--- a/src/Main.java	(revision 26cd3e931d7df1f44ecd10e6d071b1bb87bc0215)
++++ b/src/Main.java	(date 1670789332822)
+@@ -1,9 +1,12 @@
++import java.util.ArrayList;
++
+ import org.apache.logging.log4j.LogManager;
+ import org.apache.logging.log4j.Logger;
+ 
+ import branches.Branch;
+ import branches.Department;
+ import branches.Employee;
++import clients.Client;
+ import clients.CorporateClient;
+ import clients.IndividualClient;
+ import exception_handlers.IncorrectValueException;
+@@ -48,7 +51,7 @@
+ 		krakowBranch.getListOfEmployees().add(emp3);
+ 		finance.getListOfEmployees().add(emp1);
+ 		treasury.getListOfEmployees().add(emp2);
+-		hr.getListOfEmployees().add(emp3);
++		hr.getListOfEmployees().add(emp3);	
+ 
+ //		System.out.println(emp1.getId());
+ //		System.out.println(emp3.getId());
+@@ -108,6 +111,7 @@
+ 		fifthClient.setAccount(account5);
+ 		krakowBranch.getListOfClients().add(fourthClient);
+ 		krakowBranch.getListOfClients().add(fifthClient);
++		
+ //		krakowBranch.notifyAllClients(krakowBranch.getListOfClients(), "message");
+ 
+ //		System.out.println(secondClient.getId());
+@@ -137,16 +141,19 @@
+ 		// credit4.giveCredit(fourthClient);
+ 
+ 		CorporateClientsCredit credit5 = new CorporateClientsCredit(11.50, 24, 60000.00, Currency.EUR);
+-		// credit5.giveCredit(fifthClient);
+-
+-//		System.out.println(credit3.equals(credit4));
+-//		System.out.println(credit3.hashCode());
++		credit5.giveCredit(fifthClient);
++		
++		credit5.getInfoAboutAnyProduct();
++		account5.getInfoAboutAnyProduct();
++		
++//		System.out.println(credit5.equals(credit4));
++//		System.out.println(credit5.hashCode());
+ //		System.out.println(credit4.hashCode());
+-//		System.out.println(credit3.toString());
++//		System.out.println(credit5.toString());
+ //		System.out.println(credit4.toString());
+ 
+ //		 try {
+-//			firstClient.assessSolvency();
++//			 firstClient.assessSolvency();
+ //			 secondClient.assessSolvency();
+ //			 fourthClient.assessSolvency();
+ //			 fifthClient.assessSolvency();
+@@ -156,9 +163,18 @@
+ 		// e.printStackTrace();
+ //		} catch (IncorrectValueException e) {
+ //			logger.warn(e);
+-//			//e.printStackTrace();
+ //		}
+-
+-	}
++		
++		
++		//Array Examples
++		Employee[]arrayOfEmployees = {emp1, emp2, emp3};
++		for(Employee emp:arrayOfEmployees) {
++			System.out.println(emp);
++		}	
+ 
++		Client[]arrayOfClients = {firstClient, secondClient, thirdClient, fourthClient, fifthClient};
++		for(Client c:arrayOfClients) {
++			System.out.println(c);
++		}
++	}
+ }
+Index: src/products/accounts/Account.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package products.accounts;\r\n\r\nimport java.util.Objects;\r\n\r\nimport org.apache.logging.log4j.LogManager;\r\nimport org.apache.logging.log4j.Logger;\r\n\r\nimport branches.Branch;\r\nimport exception_handlers.AccountAlreadyBlockedException;\r\nimport exception_handlers.AccountBlockedException;\r\nimport exception_handlers.DeductionExceedsBalanceException;\r\nimport products.Currency;\r\n\r\npublic abstract class Account {\r\n\tprivate String accountNumber;\r\n\tprivate String regimeOfAccount;\r\n\tprivate boolean status;\r\n\tprivate float accountBalance;\r\n\tprivate Currency accountCurrency;\r\n\tprivate Branch branch;\r\n\tprivate final static Logger logger = LogManager.getLogger(Account.class);\r\n\r\n\tpublic Account() {\r\n\r\n\t}\r\n\r\n\tpublic Account(String accountNumber, String regimeOfAccount, boolean status, float accountBalance,\r\n\t\t\tCurrency accountCurrency, Branch branch) {\r\n\t\tthis.accountNumber = accountNumber;\r\n\t\tthis.regimeOfAccount = regimeOfAccount;\r\n\t\tthis.status = status;\r\n\t\tthis.accountBalance = accountBalance;\r\n\t\tthis.accountCurrency = accountCurrency;\r\n\t\tthis.branch = branch;\r\n\t}\r\n\r\n\tpublic String getAccountNumber() {\r\n\t\treturn accountNumber;\r\n\t}\r\n\r\n\tpublic void setAccountNumber(String accountNumber) {\r\n\t\tthis.accountNumber = accountNumber;\r\n\t}\r\n\r\n\tpublic String getRegimeOfAccount() {\r\n\t\treturn regimeOfAccount;\r\n\t}\r\n\r\n\tpublic void setRegimeOfAccount(String regimeOfAccount) {\r\n\t\tthis.regimeOfAccount = regimeOfAccount;\r\n\t}\r\n\r\n\tpublic float getAccountBalance() {\r\n\t\treturn accountBalance;\r\n\t}\r\n\r\n\tpublic void setAccountBalance(float accountBalance) {\r\n\t\tthis.accountBalance = accountBalance;\r\n\t}\r\n\r\n\tpublic Currency getAccountCurrency() {\r\n\t\treturn accountCurrency;\r\n\t}\r\n\r\n\tpublic void setAccountCurrency(Currency accountCurrency) {\r\n\t\tthis.accountCurrency = accountCurrency;\r\n\t}\r\n\r\n\tpublic Branch getBranch() {\r\n\t\treturn branch;\r\n\t}\r\n\r\n\tpublic void setBranch(Branch branch) {\r\n\t\tthis.branch = branch;\r\n\t}\r\n\r\n\tpublic boolean isStatus() {\r\n\t\treturn status;\r\n\t}\r\n\r\n\tpublic void setStatus(boolean status) {\r\n\t\tthis.status = status;\r\n\t}\r\n\r\n\tpublic boolean getStatus() {\r\n\t\treturn status;\r\n\t}\r\n\r\n\t@Override\r\n\tpublic boolean equals(Object obj) {\r\n\t\tif (obj == null)\r\n\t\t\treturn false;\r\n\t\tif (getClass() != obj.getClass())\r\n\t\t\treturn false;\r\n\t\tif (this.hashCode() != obj.hashCode())\r\n\t\t\treturn false;\r\n\t\tAccount other = (Account) obj;\r\n\t\treturn this.status == other.status\r\n\t\t\t\t&& (this.accountNumber == other.accountNumber\r\n\t\t\t\t\t\t|| (this.accountNumber != null ? this.accountNumber.equals(other.accountNumber)\r\n\t\t\t\t\t\t\t\t: other.accountNumber == null))\r\n\t\t\t\t&& (this.accountCurrency == other.accountCurrency\r\n\t\t\t\t\t\t|| (this.accountCurrency != null ? this.accountCurrency.equals(other.accountCurrency)\r\n\t\t\t\t\t\t\t\t: other.accountCurrency == null))\r\n\t\t\t\t&& (this.regimeOfAccount == other.regimeOfAccount\r\n\t\t\t\t\t\t|| (this.regimeOfAccount != null ? this.regimeOfAccount.equals(other.regimeOfAccount)\r\n\t\t\t\t\t\t\t\t: other.regimeOfAccount == null));\r\n\t}\r\n\r\n\t@Override\r\n\tpublic int hashCode() {\r\n\t\treturn Objects.hash(accountCurrency, accountNumber, regimeOfAccount, status);\r\n\t}\r\n\r\n\t@Override\r\n\tpublic String toString() {\r\n\t\treturn String.format(\r\n\t\t\t\t\"Account [accountNumber=%s, regimeOfAccount=%s, status=%b, accountBalance=%f, accountCurrency=%s]\",\r\n\t\t\t\taccountNumber, regimeOfAccount, status, accountBalance, accountCurrency);\r\n\t}\r\n\r\n\tpublic void closeAccount() {\r\n\t\ttry {\r\n\t\t\tif (!this.getStatus()) {\r\n\t\t\t\tthrow new AccountAlreadyBlockedException(\"The account has already been blocked before\",\r\n\t\t\t\t\t\t\"Account has already been blocked\");\r\n\t\t\t} else {\r\n\t\t\t\tthis.setStatus(false);\r\n\t\t\t}\r\n\t\t} catch (AccountAlreadyBlockedException e) {\r\n\t\t\tlogger.warn(e);\r\n\t\t\t// e.printStackTrace();\r\n\t\t}\r\n\r\n\t}\r\n\r\n\tpublic void refillBalance(float sum) {\r\n\t\ttry {\r\n\t\t\tif (!this.getStatus()) {\r\n\t\t\t\tthrow new AccountBlockedException(\"The user cannot access an account that is blocked\",\r\n\t\t\t\t\t\t\"This account is blocked\");\r\n\t\t\t} else {\r\n\t\t\t\tfloat newBalance = this.getAccountBalance() + sum;\r\n\t\t\t\tthis.setAccountBalance(newBalance);\r\n\t\t\t\tSystem.out.println(\"The balance of your account is \" + this.getAccountBalance());\r\n\t\t\t}\r\n\t\t} catch (AccountBlockedException e) {\r\n\t\t\tlogger.warn(e);\r\n\t\t\t// e.printStackTrace();\r\n\t\t}\r\n\t}\r\n\r\n\tpublic void deductBalance(float sum) {\r\n\t\ttry {\r\n\t\t\ttry {\r\n\t\t\t\tif (!this.getStatus()) {\r\n\t\t\t\t\tthrow new AccountBlockedException(\"The user cannot access an account that is blocked\",\r\n\t\t\t\t\t\t\t\"This account is blocked\");\r\n\t\t\t\t}\r\n\t\t\t} catch (AccountBlockedException e) {\r\n\t\t\t\tlogger.warn(e);\r\n\t\t\t\t// e.printStackTrace();\r\n\t\t\t}\r\n\t\t\tfloat newBalance = this.getAccountBalance() - sum;\r\n\t\t\tif (newBalance < 0) {\r\n\t\t\t\tthrow new DeductionExceedsBalanceException(\"The deduction amount cannot exceed the account balance\",\r\n\t\t\t\t\t\t\"The user is trying to deduct from the account an amount exceeding the account balance\");\r\n\t\t\t}\r\n\t\t\tthis.setAccountBalance(newBalance);\r\n\t\t\tSystem.out.println(\"The balance of your account is \" + this.getAccountBalance());\r\n\t\t} catch (DeductionExceedsBalanceException e) {\r\n\t\t\tlogger.warn(e);\r\n\t\t\t// e.printStackTrace();\r\n\t\t}\r\n\t}\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/products/accounts/Account.java b/src/products/accounts/Account.java
+--- a/src/products/accounts/Account.java	(revision 26cd3e931d7df1f44ecd10e6d071b1bb87bc0215)
++++ b/src/products/accounts/Account.java	(date 1670757420821)
+@@ -38,10 +38,6 @@
+ 		return accountNumber;
+ 	}
+ 
+-	public void setAccountNumber(String accountNumber) {
+-		this.accountNumber = accountNumber;
+-	}
+-
+ 	public String getRegimeOfAccount() {
+ 		return regimeOfAccount;
+ 	}
+@@ -122,14 +118,12 @@
+ 	public void closeAccount() {
+ 		try {
+ 			if (!this.getStatus()) {
+-				throw new AccountAlreadyBlockedException("The account has already been blocked before",
+-						"Account has already been blocked");
++				throw new AccountAlreadyBlockedException("The account has already been blocked before");
+ 			} else {
+ 				this.setStatus(false);
+ 			}
+ 		} catch (AccountAlreadyBlockedException e) {
+ 			logger.warn(e);
+-			// e.printStackTrace();
+ 		}
+ 
+ 	}
+@@ -137,8 +131,7 @@
+ 	public void refillBalance(float sum) {
+ 		try {
+ 			if (!this.getStatus()) {
+-				throw new AccountBlockedException("The user cannot access an account that is blocked",
+-						"This account is blocked");
++				throw new AccountBlockedException("This account is blocked");
+ 			} else {
+ 				float newBalance = this.getAccountBalance() + sum;
+ 				this.setAccountBalance(newBalance);
+@@ -146,7 +139,6 @@
+ 			}
+ 		} catch (AccountBlockedException e) {
+ 			logger.warn(e);
+-			// e.printStackTrace();
+ 		}
+ 	}
+ 
+@@ -154,24 +146,20 @@
+ 		try {
+ 			try {
+ 				if (!this.getStatus()) {
+-					throw new AccountBlockedException("The user cannot access an account that is blocked",
+-							"This account is blocked");
++					throw new AccountBlockedException("This account is blocked");
+ 				}
+ 			} catch (AccountBlockedException e) {
+ 				logger.warn(e);
+-				// e.printStackTrace();
+ 			}
+ 			float newBalance = this.getAccountBalance() - sum;
+ 			if (newBalance < 0) {
+-				throw new DeductionExceedsBalanceException("The deduction amount cannot exceed the account balance",
++				throw new DeductionExceedsBalanceException(
+ 						"The user is trying to deduct from the account an amount exceeding the account balance");
+ 			}
+ 			this.setAccountBalance(newBalance);
+ 			System.out.println("The balance of your account is " + this.getAccountBalance());
+ 		} catch (DeductionExceedsBalanceException e) {
+ 			logger.warn(e);
+-			// e.printStackTrace();
+ 		}
+ 	}
+-
+ }
+Index: src/products/accounts/CorporateClientsAccount.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package products.accounts;\r\n\r\nimport java.util.Objects;\r\n\r\nimport branches.Branch;\r\nimport clients.CorporateClient;\r\nimport products.Currency;\r\n\r\npublic class CorporateClientsAccount extends Account {\r\n\tprivate CorporateClient client;\r\n\r\n\tpublic CorporateClientsAccount() {\r\n\r\n\t}\r\n\r\n\tpublic CorporateClientsAccount(String accountNumber, String regimeOfAccount, boolean status, float accountBalance,\r\n\t\t\tCurrency accountCurrency, Branch branch, CorporateClient client) {\r\n\t\tsuper(accountNumber, regimeOfAccount, status, accountBalance, accountCurrency, branch);\r\n\t\tthis.client = client;\r\n\t}\r\n\r\n\tpublic CorporateClient getClient() {\r\n\t\treturn client;\r\n\t}\r\n\r\n\tpublic void setClient(CorporateClient client) {\r\n\t\tthis.client = client;\r\n\t}\r\n\r\n\t@Override\r\n\tpublic boolean equals(Object obj) {\r\n\t\tif (!super.equals(obj))\r\n\t\t\treturn false;\r\n\t\tif (getClass() != obj.getClass())\r\n\t\t\treturn false;\r\n\t\tif (this.hashCode() != obj.hashCode())\r\n\t\t\treturn false;\r\n\t\tCorporateClientsAccount other = (CorporateClientsAccount) obj;\r\n\t\treturn this.client != null ? this.client.equals(other.client) : other.client == null;\r\n\t}\r\n\r\n\t@Override\r\n\tpublic int hashCode() {\r\n\t\tfinal int prime = 31;\r\n\t\tint result = super.hashCode();\r\n\t\tresult = prime * result + Objects.hash(client);\r\n\t\treturn result;\r\n\t}\r\n\r\n\t@Override\r\n\tpublic String toString() {\r\n\t\treturn String.format(\"Information about account holder: name=%s\", client.getName());\r\n\t}\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/products/accounts/CorporateClientsAccount.java b/src/products/accounts/CorporateClientsAccount.java
+--- a/src/products/accounts/CorporateClientsAccount.java	(revision 26cd3e931d7df1f44ecd10e6d071b1bb87bc0215)
++++ b/src/products/accounts/CorporateClientsAccount.java	(date 1670766310959)
+@@ -5,8 +5,9 @@
+ import branches.Branch;
+ import clients.CorporateClient;
+ import products.Currency;
++import products.IProductOptions;
+ 
+-public class CorporateClientsAccount extends Account {
++public class CorporateClientsAccount extends Account implements IProductOptions<CorporateClientsAccount> {
+ 	private CorporateClient client;
+ 
+ 	public CorporateClientsAccount() {
+@@ -49,7 +50,6 @@
+ 
+ 	@Override
+ 	public String toString() {
+-		return String.format("Information about account holder: name=%s", client.getName());
++		return String.format("%s Information about account holder: name=%s",super.toString(), client.getName());
+ 	}
+-
+ }
+Index: src/products/accounts/IndividualClientsAccount.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package products.accounts;\r\n\r\nimport java.util.Objects;\r\n\r\nimport branches.Branch;\r\nimport clients.IndividualClient;\r\nimport products.Currency;\r\n\r\npublic class IndividualClientsAccount extends Account {\r\n\r\n\tprivate IndividualClient client;\r\n\r\n\tpublic IndividualClientsAccount() {\r\n\r\n\t}\r\n\r\n\tpublic IndividualClientsAccount(String accountNumber, String regimeOfAccount, boolean status, float accountBalance,\r\n\t\t\tCurrency accountCurrency, Branch branch, IndividualClient client) {\r\n\t\tsuper(accountNumber, regimeOfAccount, status, accountBalance, accountCurrency, branch);\r\n\t\tthis.client = client;\r\n\t}\r\n\r\n\tpublic IndividualClient getClient() {\r\n\t\treturn client;\r\n\t}\r\n\r\n\tpublic void setClient(IndividualClient client) {\r\n\t\tthis.client = client;\r\n\t}\r\n\r\n\t@Override\r\n\tpublic boolean equals(Object obj) {\r\n\t\tif (!super.equals(obj))\r\n\t\t\treturn false;\r\n\t\tif (getClass() != obj.getClass())\r\n\t\t\treturn false;\r\n\t\tif (this.hashCode() != obj.hashCode())\r\n\t\t\treturn false;\r\n\t\tIndividualClientsAccount other = (IndividualClientsAccount) obj;\r\n\t\treturn this.client != null ? this.client.equals(other.client) : other.client == null;\r\n\t}\r\n\r\n\t@Override\r\n\tpublic int hashCode() {\r\n\t\tfinal int prime = 31;\r\n\t\tint result = super.hashCode();\r\n\t\tresult = prime * result + Objects.hash(client);\r\n\t\treturn result;\r\n\t}\r\n\r\n\t@Override\r\n\tpublic String toString() {\r\n\t\treturn String.format(\"%s Information about account holder: name=%s, surname=%s\", super.toString(),\r\n\t\t\t\tclient.getName(), client.getSurname());\r\n\t}\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/products/accounts/IndividualClientsAccount.java b/src/products/accounts/IndividualClientsAccount.java
+--- a/src/products/accounts/IndividualClientsAccount.java	(revision 26cd3e931d7df1f44ecd10e6d071b1bb87bc0215)
++++ b/src/products/accounts/IndividualClientsAccount.java	(date 1670766157463)
+@@ -5,9 +5,9 @@
+ import branches.Branch;
+ import clients.IndividualClient;
+ import products.Currency;
++import products.IProductOptions;
+ 
+-public class IndividualClientsAccount extends Account {
+-
++public class IndividualClientsAccount extends Account implements IProductOptions<IndividualClientsAccount>{
+ 	private IndividualClient client;
+ 
+ 	public IndividualClientsAccount() {
+@@ -53,5 +53,4 @@
+ 		return String.format("%s Information about account holder: name=%s, surname=%s", super.toString(),
+ 				client.getName(), client.getSurname());
+ 	}
+-
+ }
+Index: src/products/cards/Card.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package products.cards;\r\n\r\npublic abstract class Card {\r\n\r\n\tprivate String number;\r\n\tprivate String nameAndSurname;\r\n\tprivate String expirationDate;\r\n\tprivate int cvvCode;\r\n\tprivate String issueDate;\r\n\tprivate int pin;\r\n\tprivate boolean status;\r\n\r\n\tpublic Card() {\r\n\r\n\t}\r\n\r\n\tpublic Card(String number, String nameAndSurname, String expirationDate, int cvvCode, String issueDate, int pin,\r\n\t\t\tboolean status) {\r\n\t\tthis.number = number;\r\n\t\tthis.nameAndSurname = nameAndSurname;\r\n\t\tthis.expirationDate = expirationDate;\r\n\t\tthis.cvvCode = cvvCode;\r\n\t\tthis.issueDate = issueDate;\r\n\t\tthis.pin = pin;\r\n\t\tthis.status = true;\r\n\t}\r\n\r\n\tpublic String getNumber() {\r\n\t\treturn number;\r\n\t}\r\n\r\n\tpublic void setNumber(String number) {\r\n\t\tthis.number = number;\r\n\t}\r\n\r\n\tpublic String getNameAndSurname() {\r\n\t\treturn nameAndSurname;\r\n\t}\r\n\r\n\tpublic void setNameAndSurname(String nameAndSurname) {\r\n\t\tthis.nameAndSurname = nameAndSurname;\r\n\t}\r\n\r\n\tpublic String getExpirationDate() {\r\n\t\treturn expirationDate;\r\n\t}\r\n\r\n\tpublic void setExpirationDate(String expirationDate) {\r\n\t\tthis.expirationDate = expirationDate;\r\n\t}\r\n\r\n\tpublic int getCvvCode() {\r\n\t\treturn cvvCode;\r\n\t}\r\n\r\n\tpublic void setCvvCode(int cvvCode) {\r\n\t\tthis.cvvCode = cvvCode;\r\n\t}\r\n\r\n\tpublic String getIssueDate() {\r\n\t\treturn issueDate;\r\n\t}\r\n\r\n\tpublic void setIssueDate(String issueDate) {\r\n\t\tthis.issueDate = issueDate;\r\n\t}\r\n\r\n\tpublic int getPin() {\r\n\t\treturn pin;\r\n\t}\r\n\r\n\tpublic void setPin(int pin) {\r\n\t\tthis.pin = pin;\r\n\t}\r\n\r\n\tpublic boolean isStatus() {\r\n\t\treturn status;\r\n\t}\r\n\r\n\tpublic void setStatus(boolean status) {\r\n\t\tthis.status = status;\r\n\t}\r\n\r\n\tabstract void block(Card card);\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/products/cards/Card.java b/src/products/cards/Card.java
+--- a/src/products/cards/Card.java	(revision 26cd3e931d7df1f44ecd10e6d071b1bb87bc0215)
++++ b/src/products/cards/Card.java	(date 1670766718389)
+@@ -80,7 +80,13 @@
+ 	public void setStatus(boolean status) {
+ 		this.status = status;
+ 	}
+-
++	
++	@Override
++	public String toString() {
++		return String.format(
++				"Card [number==%s, nameAndSurname=%s, expirationDate=%s, cvvCode=%d, issueDate=%s, status=%b]",
++				number, nameAndSurname, expirationDate, cvvCode, issueDate, status);
++	}
++	
+ 	abstract void block(Card card);
+-
+ }
+Index: src/products/cards/CorporateClientsCard.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package products.cards;\r\n\r\nimport products.accounts.CorporateClientsAccount;\r\n\r\npublic class CorporateClientsCard extends Card {\r\n\tprivate CorporateClientsAccount account;\r\n\r\n\tpublic CorporateClientsCard() {\r\n\r\n\t}\r\n\r\n\tpublic CorporateClientsCard(String number, String nameAndSurname, String expirationDate, int cvvCode,\r\n\t\t\tString issueDate, int pin, boolean status, CorporateClientsAccount account) {\r\n\t\tsuper(number, nameAndSurname, expirationDate, cvvCode, issueDate, pin, status);\r\n\t\tthis.account = account;\r\n\t}\r\n\r\n\tpublic CorporateClientsAccount getAccount() {\r\n\t\treturn account;\r\n\t}\r\n\r\n\tpublic void setAccount(CorporateClientsAccount account) {\r\n\t\tthis.account = account;\r\n\t}\r\n\r\n\t@Override\r\n\tpublic void block(Card card) {\r\n\t\tcard.setStatus(false);\r\n\t}\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/products/cards/CorporateClientsCard.java b/src/products/cards/CorporateClientsCard.java
+--- a/src/products/cards/CorporateClientsCard.java	(revision 26cd3e931d7df1f44ecd10e6d071b1bb87bc0215)
++++ b/src/products/cards/CorporateClientsCard.java	(date 1670766886100)
+@@ -1,18 +1,22 @@
+ package products.cards;
+ 
++import clients.CorporateClient;
++import products.IProductOptions;
+ import products.accounts.CorporateClientsAccount;
+ 
+-public class CorporateClientsCard extends Card {
++public class CorporateClientsCard extends Card implements IProductOptions<CorporateClientsCard>{
+ 	private CorporateClientsAccount account;
++	private CorporateClient client;
+ 
+ 	public CorporateClientsCard() {
+ 
+ 	}
+ 
+ 	public CorporateClientsCard(String number, String nameAndSurname, String expirationDate, int cvvCode,
+-			String issueDate, int pin, boolean status, CorporateClientsAccount account) {
++			String issueDate, int pin, boolean status, CorporateClientsAccount account, CorporateClient client) {
+ 		super(number, nameAndSurname, expirationDate, cvvCode, issueDate, pin, status);
+ 		this.account = account;
++		this.client = client;
+ 	}
+ 
+ 	public CorporateClientsAccount getAccount() {
+@@ -23,9 +27,22 @@
+ 		this.account = account;
+ 	}
+ 
++	public CorporateClient getClient() {
++		return client;
++	}
++
++	public void setClient(CorporateClient client) {
++		this.client = client;
++	}
++	
++	@Override
++	public String toString() {
++		return String.format("%s Information about the recipient: account=%s, client=%s", super.toString(),
++				account.getAccountNumber(), client.getName());
++	}
++
+ 	@Override
+ 	public void block(Card card) {
+ 		card.setStatus(false);
+ 	}
+-
+ }
+Index: src/products/cards/IndividualClientsCard.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package products.cards;\r\n\r\nimport products.accounts.IndividualClientsAccount;\r\n\r\npublic class IndividualClientsCard extends Card {\r\n\tprivate IndividualClientsAccount account;\r\n\r\n\tpublic IndividualClientsCard() {\r\n\r\n\t}\r\n\r\n\tpublic IndividualClientsCard(String number, String nameAndSurname, String expirationDate, int cvvCode,\r\n\t\t\tString issueDate, int pin, boolean status, IndividualClientsAccount account) {\r\n\t\tsuper(number, nameAndSurname, expirationDate, cvvCode, issueDate, pin, status);\r\n\t\tthis.account = account;\r\n\t}\r\n\r\n\tpublic IndividualClientsAccount getAccount() {\r\n\t\treturn account;\r\n\t}\r\n\r\n\tpublic void setAccount(IndividualClientsAccount account) {\r\n\t\tthis.account = account;\r\n\t}\r\n\r\n\t@Override\r\n\tpublic void block(Card card) {\r\n\t\tcard.setStatus(false);\r\n\t}\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/products/cards/IndividualClientsCard.java b/src/products/cards/IndividualClientsCard.java
+--- a/src/products/cards/IndividualClientsCard.java	(revision 26cd3e931d7df1f44ecd10e6d071b1bb87bc0215)
++++ b/src/products/cards/IndividualClientsCard.java	(date 1670766785888)
+@@ -1,18 +1,22 @@
+ package products.cards;
+ 
++import clients.IndividualClient;
++import products.IProductOptions;
+ import products.accounts.IndividualClientsAccount;
+ 
+-public class IndividualClientsCard extends Card {
++public class IndividualClientsCard extends Card implements IProductOptions<IndividualClientsCard>{
+ 	private IndividualClientsAccount account;
++	private IndividualClient client;
+ 
+ 	public IndividualClientsCard() {
+ 
+ 	}
+ 
+ 	public IndividualClientsCard(String number, String nameAndSurname, String expirationDate, int cvvCode,
+-			String issueDate, int pin, boolean status, IndividualClientsAccount account) {
++			String issueDate, int pin, boolean status, IndividualClientsAccount account, IndividualClient client) {
+ 		super(number, nameAndSurname, expirationDate, cvvCode, issueDate, pin, status);
+ 		this.account = account;
++		this.client = client;
+ 	}
+ 
+ 	public IndividualClientsAccount getAccount() {
+@@ -23,9 +27,23 @@
+ 		this.account = account;
+ 	}
+ 
++	public IndividualClient getClient() {
++		return client;
++	}
++
++	public void setClient(IndividualClient client) {
++		this.client = client;
++	}
++
++	@Override
++	public String toString() {
++		return String.format("%s Information about card holder: name=%s, surname=%s", super.toString(),
++				client.getName(), client.getSurname());
++	}
++
++
+ 	@Override
+ 	public void block(Card card) {
+ 		card.setStatus(false);
+ 	}
+-
+ }
+Index: src/products/credits/CorporateClientsCredit.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package products.credits;\r\n\r\nimport java.util.Objects;\r\n\r\nimport org.apache.logging.log4j.LogManager;\r\nimport org.apache.logging.log4j.Logger;\r\n\r\nimport clients.Client;\r\nimport clients.CorporateClient;\r\nimport exception_handlers.IncorrectValueException;\r\nimport products.accounts.CorporateClientsAccount;\r\nimport products.Currency;\r\n\r\npublic class CorporateClientsCredit extends Credit implements ICreditOptions {\r\n\tprivate CorporateClientsAccount account;\r\n\tprivate CorporateClient client;\r\n\tprivate final static Logger logger = LogManager.getLogger(CorporateClientsCredit.class);\r\n\r\n\tpublic CorporateClientsCredit() {\r\n\r\n\t}\r\n\r\n\tpublic CorporateClientsCredit(double borrowingRate, int loanTermInMonth, double loanAmount,\r\n\t\t\tCurrency creditCurrency) {\r\n\t\tsuper(borrowingRate, loanTermInMonth, loanAmount, creditCurrency);\r\n\t}\r\n\r\n\tpublic CorporateClientsCredit(double borrowingRate, int loanTermInMonth, double loanAmount, Currency creditCurrency,\r\n\t\t\tCorporateClientsAccount account, CorporateClient client) {\r\n\t\tsuper(borrowingRate, loanTermInMonth, loanAmount, creditCurrency);\r\n\t\tthis.account = account;\r\n\t\tthis.client = client;\r\n\t}\r\n\r\n\tpublic CorporateClientsAccount getAccount() {\r\n\t\treturn account;\r\n\t}\r\n\r\n\tpublic void setAccount(CorporateClientsAccount account) {\r\n\t\tthis.account = account;\r\n\t}\r\n\r\n\tpublic CorporateClient getClient() {\r\n\t\treturn client;\r\n\t}\r\n\r\n\tpublic void setClient(CorporateClient client) {\r\n\t\tthis.client = client;\r\n\t}\r\n\r\n\t@Override\r\n\tpublic boolean equals(Object obj) {\r\n\t\tif (!super.equals(obj))\r\n\t\t\treturn false;\r\n\t\tif (this.getClass() != obj.getClass())\r\n\t\t\treturn false;\r\n\t\tif (this.hashCode() != obj.hashCode())\r\n\t\t\treturn false;\r\n\t\tCorporateClientsCredit other = (CorporateClientsCredit) obj;\r\n\t\treturn this.account != null ? this.account.equals(other.account)\r\n\t\t\t\t: other.account == null && this.client != null ? this.client.equals(other.client)\r\n\t\t\t\t\t\t: other.client == null;\r\n\t}\r\n\r\n\t@Override\r\n\tpublic int hashCode() {\r\n\t\tfinal int prime = 31;\r\n\t\tint result = super.hashCode();\r\n\t\tresult = prime * result + Objects.hash(account, client);\r\n\t\treturn result;\r\n\t}\r\n\r\n\t@Override\r\n\tpublic String toString() {\r\n\t\treturn String.format(\"%s Information about the recipient: account=%s, client=%s\", super.toString(),\r\n\t\t\t\taccount.getAccountNumber(), client.getName());\r\n\t}\r\n\r\n\t@Override\r\n\tpublic void giveCredit(Client client) {\r\n\t\ttry {\r\n\t\t\tif (((CorporateClient) client).assessSolvency()) {\r\n\t\t\t\tthis.setClient((CorporateClient) client);\r\n\t\t\t\tthis.setAccount(new CorporateClientsAccount());\r\n\t\t\t}\r\n\t\t} catch (IncorrectValueException e) {\r\n\t\t\tlogger.error(e);\r\n\t\t\te.printStackTrace();\r\n\t\t}\r\n\t}\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/products/credits/CorporateClientsCredit.java b/src/products/credits/CorporateClientsCredit.java
+--- a/src/products/credits/CorporateClientsCredit.java	(revision 26cd3e931d7df1f44ecd10e6d071b1bb87bc0215)
++++ b/src/products/credits/CorporateClientsCredit.java	(date 1670764206218)
+@@ -10,8 +10,9 @@
+ import exception_handlers.IncorrectValueException;
+ import products.accounts.CorporateClientsAccount;
+ import products.Currency;
++import products.IProductOptions;
+ 
+-public class CorporateClientsCredit extends Credit implements ICreditOptions {
++public class CorporateClientsCredit extends Credit implements ICreditOptions, IProductOptions <CorporateClientsCredit> {
+ 	private CorporateClientsAccount account;
+ 	private CorporateClient client;
+ 	private final static Logger logger = LogManager.getLogger(CorporateClientsCredit.class);
+@@ -85,8 +86,6 @@
+ 			}
+ 		} catch (IncorrectValueException e) {
+ 			logger.error(e);
+-			e.printStackTrace();
+ 		}
+ 	}
+-
+ }
+Index: src/products/credits/Credit.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package products.credits;\r\n\r\nimport java.util.Objects;\r\n\r\nimport products.Currency;\r\n\r\npublic abstract class Credit {\r\n\tprivate double borrowingRate;\r\n\tprivate int loanTermInMonth;\r\n\tprivate double loanAmount;\r\n\tprivate Currency creditCurrency;\r\n\r\n\tpublic Credit() {\r\n\r\n\t}\r\n\r\n\tpublic Credit(double borrowingRate, int loanTermInMonth, double loanAmount, Currency creditCurrency) {\r\n\t\tthis.borrowingRate = borrowingRate;\r\n\t\tthis.loanTermInMonth = loanTermInMonth;\r\n\t\tthis.loanAmount = loanAmount;\r\n\t\tthis.creditCurrency = creditCurrency;\r\n\t}\r\n\r\n\tpublic double getBorrowingRate() {\r\n\t\treturn borrowingRate;\r\n\t}\r\n\r\n\tpublic void setBorrowingRate(double borrowingRate) {\r\n\t\tthis.borrowingRate = borrowingRate;\r\n\t}\r\n\r\n\tpublic int getLoanTermInMonth() {\r\n\t\treturn loanTermInMonth;\r\n\t}\r\n\r\n\tpublic void setLoanTermInMonth(int loanTermInMonth) {\r\n\t\tthis.loanTermInMonth = loanTermInMonth;\r\n\t}\r\n\r\n\tpublic double getLoanAmount() {\r\n\t\treturn loanAmount;\r\n\t}\r\n\r\n\tpublic void setLoanAmount(double loanAmount) {\r\n\t\tthis.loanAmount = loanAmount;\r\n\t}\r\n\r\n\tpublic Currency getCreditCurrency() {\r\n\t\treturn creditCurrency;\r\n\t}\r\n\r\n\tpublic void setCreditCurrency(Currency creditCurrency) {\r\n\t\tthis.creditCurrency = creditCurrency;\r\n\t}\r\n\r\n\t@Override\r\n\tpublic boolean equals(Object obj) {\r\n\t\tif (obj == null)\r\n\t\t\treturn false;\r\n\t\tif (this.getClass() != obj.getClass())\r\n\t\t\treturn false;\r\n\t\tif (this.hashCode() != obj.hashCode())\r\n\t\t\treturn false;\r\n\t\tCredit other = (Credit) obj;\r\n\t\treturn this.borrowingRate == other.borrowingRate && this.loanAmount == other.loanAmount\r\n\t\t\t\t&& this.loanTermInMonth == other.loanTermInMonth\r\n\t\t\t\t&& (this.creditCurrency == other.creditCurrency\r\n\t\t\t\t\t\t|| (this.creditCurrency != null ? this.creditCurrency.equals(other.creditCurrency)\r\n\t\t\t\t\t\t\t\t: other.creditCurrency == null));\r\n\t}\r\n\r\n\t@Override\r\n\tpublic int hashCode() {\r\n\t\treturn Objects.hash(borrowingRate, loanAmount, loanTermInMonth, creditCurrency);\r\n\t}\r\n\r\n\t@Override\r\n\tpublic String toString() {\r\n\t\treturn String.format(\"Credit [borrowingRate=%f, loanTermInMonth=%d, loanAmount=%f, creditCurrency=%s]\",\r\n\t\t\t\tborrowingRate, loanTermInMonth, loanAmount, creditCurrency);\r\n\t}\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/products/credits/Credit.java b/src/products/credits/Credit.java
+--- a/src/products/credits/Credit.java	(revision 26cd3e931d7df1f44ecd10e6d071b1bb87bc0215)
++++ b/src/products/credits/Credit.java	(date 1670764867379)
+@@ -4,7 +4,7 @@
+ 
+ import products.Currency;
+ 
+-public abstract class Credit {
++public abstract class Credit{
+ 	private double borrowingRate;
+ 	private int loanTermInMonth;
+ 	private double loanAmount;
+@@ -79,5 +79,4 @@
+ 		return String.format("Credit [borrowingRate=%f, loanTermInMonth=%d, loanAmount=%f, creditCurrency=%s]",
+ 				borrowingRate, loanTermInMonth, loanAmount, creditCurrency);
+ 	}
+-
+ }
+Index: src/products/credits/IndividualClientsCredit.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package products.credits;\r\n\r\nimport java.util.Objects;\r\n\r\nimport org.apache.logging.log4j.LogManager;\r\nimport org.apache.logging.log4j.Logger;\r\n\r\nimport clients.Client;\r\nimport clients.IndividualClient;\r\nimport exception_handlers.WrongValueTypeException;\r\nimport products.Currency;\r\nimport products.accounts.IndividualClientsAccount;\r\n\r\npublic class IndividualClientsCredit extends Credit implements ICreditOptions {\r\n\tprivate IndividualClientsAccount account;\r\n\tprivate IndividualClient client;\r\n\tprivate final static Logger logger = LogManager.getLogger(IndividualClientsCredit.class);\r\n\r\n\tpublic IndividualClientsCredit() {\r\n\r\n\t}\r\n\r\n\tpublic IndividualClientsCredit(double borrowingRate, int loanTermInMonth, double loanAmount,\r\n\t\t\tCurrency creditCurrency) {\r\n\t\tsuper(borrowingRate, loanTermInMonth, loanAmount, creditCurrency);\r\n\t}\r\n\r\n\tpublic IndividualClientsCredit(double borrowingRate, int loanTermInMonth, double loanAmount,\r\n\t\t\tCurrency creditCurrency, IndividualClientsAccount account, IndividualClient client) {\r\n\t\tsuper(borrowingRate, loanTermInMonth, loanAmount, creditCurrency);\r\n\t\tthis.account = account;\r\n\t\tthis.client = client;\r\n\t}\r\n\r\n\tpublic IndividualClientsAccount getAccount() {\r\n\t\treturn account;\r\n\t}\r\n\r\n\tpublic void setAccount(IndividualClientsAccount account) {\r\n\t\tthis.account = account;\r\n\t}\r\n\r\n\tpublic IndividualClient getClient() {\r\n\t\treturn client;\r\n\t}\r\n\r\n\tpublic void setClient(IndividualClient client) {\r\n\t\tthis.client = client;\r\n\t}\r\n\r\n\t@Override\r\n\tpublic boolean equals(Object obj) {\r\n\t\tif (!super.equals(obj))\r\n\t\t\treturn false;\r\n\t\tif (this.getClass() != obj.getClass())\r\n\t\t\treturn false;\r\n\t\tif (this.hashCode() != obj.hashCode())\r\n\t\t\treturn false;\r\n\t\tIndividualClientsCredit other = (IndividualClientsCredit) obj;\r\n\t\treturn this.account != null ? this.account.equals(other.account)\r\n\t\t\t\t: other.account == null && this.client != null ? this.client.equals(other.client)\r\n\t\t\t\t\t\t: other.client == null;\r\n\t}\r\n\r\n\t@Override\r\n\tpublic int hashCode() {\r\n\t\tfinal int prime = 31;\r\n\t\tint result = super.hashCode();\r\n\t\tresult = prime * result + Objects.hash(account, client);\r\n\t\treturn result;\r\n\t}\r\n\r\n\t@Override\r\n\tpublic String toString() {\r\n\t\treturn String.format(\"%s Information about the recipient: account=%s, client=%s %s\", account.getAccountNumber(),\r\n\t\t\t\tclient.getName(), client.getSurname());\r\n\t}\r\n\r\n\tpublic static final double determineMonthlyPayment(double borrowingRate, int loanTermInMonth, double loanAmount) {\r\n\t\tdouble monthlyBorrowingRate = borrowingRate / 12 / 100;\r\n\t\tdouble monthlyPayment = loanAmount\r\n\t\t\t\t* (Math.pow((1 + monthlyBorrowingRate), loanTermInMonth) * monthlyBorrowingRate)\r\n\t\t\t\t/ ((Math.pow((1 + monthlyBorrowingRate), loanTermInMonth)) - 1);\r\n\t\tSystem.out.println(String.format(\"The monthly fee for the credit will be %f\", monthlyPayment));\r\n\t\treturn monthlyPayment;\r\n\t}\r\n\r\n\t@Override\r\n\tpublic void giveCredit(Client client) {\r\n\t\ttry {\r\n\t\t\tif (((IndividualClient) client).assessSolvency()) {\r\n\t\t\t\tthis.setClient((IndividualClient) client);\r\n\t\t\t\tthis.setAccount(new IndividualClientsAccount());\r\n\t\t\t}\r\n\t\t} catch (WrongValueTypeException e) {\r\n\t\t\tlogger.warn(e);\r\n\t\t\t// e.printStackTrace();\r\n\t\t}\r\n\t}\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/products/credits/IndividualClientsCredit.java b/src/products/credits/IndividualClientsCredit.java
+--- a/src/products/credits/IndividualClientsCredit.java	(revision 26cd3e931d7df1f44ecd10e6d071b1bb87bc0215)
++++ b/src/products/credits/IndividualClientsCredit.java	(date 1670764208642)
+@@ -9,9 +9,10 @@
+ import clients.IndividualClient;
+ import exception_handlers.WrongValueTypeException;
+ import products.Currency;
++import products.IProductOptions;
+ import products.accounts.IndividualClientsAccount;
+ 
+-public class IndividualClientsCredit extends Credit implements ICreditOptions {
++public class IndividualClientsCredit extends Credit implements ICreditOptions, IProductOptions<IndividualClientsCredit> {
+ 	private IndividualClientsAccount account;
+ 	private IndividualClient client;
+ 	private final static Logger logger = LogManager.getLogger(IndividualClientsCredit.class);
+@@ -94,8 +95,6 @@
+ 			}
+ 		} catch (WrongValueTypeException e) {
+ 			logger.warn(e);
+-			// e.printStackTrace();
+ 		}
+ 	}
+-
+ }

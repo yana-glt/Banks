@@ -1,0 +1,109 @@
+<changelist name="Changes" date="1670792900430" recycled="false">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Changes/shelved.patch" />
+  <option name="DESCRIPTION" value="Changes" />
+  <binary>
+    <option name="BEFORE_PATH" value="bin/products/accounts/Account.class" />
+    <option name="AFTER_PATH" value="bin/products/accounts/Account.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Changes/Account.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="bin/exception_handlers/AccountAlreadyBlockedException.class" />
+    <option name="AFTER_PATH" value="bin/exception_handlers/AccountAlreadyBlockedException.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Changes/AccountAlreadyBlockedException.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="bin/exception_handlers/AccountBlockedException.class" />
+    <option name="AFTER_PATH" value="bin/exception_handlers/AccountBlockedException.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Changes/AccountBlockedException.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="bin/branches/Branch.class" />
+    <option name="AFTER_PATH" value="bin/branches/Branch.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Changes/Branch.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="bin/products/cards/Card.class" />
+    <option name="AFTER_PATH" value="bin/products/cards/Card.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Changes/Card.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="bin/clients/Client.class" />
+    <option name="AFTER_PATH" value="bin/clients/Client.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Changes/Client.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="bin/clients/CorporateClient.class" />
+    <option name="AFTER_PATH" value="bin/clients/CorporateClient.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Changes/CorporateClient.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="bin/products/accounts/CorporateClientsAccount.class" />
+    <option name="AFTER_PATH" value="bin/products/accounts/CorporateClientsAccount.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Changes/CorporateClientsAccount.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="bin/products/cards/CorporateClientsCard.class" />
+    <option name="AFTER_PATH" value="bin/products/cards/CorporateClientsCard.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Changes/CorporateClientsCard.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="bin/products/credits/CorporateClientsCredit.class" />
+    <option name="AFTER_PATH" value="bin/products/credits/CorporateClientsCredit.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Changes/CorporateClientsCredit.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="bin/products/Currency.class" />
+    <option name="AFTER_PATH" value="bin/products/Currency.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Changes/Currency.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="bin/exception_handlers/DeductionExceedsBalanceException.class" />
+    <option name="AFTER_PATH" value="bin/exception_handlers/DeductionExceedsBalanceException.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Changes/DeductionExceedsBalanceException.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="bin/branches/Employee.class" />
+    <option name="AFTER_PATH" value="bin/branches/Employee.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Changes/Employee.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="bin/exception_handlers/IncorrectValueException.class" />
+    <option name="AFTER_PATH" value="bin/exception_handlers/IncorrectValueException.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Changes/IncorrectValueException.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="bin/clients/IndividualClient.class" />
+    <option name="AFTER_PATH" value="bin/clients/IndividualClient.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Changes/IndividualClient.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="bin/products/accounts/IndividualClientsAccount.class" />
+    <option name="AFTER_PATH" value="bin/products/accounts/IndividualClientsAccount.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Changes/IndividualClientsAccount.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="bin/products/cards/IndividualClientsCard.class" />
+    <option name="AFTER_PATH" value="bin/products/cards/IndividualClientsCard.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Changes/IndividualClientsCard.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="bin/products/credits/IndividualClientsCredit.class" />
+    <option name="AFTER_PATH" value="bin/products/credits/IndividualClientsCredit.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Changes/IndividualClientsCredit.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="bin/branches/INotifyClients.class" />
+    <option name="AFTER_PATH" value="bin/branches/INotifyClients.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Changes/INotifyClients.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="bin/Main.class" />
+    <option name="AFTER_PATH" value="bin/Main.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Changes/Main.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="bin/exception_handlers/WrongValueTypeException.class" />
+    <option name="AFTER_PATH" value="bin/exception_handlers/WrongValueTypeException.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Changes/WrongValueTypeException.class" />
+  </binary>
+</changelist>

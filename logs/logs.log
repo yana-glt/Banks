@@ -1,0 +1,15 @@
+00-34-44.390 [main] WARN  products.accounts.Account - exception_handlers.DeductionExceedsBalanceException: The user is trying to deduct from the account an amount exceeding the account balance
+09:53:23.892 [main] WARN  branches.INotifyClients - java.io.FileNotFoundException: message.txt (?? ??????? ????? ????????? ????)
+09:53:23.896 [main] WARN  branches.INotifyClients - java.io.FileNotFoundException: message.txt (?? ??????? ????? ????????? ????)
+09:53:23.896 [main] WARN  branches.INotifyClients - java.io.FileNotFoundException: message.txt (?? ??????? ????? ????????? ????)
+09:54:16.370 [main] WARN  branches.INotifyClients - java.io.FileNotFoundException: message.txt (?? ??????? ????? ????????? ????)
+09:54:16.372 [main] WARN  branches.INotifyClients - java.io.FileNotFoundException: message.txt (?? ??????? ????? ????????? ????)
+09:55:59.286 [main] WARN  products.accounts.Account - exception_handlers.AccountAlreadyBlockedException: Account has already been blocked
+09:56:23.138 [main] WARN  products.accounts.Account - exception_handlers.AccountAlreadyBlockedException: Account has already been blocked
+10:04:02.339 [main] WARN  products.accounts.Account - exception_handlers.AccountBlockedException: This account is blocked
+10:04:30.834 [main] WARN  products.accounts.Account - exception_handlers.AccountBlockedException: This account is blocked
+10:04:30.836 [main] WARN  products.accounts.Account - exception_handlers.DeductionExceedsBalanceException: The user is trying to deduct from the account an amount exceeding the account balance
+10:05:01.071 [main] WARN  products.accounts.Account - exception_handlers.DeductionExceedsBalanceException: The user is trying to deduct from the account an amount exceeding the account balance
+10:20:01.977 [main] WARN  Main - exception_handlers.WrongValueTypeException: The user entered a value of the wrong type
+10:21:08.730 [main] WARN  Main - exception_handlers.IncorrectValueException: Incorrect value of the assessment of the client's solvency
+18:05:48.573 [main] WARN  Main - exception_handlers.WrongValueTypeException: The user entered a value of the wrong type
