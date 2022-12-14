@@ -1,5 +1,6 @@
 package branches;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import products.accounts.IndividualClientsAccount;
@@ -10,7 +11,7 @@ public class Employee{
 	private String name;
 	private String surname;
 	private LocalDate dateOfBirth;
-	private float salary;
+	private BigDecimal salary;
 	private String phoneNumber;
 	private String position;
 	private Department department;
@@ -21,7 +22,7 @@ public class Employee{
 
 	}
 
-	public Employee(String name, String surname, LocalDate dateOfBirth, float salary, String phoneNumber, String position,
+	public Employee(String name, String surname, LocalDate dateOfBirth, BigDecimal salary, String phoneNumber, String position,
 			Department department, Branch branch) {
 		this.name = name;
 		this.surname = surname;
@@ -70,11 +71,11 @@ public class Employee{
 		this.dateOfBirth = dateOfBirth;
 	}
 
-	public float getSalary() {
+	public BigDecimal getSalary() {
 		return salary;
 	}
 
-	public void setSalary(float salary) {
+	public void setSalary(BigDecimal salary) {
 		this.salary = salary;
 	}
 

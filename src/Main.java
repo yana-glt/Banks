@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,14 +33,14 @@ public class Main {
 		Department finance = new Department("Finance");
 		Department treasury = new Department("Treasury");
 		Department hr = new Department("Human resources");
-		Employee emp1 = new Employee("Susan", "Smith", LocalDate.of(1989, 9, 4), 1400, "+48962456981", "Manager",
-				finance, warsawBranch);
-		Employee emp2 = new Employee("Carol", "Brown", LocalDate.of(1987, 7, 10), 1400, "+48962456981", "Manager",
-				treasury, warsawBranch);
-		Employee emp3 = new Employee("Edward", "Evans", LocalDate.of(1991, 3, 1), 1400, "+48962456981", "Manager", hr,
-				krakowBranch);
-		Employee emp4 = new Employee("Kevin", "Rose", LocalDate.of(1980, 5, 18), 1400, "+48062445971", "Manager", hr,
-				krakowBranch);
+		Employee emp1 = new Employee("Susan", "Smith", LocalDate.of(1989, 9, 4), BigDecimal.valueOf(1400),
+				"+48962456981", "Manager", finance, warsawBranch);
+		Employee emp2 = new Employee("Carol", "Brown", LocalDate.of(1987, 7, 10), BigDecimal.valueOf(2400),
+				"+48962456981", "Manager", treasury, warsawBranch);
+		Employee emp3 = new Employee("Edward", "Evans", LocalDate.of(1991, 3, 1), BigDecimal.valueOf(1900),
+				"+48962456981", "Manager", hr, krakowBranch);
+		Employee emp4 = new Employee("Kevin", "Rose", LocalDate.of(1980, 5, 18), BigDecimal.valueOf(1800),
+				"+48062445971", "Manager", hr, krakowBranch);
 		warsawBranch.getListOfEmployees().add(emp1);
 		warsawBranch.getListOfEmployees().add(emp2);
 		krakowBranch.getListOfEmployees().add(emp3);
@@ -77,7 +78,9 @@ public class Main {
 		fifthClient.setAccount(account5);
 		krakowBranch.getListOfClients().add(fourthClient);
 		krakowBranch.getListOfClients().add(fifthClient);
+		
 		krakowBranch.notifyAllClients(krakowBranch.getListOfClients(), "message");
+		
 		IndividualClientsCredit credit1 = new IndividualClientsCredit(10.00, 36, 80000, Currency.EUR);
 		IndividualClientsCredit credit2 = new IndividualClientsCredit(11.50, 24, 60000, Currency.EUR);
 		CorporateClientsCredit credit4 = new CorporateClientsCredit(10.00, 36, 80000.00, Currency.EUR);
@@ -85,18 +88,20 @@ public class Main {
 		CorporateClientsCredit credit5 = new CorporateClientsCredit(11.50, 24, 60000.00, Currency.EUR);
 		credit5.giveCredit(fifthClient);
 
-		try {
-			firstClient.assessSolvency();
-		} catch (WrongValueTypeException e) {
-			logger.warn(e);
-		}
-		try {
-			fifthClient.assessSolvency();
-		} catch (IncorrectValueException e) {
-			logger.warn(e);
-		}
+//		try {
+//			firstClient.assessSolvency();
+//		} catch (WrongValueTypeException e) {
+//			logger.warn(e);
+//		}
+//		try {
+//			fifthClient.assessSolvency();
+//		} catch (IncorrectValueException e) {
+//			logger.error(String.format(
+//					"The client %s solvency assessment is %s. It is necessary to clarify the calculations.",
+//					e.getClientsName(), e.getSolvencyAssessment()), e);
+//		}
 
-		// Array Examples
+//		 Array Examples
 		Employee[] arrayOfEmployees = { emp1, emp2, emp3 };
 		for (Employee emp : arrayOfEmployees) {
 			System.out.println(emp);
@@ -115,12 +120,6 @@ public class Main {
 		credit5.getInfoAboutAnyProduct();
 		account5.getInfoAboutAnyProduct();
 
-		List<Account> accountList = new ArrayList<>();
-		accountList.add(account5);
-		accountList.add(account4);
-		accountList.add(account3);
-		Account.getSumOfBalances(accountList);
-
 		Card card5 = new CorporateClientsCard("92562598459216579841", "TOMAS ANDERSEN", LocalDate.of(2019, 12, 12), 236,
 				8954, true, account5, fifthClient);
 		System.out.println(card5.toString());
@@ -128,5 +127,23 @@ public class Main {
 		System.out.println(card5.getExpirationDate());
 		card5.blockAfterExpiration();
 		System.out.println(card5.toString());
+
+		System.out.println(account5.getAccountBalance());
+		account5.refillBalance(500.52f);
+//		account5.deductBalance(5100.25f);
+//		account5.blockAccount(emp1);
+//		account5.blockAccount(emp2);
+//		account5.refillBalance(500.52f);
+//		account5.deductBalance(5100.25f);
+
+		List<Account> accountList = new ArrayList<>();
+		accountList.add(account5);
+		accountList.add(account4);
+		accountList.add(account3);
+		Account.getSumOfBalances(accountList);
+
+		System.out.println(account4.getAccountBalance());
+		System.out.println(account5.getAccountBalance());
+		Account.transferMoney(account4, account5, 456.35f);
 	}
 }

@@ -1,5 +1,6 @@
 package products.accounts;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -7,6 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import branches.Branch;
+import branches.Employee;
 import exception_handlers.AccountAlreadyBlockedException;
 import exception_handlers.AccountBlockedException;
 import exception_handlers.DeductionExceedsBalanceException;
@@ -19,6 +21,9 @@ public abstract class Account {
 	private float accountBalance;
 	private Currency accountCurrency;
 	private Branch branch;
+	private LocalDate accountBlockDate;
+	private Employee responsibleExecutorOfBloking;
+
 	private final static Logger logger = LogManager.getLogger(Account.class);
 
 	public Account() {
@@ -83,6 +88,22 @@ public abstract class Account {
 		return status;
 	}
 
+	public LocalDate getAccountBlockDate() {
+		return accountBlockDate;
+	}
+
+	public void setAccountBlockDate(LocalDate accountBlockDate) {
+		this.accountBlockDate = accountBlockDate;
+	}
+
+	public Employee getResponsibleExecutorOfBloking() {
+		return responsibleExecutorOfBloking;
+	}
+
+	public void setResponsibleExecutorOfBloking(Employee responsibleExecutorOfBloking) {
+		this.responsibleExecutorOfBloking = responsibleExecutorOfBloking;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == null)
@@ -116,15 +137,20 @@ public abstract class Account {
 				accountNumber, regimeOfAccount, status, accountBalance, accountCurrency);
 	}
 
-	public void closeAccount() {
+	public void blockAccount(Employee emp) {
 		try {
-			if (!this.getStatus()) {
-				throw new AccountAlreadyBlockedException("The account has already been blocked before");
-			} else {
+			LocalDate accountBlockDate = LocalDate.now();
+			if (this.getStatus()) {
 				this.setStatus(false);
+				this.setResponsibleExecutorOfBloking(emp);
+				this.setAccountBlockDate(accountBlockDate);
+			} else {
+				throw new AccountAlreadyBlockedException("The account has already been blocked before",
+						this.accountNumber, this.accountBlockDate, this.responsibleExecutorOfBloking);
 			}
 		} catch (AccountAlreadyBlockedException e) {
-			logger.warn(e);
+			logger.warn(String.format("The account %s was already blocked on %s. Responsible executor: %s",
+					this.accountNumber, e.getAccountBlockDate(), e.getResponsibleExecutorOfBlocking()), e);
 		}
 
 	}
@@ -132,14 +158,16 @@ public abstract class Account {
 	public void refillBalance(float sum) {
 		try {
 			if (!this.getStatus()) {
-				throw new AccountBlockedException("The user cannot access an account that is blocked");
+				throw new AccountBlockedException("The user cannot access an account that is blocked",
+						this.accountNumber, this.accountBlockDate, this.responsibleExecutorOfBloking);
 			} else {
 				float newBalance = this.getAccountBalance() + sum;
 				this.setAccountBalance(newBalance);
 				System.out.println("The balance of your account is " + this.getAccountBalance());
 			}
 		} catch (AccountBlockedException e) {
-			logger.warn(e);
+			logger.warn(String.format("The account %s was blocked on %s. Responsible executor: %s", this.accountNumber,
+					e.getAccountBlockDate(), e.getResponsibleExecutorOfBlocking()), e);
 		}
 	}
 
@@ -147,29 +175,57 @@ public abstract class Account {
 		try {
 			try {
 				if (!this.getStatus()) {
-					throw new AccountBlockedException("The user cannot access an account that is blocked");
+					throw new AccountBlockedException("The user cannot access an account that is blocked",
+							this.accountNumber, this.accountBlockDate, this.responsibleExecutorOfBloking);
 				}
 			} catch (AccountBlockedException e) {
-				logger.warn(e);
+				logger.warn(
+						String.format("The account %s was blocked on %s. Responsible executor: %s",
+								e.getAccountNumber(), e.getAccountBlockDate(), e.getResponsibleExecutorOfBlocking()),
+						e);
 			}
-			float newBalance = this.getAccountBalance() - sum;
-			if (newBalance < 0) {
+			float difference = this.getAccountBalance() - sum;
+			if (difference < 0) {
 				throw new DeductionExceedsBalanceException(
-						"The user is trying to deduct from the account an amount exceeding the account balance");
+						"The user is trying to deduct from the account an amount exceeding the account balance",
+						this.getAccountBalance(), sum, difference);
 			}
-			this.setAccountBalance(newBalance);
+			this.setAccountBalance(difference);
 			System.out.println("The balance of your account is " + this.getAccountBalance());
 		} catch (DeductionExceedsBalanceException e) {
-			logger.warn(e);
+			logger.warn(String.format(
+					"The user is trying to withdraw from the account an amount of money (%f) that exceeds his current balance (%f) by (%f)",
+					e.getSum(), e.getBalance(), e.getDifference()), e);
+
 		}
 	}
 
 	public static long getSumOfBalances(List<? extends Account> accounts) {
 		long sum = 0;
-		for (Account account : accounts) {
-			sum += account.getAccountBalance();
+		try {
+			for (Account account : accounts) {
+				if (account.getStatus()) {
+					sum += account.getAccountBalance();
+				} else {
+					throw new AccountBlockedException("The user cannot access an account that is blocked",
+							account.accountNumber, account.accountBlockDate, account.responsibleExecutorOfBloking);
+				}
+			}
+		} catch (AccountBlockedException e) {
+			logger.warn(String.format("The account %s was blocked on %s. Responsible executor: %s",
+					e.getAccountNumber(), e.getAccountBlockDate(), e.getResponsibleExecutorOfBlocking()), e);
 		}
 		System.out.println(sum);
 		return sum;
+	}
+
+	public static boolean transferMoney(Account srcAccount, Account dstAccount, float transferAmount) {
+		boolean flag = false;
+		if (transferAmount <= srcAccount.getAccountBalance()) {
+			srcAccount.deductBalance(transferAmount);
+			dstAccount.refillBalance(transferAmount);
+			flag = true;
+		}
+		return flag;
 	}
 }

@@ -130,7 +130,8 @@ public class CorporateClient extends Client implements IAssessSolvency {
 	public boolean assessSolvency() throws IncorrectValueException {
 		if (solvencyAssessment <= 0 || solvencyAssessment > 100) {
 			throw new IncorrectValueException(
-					"The value of the client solvency assessment must be in the range from 1 to 100");
+					"The value of the client solvency assessment must be in the range from 1 to 100. ", this.name,
+					this.solvencyAssessment);
 		} else if (solvencyAssessment >= 75) {
 			System.out.println(String.format("The financial condition of the client %s allows to receive a credit.",
 					this.getName()));

@@ -12,7 +12,7 @@ import products.accounts.CorporateClientsAccount;
 import products.Currency;
 import products.IProductOptions;
 
-public class CorporateClientsCredit extends Credit implements ICreditOptions, IProductOptions <CorporateClientsCredit> {
+public class CorporateClientsCredit extends Credit implements ICreditOptions, IProductOptions<CorporateClientsCredit> {
 	private CorporateClientsAccount account;
 	private CorporateClient client;
 	private final static Logger logger = LogManager.getLogger(CorporateClientsCredit.class);
@@ -85,7 +85,9 @@ public class CorporateClientsCredit extends Credit implements ICreditOptions, IP
 				this.setAccount(new CorporateClientsAccount());
 			}
 		} catch (IncorrectValueException e) {
-			logger.error(e);
+			logger.error(String.format(
+					"The client %s solvency assessment is %s. It is necessary to clarify the calculations.",
+					e.getClientsName(), e.getSolvencyAssessment()), e);
 		}
 	}
 }

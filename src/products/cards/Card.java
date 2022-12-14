@@ -99,7 +99,7 @@ public abstract class Card {
 
 	public void blockAfterExpiration() {
 		LocalDate currentDate = LocalDate.now();
-		if (this.expirationDate.isEqual(currentDate)) {
+		if (this.expirationDate.isEqual(currentDate) || this.expirationDate.isBefore(currentDate)) {
 			this.blockOnRequest();
 		}
 	}
