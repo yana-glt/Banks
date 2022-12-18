@@ -58,17 +58,13 @@ public abstract class Client {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		if (this.hashCode() != obj.hashCode())
+		if ((obj == null) || (getClass() != obj.getClass()) || (this.hashCode() != obj.hashCode()))
 			return false;
 		Client other = (Client) obj;
-		boolean idEquality = (this.id == other.id);
-		boolean identificationNumberEquality = (this.identificationNumber == null && other.identificationNumber == null)
+		boolean isIdEqual = (this.id == other.id);
+		boolean isIdentificationNumberEqual = (this.identificationNumber == null && other.identificationNumber == null)
 				|| (this.identificationNumber != null && this.identificationNumber == other.identificationNumber);
-		return idEquality && identificationNumberEquality;
+		return isIdEqual && isIdentificationNumberEqual;
 	}
 
 	@Override

@@ -27,10 +27,6 @@ public class Department {
 		return departmentId;
 	}
 
-	public void setDepartmentId(int departmentId) {
-		this.departmentId = departmentId;
-	}
-
 	public String getName() {
 		return name;
 	}

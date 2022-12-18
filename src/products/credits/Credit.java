@@ -55,18 +55,14 @@ public abstract class Credit {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null)
-			return false;
-		if (this.getClass() != obj.getClass())
-			return false;
-		if (this.hashCode() != obj.hashCode())
+		if ((obj == null) || (this.getClass() != obj.getClass()) || (this.hashCode() != obj.hashCode()))
 			return false;
 		Credit other = (Credit) obj;
-		boolean borrowingRateEquality = (this.borrowingRate == other.borrowingRate);
-		boolean loanAmountEquality = (this.loanAmount == other.loanAmount);
-		boolean loanTermInMonthEquality = (this.loanTermInMonth == other.loanTermInMonth);
-		boolean creditCurrencyEquality = (this.creditCurrency == null && other.creditCurrency == null);
-		return borrowingRateEquality && loanAmountEquality && loanTermInMonthEquality && creditCurrencyEquality;
+		boolean isBorrowingRateEqual = (this.borrowingRate == other.borrowingRate);
+		boolean isLoanAmountEqual = (this.loanAmount == other.loanAmount);
+		boolean isLoanTermInMonthEqual = (this.loanTermInMonth == other.loanTermInMonth);
+		boolean isCreditCurrencyEqual = (this.creditCurrency == null && other.creditCurrency == null);
+		return isBorrowingRateEqual && isLoanAmountEqual && isLoanTermInMonthEqual && isCreditCurrencyEqual;
 	}
 
 	@Override

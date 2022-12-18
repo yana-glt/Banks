@@ -85,16 +85,12 @@ public class CorporateClient extends Client implements IAssessSolvency {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (!super.equals(obj))
-			return false;
-		if (this.getClass() != obj.getClass())
-			return false;
-		if (this.hashCode() != obj.hashCode())
+		if ((!super.equals(obj)) || (this.getClass() != obj.getClass()) || (this.hashCode() != obj.hashCode()))
 			return false;
 		CorporateClient other = (CorporateClient) obj;
-		boolean nameEquality = (this.name == null && other.name == null)
+		boolean isNameEqual = (this.name == null && other.name == null)
 				|| (this.name != null && this.name == other.name);
-		return nameEquality;
+		return isNameEqual;
 	}
 
 	@Override
@@ -120,8 +116,7 @@ public class CorporateClient extends Client implements IAssessSolvency {
 					this.getName()));
 			return true;
 		} else if (solvencyAssessment >= 50) {
-			System.out
-					.println(String.format("Client %s can get a credit, but collateral is required.", this.getName()));
+			System.out.println(String.format("Client %s can get a credit, but collateral is required.", this.getName()));
 			return true;
 		} else {
 			System.out.println(String.format("Credit cannot be granted to %s", this.getName()));

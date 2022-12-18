@@ -50,18 +50,14 @@ public class CorporateClientsCredit extends Credit implements ICreditOptions {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (!super.equals(obj))
-			return false;
-		if (this.getClass() != obj.getClass())
-			return false;
-		if (this.hashCode() != obj.hashCode())
+		if ((!super.equals(obj)) || (this.getClass() != obj.getClass()) || (this.hashCode() != obj.hashCode()))
 			return false;
 		CorporateClientsCredit other = (CorporateClientsCredit) obj;
-		boolean accountEquality = (this.account == null && other.account == null)
+		boolean isAccountEqual = (this.account == null && other.account == null)
 				|| (this.account != null && this.account == other.account);
-		boolean clientEquality = (this.client == null && other.client == null)
+		boolean isClientEqual = (this.client == null && other.client == null)
 				|| (this.client != null && this.client == other.client);
-		return accountEquality && clientEquality;
+		return isAccountEqual && isClientEqual;
 	}
 
 	@Override

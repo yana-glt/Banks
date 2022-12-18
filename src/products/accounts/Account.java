@@ -58,8 +58,8 @@ public abstract class Account {
 		this.accountBalance = accountBalance;
 	}
 
-	public Currency getAccountCurrency() {
-		return accountCurrency;
+	public String getAccountCurrency() {
+		return accountCurrency.getName();
 	}
 
 	public void setAccountCurrency(Currency accountCurrency) {
@@ -88,21 +88,17 @@ public abstract class Account {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		if (this.hashCode() != obj.hashCode())
+		if ((obj == null) || (getClass() != obj.getClass()) || (this.hashCode() != obj.hashCode()))
 			return false;
 		Account other = (Account) obj;
-		boolean statusEquality = (this.status == other.status);
-		boolean accountNumberEquality = (this.accountNumber == null && other.accountNumber == null)
+		boolean isStatusEqual = (this.status == other.status);
+		boolean isAccountNumberEqual = (this.accountNumber == null && other.accountNumber == null)
 				|| (this.accountNumber != null && this.accountNumber == other.accountNumber);
-		boolean accountCurrencyEquality = (this.accountCurrency == null && other.accountCurrency == null)
+		boolean isAccountCurrencyEqual = (this.accountCurrency == null && other.accountCurrency == null)
 				|| (this.accountCurrency != null && this.accountCurrency == other.accountCurrency);
-		boolean regimeOfAccountEquality = (this.regimeOfAccount == null && other.regimeOfAccount == null)
+		boolean isRegimeOfAccountEqual = (this.regimeOfAccount == null && other.regimeOfAccount == null)
 				|| (this.regimeOfAccount != null && this.regimeOfAccount == other.regimeOfAccount);
-		return statusEquality && accountNumberEquality && accountCurrencyEquality && regimeOfAccountEquality;
+		return isStatusEqual && isAccountNumberEqual && isAccountCurrencyEqual && isRegimeOfAccountEqual;
 	}
 
 	@Override

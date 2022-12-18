@@ -29,16 +29,12 @@ public class CorporateClientsAccount extends Account {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (!super.equals(obj))
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		if (this.hashCode() != obj.hashCode())
+		if ((!super.equals(obj)) || (getClass() != obj.getClass()) || (this.hashCode() != obj.hashCode()))
 			return false;
 		CorporateClientsAccount other = (CorporateClientsAccount) obj;
-		boolean clientEquality = (this.client == null && other.client == null)
+		boolean isClientEqual = (this.client == null && other.client == null)
 				|| (this.client != null && this.client == other.client);
-		return clientEquality;
+		return isClientEqual;
 	}
 
 	@Override

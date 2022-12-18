@@ -86,6 +86,5 @@ public class Main {
 		} catch (IncorrectValueException e) {
 			logger.warn(e);
 		}
-
 	}
 }
