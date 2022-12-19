@@ -5,6 +5,6 @@ import exception_handlers.WrongValueTypeException;
 
 public interface IAssessSolvency {
 
-	boolean assessSolvency() throws WrongValueTypeException, IncorrectValueException;
+    boolean assessSolvency() throws WrongValueTypeException, IncorrectValueException;
 
 }

@@ -92,9 +92,19 @@ public class IndividualClientsCredit extends Credit implements ICreditOptions, I
 			if (((IndividualClient) client).assessSolvency()) {
 				this.setClient((IndividualClient) client);
 				this.setAccount(new IndividualClientsAccount());
+				((IndividualClient) client).getListOfCredits().add(this);
+				this.getAccount().setAccountBalance(this.getLoanAmount());
 			}
 		} catch (WrongValueTypeException e) {
 			logger.warn(e);
+		}
+	}
+
+	@Override
+	public void closeCredit(Client client) {
+		if(this.getAccount().getAccountBalance() == 0){
+			this.getAccount().setStatus(false);
+			((IndividualClient) client).getListOfCredits().remove(this);
 		}
 	}
 }

@@ -7,39 +7,35 @@ import products.IProductOptions;
 import products.accounts.CorporateClientsAccount;
 
 public class CorporateClientsCard extends Card implements IProductOptions<CorporateClientsCard> {
-	private CorporateClientsAccount account;
-	private CorporateClient client;
+    private CorporateClientsAccount account;
+    private CorporateClient client;
 
-	public CorporateClientsCard() {
+    public CorporateClientsCard() {
 
-	}
+    }
 
-	public CorporateClientsCard(String number, String nameAndSurname, LocalDate issueDate, int cvvCode, int pin,
-			boolean status, CorporateClientsAccount account, CorporateClient client) {
-		super(number, nameAndSurname, issueDate, cvvCode, pin, status);
-		this.account = account;
-		this.client = client;
-	}
+    public CorporateClientsCard(String number, String nameAndSurname, LocalDate issueDate, int cvvCode, int pin,
+                                boolean status, CorporateClientsAccount account, CorporateClient client) {
+        super(number, nameAndSurname, issueDate, cvvCode, pin, status);
+        this.account = account;
+        this.client = client;
+    }
 
-	public CorporateClientsAccount getAccount() {
-		return account;
-	}
+    public CorporateClientsAccount getAccount() {
+        return account;
+    }
 
-	public void setAccount(CorporateClientsAccount account) {
-		this.account = account;
-	}
+    public void setAccount(CorporateClientsAccount account) {
+        this.account = account;
+    }
 
-	public CorporateClient getClient() {
-		return client;
-	}
+    public CorporateClient getClient() {
+        return client;
+    }
 
-	public void setClient(CorporateClient client) {
-		this.client = client;
-	}
-
-	@Override
-	public String toString() {
-		return String.format("%s Information about the recipient: account=%s, client=%s", super.toString(),
-				account.getAccountNumber(), client.getName());
-	}
+    @Override
+    public String toString() {
+        return String.format("%s Information about the recipient: account=%s, client=%s", super.toString(),
+                account.getAccountNumber(), client.getName());
+    }
 }
