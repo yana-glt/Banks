@@ -1,18 +1,35 @@
 package products.credits;
 
-import products.accounts.CorporateClientsAccount;
+import java.util.Objects;
 
-public class CorporateClientsCredit extends Credit {
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import clients.Client;
+import clients.CorporateClient;
+import exception_handlers.IncorrectValueException;
+import products.accounts.CorporateClientsAccount;
+import products.Currency;
+
+public class CorporateClientsCredit extends Credit implements ICreditOptions {
 	private CorporateClientsAccount account;
+	private CorporateClient client;
+	private final static Logger logger = LogManager.getLogger(CorporateClientsCredit.class);
 
 	public CorporateClientsCredit() {
 
 	}
 
 	public CorporateClientsCredit(double borrowingRate, int loanTermInMonth, double loanAmount,
-			CorporateClientsAccount account) {
-		super(borrowingRate, loanTermInMonth, loanAmount);
+			Currency creditCurrency) {
+		super(borrowingRate, loanTermInMonth, loanAmount, creditCurrency);
+	}
+
+	public CorporateClientsCredit(double borrowingRate, int loanTermInMonth, double loanAmount, Currency creditCurrency,
+			CorporateClientsAccount account, CorporateClient client) {
+		super(borrowingRate, loanTermInMonth, loanAmount, creditCurrency);
 		this.account = account;
+		this.client = client;
 	}
 
 	public CorporateClientsAccount getAccount() {
@@ -23,9 +40,49 @@ public class CorporateClientsCredit extends Credit {
 		this.account = account;
 	}
 
-	@Override
-	void giveCredit() {
-		CorporateClientsCredit credit = new CorporateClientsCredit();
+	public CorporateClient getClient() {
+		return client;
 	}
 
+	public void setClient(CorporateClient client) {
+		this.client = client;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if ((!super.equals(obj)) || (this.getClass() != obj.getClass()) || (this.hashCode() != obj.hashCode()))
+			return false;
+		CorporateClientsCredit other = (CorporateClientsCredit) obj;
+		boolean isAccountEqual = (this.account == null && other.account == null)
+				|| (this.account != null && this.account == other.account);
+		boolean isClientEqual = (this.client == null && other.client == null)
+				|| (this.client != null && this.client == other.client);
+		return isAccountEqual && isClientEqual;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + Objects.hash(account, client);
+		return result;
+	}
+
+	@Override
+	public String toString() {
+		return String.format("%s Information about the recipient: account=%s, client=%s", super.toString(),
+				account.getAccountNumber(), client.getName());
+	}
+
+	@Override
+	public void giveCredit(Client client) {
+		try {
+			if (((CorporateClient) client).assessSolvency()) {
+				this.setClient((CorporateClient) client);
+				this.setAccount(new CorporateClientsAccount());
+			}
+		} catch (IncorrectValueException e) {
+			logger.error(e);
+		}
+	}
 }

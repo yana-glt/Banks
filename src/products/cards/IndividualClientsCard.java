@@ -27,5 +27,4 @@ public class IndividualClientsCard extends Card {
 	public void block(Card card) {
 		card.setStatus(false);
 	}
-
 }

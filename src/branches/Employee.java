@@ -3,7 +3,7 @@ package branches;
 import products.accounts.IndividualClientsAccount;
 
 public class Employee {
-
+	private static int numberOfEmployees = 0;
 	private int id;
 	private String name;
 	private String surname;
@@ -19,9 +19,8 @@ public class Employee {
 
 	}
 
-	public Employee(int id, String name, String surname, String dateOfBirth, float salary, String phoneNumber,
-			String position, Department department, Branch branch, IndividualClientsAccount account) {
-		this.id = id;
+	public Employee(String name, String surname, String dateOfBirth, float salary, String phoneNumber, String position,
+			Department department, Branch branch) {
 		this.name = name;
 		this.surname = surname;
 		this.dateOfBirth = dateOfBirth;
@@ -30,7 +29,11 @@ public class Employee {
 		this.position = position;
 		this.department = department;
 		this.branch = branch;
-		this.account = account;
+		this.id = ++numberOfEmployees;
+	}
+
+	public static int getNumberOfEmployees() {
+		return numberOfEmployees;
 	}
 
 	public int getId() {
@@ -113,4 +116,35 @@ public class Employee {
 		this.account = account;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if ((obj == null) || (this.getClass() != obj.getClass()) || (this.hashCode() != obj.hashCode()))
+			return false;
+		Employee other = (Employee) obj;
+		boolean isIdEqual = (this.id == other.id);
+		boolean isNameEqual = (this.name == null && other.name == null)
+				|| (this.name != null && this.name == other.name);
+		boolean isSurnameEqual = (this.surname == null && other.surname == null)
+				|| (this.surname != null && this.surname == other.surname);
+		boolean isDateOfBirthEqual = (this.dateOfBirth == null && other.dateOfBirth == null)
+				|| (this.dateOfBirth != null && this.dateOfBirth == other.dateOfBirth);
+		return isIdEqual && isNameEqual && isSurnameEqual && isDateOfBirthEqual;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((surname == null) ? 0 : surname.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((dateOfBirth == null) ? 0 : dateOfBirth.hashCode());
+		return result;
+	}
+
+	@Override
+	public String toString() {
+		return String.format("Employee information:id=%d , name=%s, surname=%s , dateOfBirth=%s, position=%s, %s, %s",
+				id, name, surname, dateOfBirth, position, department.toString(), branch.toString());
+	}
 }

@@ -1,52 +1,37 @@
 package clients;
 
+import java.util.Objects;
+
+import exception_handlers.IncorrectValueException;
 import products.accounts.CorporateClientsAccount;
 
-public class CorporateClient extends Client {
+public class CorporateClient extends Client implements IAssessSolvency {
 
 	private String name;
 	private String directorsName;
 	private String directorsSurname;
 	private String directorsPhoneNumber;
-	private String accountantsName;
-	private String accountantsSurname;
-	private String accountantsPhoneNumber;
 	private CorporateClientsAccount account;
-
-	// Variables that are used to determine the solvency of the client when lending
 	private double solvencyAssessment;
 
 	public CorporateClient() {
 
 	}
 
-	public CorporateClient(long id, String identificationNumber, String phoneNumber, String address, String name,
-			String directorsName, String directorsSurname, String directorsPhoneNumber, String accountantsName,
-			String accountantsSurname, String accountantsPhoneNumber, CorporateClientsAccount account) {
-		super(id, identificationNumber, phoneNumber, address);
+	public CorporateClient(String identificationNumber, String phoneNumber, String emailAddress, String name,
+			String directorsName, String directorsSurname) {
+		super(identificationNumber, phoneNumber, emailAddress);
 		this.name = name;
 		this.directorsName = directorsName;
 		this.directorsSurname = directorsSurname;
-		this.directorsPhoneNumber = directorsPhoneNumber;
-		this.accountantsName = accountantsName;
-		this.accountantsSurname = accountantsSurname;
-		this.accountantsPhoneNumber = accountantsPhoneNumber;
-		this.account = account;
 	}
 
-	public CorporateClient(long id, String identificationNumber, String phoneNumber, String address, String name,
-			String directorsName, String directorsSurname, String directorsPhoneNumber, String accountantsName,
-			String accountantsSurname, String accountantsPhoneNumber, CorporateClientsAccount account,
-			double solvencyAssessment) {
-		super(id, identificationNumber, phoneNumber, address);
+	public CorporateClient(String identificationNumber, String phoneNumber, String emailAddress, String name,
+			String directorsName, String directorsSurname, double solvencyAssessment) {
+		super(identificationNumber, phoneNumber, emailAddress);
 		this.name = name;
 		this.directorsName = directorsName;
 		this.directorsSurname = directorsSurname;
-		this.directorsPhoneNumber = directorsPhoneNumber;
-		this.accountantsName = accountantsName;
-		this.accountantsSurname = accountantsSurname;
-		this.accountantsPhoneNumber = accountantsPhoneNumber;
-		this.account = account;
 		this.solvencyAssessment = solvencyAssessment;
 	}
 
@@ -82,30 +67,6 @@ public class CorporateClient extends Client {
 		this.directorsPhoneNumber = directorsPhoneNumber;
 	}
 
-	public String getAccountantsName() {
-		return accountantsName;
-	}
-
-	public void setAccountantsName(String accountantsName) {
-		this.accountantsName = accountantsName;
-	}
-
-	public String getAccountantsSurname() {
-		return accountantsSurname;
-	}
-
-	public void setAccountantsSurname(String accountantsSurname) {
-		this.accountantsSurname = accountantsSurname;
-	}
-
-	public String getAccountantsPhoneNumber() {
-		return accountantsPhoneNumber;
-	}
-
-	public void setAccountantsPhoneNumber(String accountantsPhoneNumber) {
-		this.accountantsPhoneNumber = accountantsPhoneNumber;
-	}
-
 	public CorporateClientsAccount getAccount() {
 		return account;
 	}
@@ -122,4 +83,44 @@ public class CorporateClient extends Client {
 		this.solvencyAssessment = solvencyAssessment;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if ((!super.equals(obj)) || (this.getClass() != obj.getClass()) || (this.hashCode() != obj.hashCode()))
+			return false;
+		CorporateClient other = (CorporateClient) obj;
+		boolean isNameEqual = (this.name == null && other.name == null)
+				|| (this.name != null && this.name == other.name);
+		return isNameEqual;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + Objects.hash(name, directorsName, directorsSurname);
+		return result;
+	}
+
+	@Override
+	public String toString() {
+		return String.format("%s, name=%s, account=%s", super.toString(), name, account.getAccountNumber());
+	}
+
+	@Override
+	public boolean assessSolvency() throws IncorrectValueException {
+		if (solvencyAssessment <= 0 || solvencyAssessment > 100) {
+			throw new IncorrectValueException(
+					"The value of the client solvency assessment must be in the range from 1 to 100");
+		} else if (solvencyAssessment >= 75) {
+			System.out.println(String.format("The financial condition of the client %s allows to receive a credit.",
+					this.getName()));
+			return true;
+		} else if (solvencyAssessment >= 50) {
+			System.out.println(String.format("Client %s can get a credit, but collateral is required.", this.getName()));
+			return true;
+		} else {
+			System.out.println(String.format("Credit cannot be granted to %s", this.getName()));
+			return false;
+		}
+	}
 }
