@@ -3,9 +3,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import branches.Branch;
 import branches.Department;
 import branches.Employee;
@@ -24,8 +21,6 @@ import products.credits.CorporateClientsCredit;
 import products.credits.IndividualClientsCredit;
 
 public class Main {
-    private final static Logger logger = LogManager.getLogger(Main.class);
-
     public static void main(String[] args) {
 
         Branch krakowBranch = new Branch("Bank branch in Krakow", "Krakow", "+48963365100");
@@ -87,19 +82,6 @@ public class Main {
         credit4.giveCredit(fourthClient);
         CorporateClientsCredit credit5 = new CorporateClientsCredit(11.50, 24, 60000.00, Currency.EUR);
         credit5.giveCredit(fifthClient);
-
-//		try {
-//			firstClient.assessSolvency();
-//		} catch (WrongValueTypeException e) {
-//			logger.warn(e);
-//		}
-//		try {
-//			fifthClient.assessSolvency();
-//		} catch (IncorrectValueException e) {
-//			logger.error(String.format(
-//					"The client %s solvency assessment is %s. It is necessary to clarify the calculations.",
-//					e.getClientsName(), e.getSolvencyAssessment()), e);
-//		}
 
 //		 Array Examples
         Employee[] arrayOfEmployees = {emp1, emp2, emp3};

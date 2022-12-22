@@ -30,14 +30,12 @@ public class CorporateClientsAccount extends Account implements IProductOptions<
 
     @Override
     public boolean equals(Object obj) {
-        if (!super.equals(obj))
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        if (this.hashCode() != obj.hashCode())
-            return false;
-        CorporateClientsAccount other = (CorporateClientsAccount) obj;
-        return this.client != null ? this.client.equals(other.client) : other.client == null;
+      if ((!super.equals(obj)) || (getClass() != obj.getClass()) || (this.hashCode() != obj.hashCode()))
+        return false;
+      CorporateClientsAccount other = (CorporateClientsAccount) obj;
+      boolean isClientEqual = (this.client == null && other.client == null)
+          || (this.client != null && this.client == other.client);
+      return isClientEqual;
     }
 
     @Override

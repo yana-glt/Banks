@@ -40,12 +40,14 @@ public class IndividualClientsAccount extends Account implements IProductOptions
         return this.client != null ? this.client.equals(other.client) : other.client == null;
     }
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = super.hashCode();
-        result = prime * result + Objects.hash(client);
-        return result;
+   @Override
+    public boolean equals(Object obj) {
+      if ((!super.equals(obj)) || (getClass() != obj.getClass()) || (this.hashCode() != obj.hashCode()))
+        return false;
+      IndividualClientsAccount other = (IndividualClientsAccount) obj;
+      boolean isClientEqual = (this.client == null && other.client == null)
+          || (this.client != null && this.client == other.client);
+      return isClientEqual;
     }
 
     @Override

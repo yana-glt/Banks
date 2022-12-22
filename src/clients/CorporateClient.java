@@ -9,7 +9,6 @@ import products.accounts.CorporateClientsAccount;
 import products.credits.CorporateClientsCredit;
 
 public class CorporateClient extends Client implements IAssessSolvency {
-
     private String name;
     private String directorsName;
     private String directorsSurname;
@@ -95,22 +94,14 @@ public class CorporateClient extends Client implements IAssessSolvency {
         this.listOfCredits = listOfCredits;
     }
 
-    @Override
+   	@Override
     public boolean equals(Object obj) {
-        if (!super.equals(obj))
-            return false;
-        if (this.getClass() != obj.getClass())
-            return false;
-        if (this.hashCode() != obj.hashCode())
-            return false;
-        CorporateClient other = (CorporateClient) obj;
-        return (this.name == other.name || (this.name != null ? this.name.equals(other.name) : other.name == null))
-                && (this.directorsName == other.directorsName
-                || (this.directorsName != null ? this.directorsName.equals(other.directorsName)
-                : other.directorsName == null))
-                && (this.directorsSurname == other.directorsSurname
-                || (this.directorsSurname != null ? this.directorsSurname.equals(other.directorsSurname)
-                : other.directorsSurname == null));
+      if ((!super.equals(obj)) || (this.getClass() != obj.getClass()) || (this.hashCode() != obj.hashCode()))
+        return false;
+      CorporateClient other = (CorporateClient) obj;
+      boolean isNameEqual = (this.name == null && other.name == null)
+          || (this.name != null && this.name == other.name);
+      return isNameEqual;
     }
 
     @Override
