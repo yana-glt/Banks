@@ -118,7 +118,6 @@ public class Main {
         Card card5 = new CorporateClientsCard("92562598459216579841", "TOMAS ANDERSEN", LocalDate.of(2019, 12, 12), 236,
                 8954, true, account5, fifthClient);
         System.out.println(card5.toString());
-        card5.determineCardExpirationDate();
         System.out.println(card5.getExpirationDate());
         card5.blockAfterExpiration();
         System.out.println(card5.toString());

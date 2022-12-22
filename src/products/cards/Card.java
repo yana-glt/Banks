@@ -1,5 +1,9 @@
 package products.cards;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import products.credits.CorporateClientsCredit;
+
 import java.time.LocalDate;
 
 public abstract class Card {
@@ -12,6 +16,8 @@ public abstract class Card {
     private int pin;
     private boolean status;
 
+    private final static Logger logger = LogManager.getLogger(Card.class);
+
     public Card() {
 
     }
@@ -20,9 +26,11 @@ public abstract class Card {
         this.number = number;
         this.nameAndSurname = nameAndSurname;
         this.issueDate = issueDate;
+        this.determineCardExpirationDate();
         this.cvvCode = cvvCode;
         this.pin = pin;
         this.status = status;
+
     }
 
     public String getNumber() {
@@ -88,19 +96,25 @@ public abstract class Card {
                 nameAndSurname, expirationDate, cvvCode, issueDate, status);
     }
 
-    public void determineCardExpirationDate() {
+    private void determineCardExpirationDate() {
         LocalDate expirationDate = this.issueDate.plusYears(3L);
         this.setExpirationDate(expirationDate);
     }
 
     public void blockOnRequest() {
         this.setStatus(false);
+        logger.warn(String.format(
+                "The card %s has been blocked at the request of the client %s.",
+                this.getNumber(), this.getNameAndSurname()));
     }
 
     public void blockAfterExpiration() {
         LocalDate currentDate = LocalDate.now();
         if (this.expirationDate.isEqual(currentDate) || this.expirationDate.isBefore(currentDate)) {
             this.blockOnRequest();
+            logger.warn(String.format(
+                    "The card %s of %s has been blocked due to expiration (card issue date = %s, expiration date = %s).",
+                    this.getNumber(), this.getNameAndSurname(), this.getIssueDate(), this.getExpirationDate()));
         }
     }
 }
