@@ -1,30 +1,41 @@
 package products.cards;
 
+import java.time.LocalDate;
+
+import clients.IndividualClient;
+import products.IProductOptions;
 import products.accounts.IndividualClientsAccount;
 
-public class IndividualClientsCard extends Card {
-	private IndividualClientsAccount account;
+public class IndividualClientsCard extends Card implements IProductOptions<IndividualClientsCard> {
+    private IndividualClientsAccount account;
+    private IndividualClient client;
 
-	public IndividualClientsCard() {
+    public IndividualClientsCard() {
 
-	}
+    }
 
-	public IndividualClientsCard(String number, String nameAndSurname, String expirationDate, int cvvCode,
-			String issueDate, int pin, boolean status, IndividualClientsAccount account) {
-		super(number, nameAndSurname, expirationDate, cvvCode, issueDate, pin, status);
-		this.account = account;
-	}
+    public IndividualClientsCard(String number, String nameAndSurname, LocalDate issueDate, int cvvCode, int pin,
+                                 boolean status, IndividualClientsAccount account, IndividualClient client) {
+        super(number, nameAndSurname, issueDate, cvvCode, pin, status);
+        this.account = account;
+        this.client = client;
+    }
 
-	public IndividualClientsAccount getAccount() {
-		return account;
-	}
+    public IndividualClientsAccount getAccount() {
+        return account;
+    }
 
-	public void setAccount(IndividualClientsAccount account) {
-		this.account = account;
-	}
+    public void setAccount(IndividualClientsAccount account) {
+        this.account = account;
+    }
 
-	@Override
-	public void block(Card card) {
-		card.setStatus(false);
-	}
+    public IndividualClient getClient() {
+        return client;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s Information about card holder: name=%s, surname=%s", super.toString(),
+                client.getName(), client.getSurname());
+    }
 }

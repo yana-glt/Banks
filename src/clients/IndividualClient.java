@@ -1,5 +1,8 @@
 package clients;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -11,9 +14,10 @@ public class IndividualClient extends Client implements IAssessSolvency {
 
 	private String name;
 	private String surname;
-	private String dateOfBirth;
+	private LocalDate dateOfBirth;
 	private String citizenship;
 	private IndividualClientsAccount account;
+	private List<IndividualClientsCredit> listOfCredits = new ArrayList<>();
 	private double averageSalary;
 
 	public IndividualClient() {
@@ -21,7 +25,7 @@ public class IndividualClient extends Client implements IAssessSolvency {
 	}
 
 	public IndividualClient(String identificationNumber, String phoneNumber, String emailAddress, String name,
-			String surname, String dateOfBirth, String citizenship) {
+			String surname, LocalDate dateOfBirth, String citizenship) {
 		super(identificationNumber, phoneNumber, emailAddress);
 		this.name = name;
 		this.surname = surname;
@@ -30,7 +34,7 @@ public class IndividualClient extends Client implements IAssessSolvency {
 	}
 
 	public IndividualClient(String identificationNumber, String phoneNumber, String emailAddress, String name,
-			String surname, String dateOfBirth, String citizenship, double averageSalary) {
+			String surname, LocalDate dateOfBirth, String citizenship, double averageSalary) {
 		super(identificationNumber, phoneNumber, emailAddress);
 		this.name = name;
 		this.surname = surname;
@@ -55,11 +59,11 @@ public class IndividualClient extends Client implements IAssessSolvency {
 		this.surname = surname;
 	}
 
-	public String getDateOfBirth() {
+	public LocalDate getDateOfBirth() {
 		return dateOfBirth;
 	}
 
-	public void setDateOfBirth(String dateOfBirth) {
+	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 
@@ -85,6 +89,14 @@ public class IndividualClient extends Client implements IAssessSolvency {
 
 	public void setAccount(IndividualClientsAccount account) {
 		this.account = account;
+	}
+
+	public List<IndividualClientsCredit> getListOfCredits() {
+		return listOfCredits;
+	}
+
+	public void setListOfCredits(List<IndividualClientsCredit> listOfCredits) {
+		this.listOfCredits = listOfCredits;
 	}
 
 	@Override
