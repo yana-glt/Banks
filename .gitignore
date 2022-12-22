@@ -115,6 +115,7 @@ local.properties
 # Logs
 # ----
 /*.log
+/logs
 
 # Thread dumps for troubleshooting
 *.threaddump
