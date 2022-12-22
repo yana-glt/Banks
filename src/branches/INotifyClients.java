@@ -29,7 +29,7 @@ public interface INotifyClients {
 					writer.write('\n');
 				}
 			} catch (FileNotFoundException e) {
-				logger.warn(e);
+				logger.warn(String.format("Message template not found while sending message to %s, message wasn't sent", cl.getEmailAddress()), e);
 			} catch (IOException e) {
 				logger.warn(e);
 			}
