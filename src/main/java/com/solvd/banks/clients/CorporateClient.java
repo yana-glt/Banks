@@ -108,7 +108,7 @@ public class CorporateClient extends Client implements IAssessSolvency {
     public int hashCode() {
         final int prime = 31;
         int result = super.hashCode();
-        result = prime * result + Objects.hash(name, directorsName, directorsSurname);
+        result = prime * result + Objects.hash(name);
         return result;
     }
 
