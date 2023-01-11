@@ -3,9 +3,10 @@ package main.java.com.solvd.banks.branches;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import main.java.com.solvd.banks.clients.Client;
 import main.java.com.solvd.banks.products.accounts.IndividualClientsAccount;
 
-public class Employee{
+public class Employee {
 	private static int numberOfEmployees = 0;
 	private int id;
 	private String name;
@@ -23,7 +24,7 @@ public class Employee{
 	}
 
 	public Employee(String name, String surname, LocalDate dateOfBirth, BigDecimal salary, String phoneNumber, String position,
-			Department department, Branch branch) {
+					Department department, Branch branch) {
 		this.name = name;
 		this.surname = surname;
 		this.dateOfBirth = dateOfBirth;
@@ -121,20 +122,17 @@ public class Employee{
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null)
-			return false;
-		if (this.getClass() != obj.getClass())
-			return false;
-		if (this.hashCode() != obj.hashCode())
+		if ((obj == null) || (getClass() != obj.getClass()) || (this.hashCode() != obj.hashCode()))
 			return false;
 		Employee other = (Employee) obj;
-		return this.id == other.id
-				&& (this.name == other.name || (this.name != null ? this.name.equals(other.name) : other.name == null))
-				&& (this.surname == other.surname
-						|| (this.surname != null ? this.surname.equals(other.surname) : other.surname == null))
-				&& (this.dateOfBirth == other.dateOfBirth
-						|| (this.dateOfBirth != null ? this.dateOfBirth.equals(other.dateOfBirth)
-								: other.dateOfBirth == null));
+		boolean isIdEqual = (this.id == other.id);
+		boolean isNameEqual = (this.name == null && other.name == null)
+				|| (this.name != null && this.name == other.name);
+		boolean isSurnameEqual = (this.surname == null && other.surname == null)
+				|| (this.surname != null && this.surname == other.surname);
+		boolean isDateOfBirthEqual = (this.dateOfBirth == null && other.dateOfBirth == null)
+				|| (this.dateOfBirth != null && this.dateOfBirth == other.dateOfBirth);
+		return isIdEqual && isNameEqual && isSurnameEqual && isDateOfBirthEqual;
 	}
 
 	@Override
@@ -150,7 +148,7 @@ public class Employee{
 
 	@Override
 	public String toString() {
-		return String.format("Employee information:id=%d, name=%s, surname=%s , dateOfBirth=%s, position=%s, %s, %s",
+		return String.format("Employee information:id=%d , name=%s, surname=%s , dateOfBirth=%s, position=%s, %s, %s",
 				id, name, surname, dateOfBirth, position, department.toString(), branch.toString());
 	}
 }

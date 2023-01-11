@@ -1,27 +1,27 @@
 package main.java.com.solvd.banks.exception_handlers;
 
 public class DeductionExceedsBalanceException extends Exception {
-	private static final long serialVersionUID = 1L;
-	float balance;
-	float sum;
-	float difference;
+    private static final long serialVersionUID = 1L;
+    double balance;
+    double sum;
+    double difference;
 
-	public DeductionExceedsBalanceException(String mess, float balance, float sum, float difference) {
-		super(mess);
-		this.balance = balance;
-		this.sum = sum;
-		this.difference = balance - sum;
-	}
+    public DeductionExceedsBalanceException(String mess, double balance, double sum, double difference) {
+        super(mess);
+        this.balance = balance;
+        this.sum = sum;
+        this.difference = balance - sum;
+    }
 
-	public float getBalance() {
-		return balance;
-	}
+    public double getBalance() {
+        return balance;
+    }
 
-	public float getSum() {
-		return sum;
-	}
+    public double getSum() {
+        return sum;
+    }
 
-	public float getDifference() {
-		return difference;
-	}
+    public double getDifference() {
+        return difference;
+    }
 }

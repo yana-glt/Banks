@@ -101,19 +101,16 @@ public class IndividualClient extends Client implements IAssessSolvency {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (!super.equals(obj))
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		if (this.hashCode() != obj.hashCode())
+		if ((!super.equals(obj)) || (getClass() != obj.getClass()) || (this.hashCode() != obj.hashCode()))
 			return false;
 		IndividualClient other = (IndividualClient) obj;
-		return (this.name == other.name || (this.name != null ? this.name.equals(other.name) : other.name == null))
-				&& (this.surname == other.surname
-						|| (this.surname != null ? this.surname.equals(other.surname) : other.surname == null))
-				&& (this.dateOfBirth == other.dateOfBirth
-						|| (this.dateOfBirth != null ? this.dateOfBirth.equals(other.dateOfBirth)
-								: other.dateOfBirth == null));
+		boolean isNameEqual = (this.name == null && other.name == null)
+				|| (this.name != null && this.name == other.name);
+		boolean isSurnameEqual = (this.surname == null && other.surname == null)
+				|| (this.surname != null && this.surname == other.surname);
+		boolean isDateOfBirthEqual = (this.dateOfBirth == null && other.dateOfBirth == null)
+				|| (this.dateOfBirth != null && this.dateOfBirth == other.dateOfBirth);
+		return isNameEqual && isSurnameEqual && isDateOfBirthEqual;
 	}
 
 	@Override

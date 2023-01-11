@@ -5,8 +5,8 @@ import main.java.com.solvd.banks.branches.Branch;
 import java.util.Objects;
 
 public abstract class Client {
-	private static int numberOfClients = 0;
-	private int id;
+	private static long numberOfClients = 0L;
+	private long id;
 	private String identificationNumber;
 	private String phoneNumber;
 	private String emailAddress;
@@ -28,11 +28,11 @@ public abstract class Client {
 		return numberOfClients;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -72,16 +72,13 @@ public abstract class Client {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		if (this.hashCode() != obj.hashCode())
+		if ((obj == null) || (getClass() != obj.getClass()) || (this.hashCode() != obj.hashCode()))
 			return false;
 		Client other = (Client) obj;
-		return this.id == other.id && (this.identificationNumber == other.identificationNumber
-				|| (this.identificationNumber != null ? this.identificationNumber.equals(other.identificationNumber)
-						: other.identificationNumber == null));
+		boolean isIdEqual = (this.id == other.id);
+		boolean isIdentificationNumberEqual = (this.identificationNumber == null && other.identificationNumber == null)
+				|| (this.identificationNumber != null && this.identificationNumber == other.identificationNumber);
+		return isIdEqual && isIdentificationNumberEqual;
 	}
 
 	@Override
